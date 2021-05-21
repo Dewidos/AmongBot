@@ -1,3 +1,5 @@
+const key = require('key.js');
+
 const Discord = require('discord.js');
 const Client = new Discord.Client();
 const fs = require('fs');
@@ -31,4 +33,4 @@ Client.on('message', message => {
     }
 });
 
-Client.login("ODQ0OTI2NzE3MDg0MDQxMjM4.YKZhUw.DhKuyKEHH8V4d8cBjvwld1qt8T4");
+Client.login(key);
