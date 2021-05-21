@@ -24,7 +24,7 @@ Client.on('message', message => {
         const command = args.shift().toLowerCase();
 
         try {
-            Client.commands.get(command).execute(message, args);
+            Client.commands.get(command).execute(message, args, Client);
         } catch (error) {
             message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${prefix}help**.`);
             console.error(error);
@@ -41,13 +41,17 @@ function checkUpdates() {
             var response = JSON.parse(xhr.responseText);
             var releaseDate = Date.parse(response[0].published_at);
 
-            if (lastUpdateDate != releaseDate && !firstFetch)
+            if ((lastUpdateDate != releaseDate) && !firstFetch)
             {
-                console.log("Mamy update!");
+                var infoChannel = Client.channels.cache.get('844179419814821909');
+
+                infoChannel.send(`**Wyszła nowa wersja Town Of Us!** Jej numerek to: **${response[0].tag_name}**. Link do pobrania: https://github.com/slushiegoose/Town-Of-Us`);
+
                 lastUpdateDate = releaseDate;
             }
             else if (firstFetch)
             {
+                lastUpdateDate = releaseDate;
                 firstFetch = false;
             }
         }
