@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "key.js": "^1.0.7"
   }
 }
