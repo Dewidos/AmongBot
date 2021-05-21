@@ -1,9 +1,11 @@
-const key = require('key.js');
-
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Discord = require('discord.js');
 const Client = new Discord.Client();
 const fs = require('fs');
 Client.commands = new Discord.Collection();
+
+var lastUpdateDate = new Date();
+var firstFetch = true;
 
 const prefix = "ab!";
 
@@ -15,11 +17,8 @@ for (const file of commandFiles) {
     Client.commands.set(command.name, command);
 }
 
-Client.once('ready', () => {
-    console.log("Dziala");
-});
-
 Client.on('message', message => {
+    checkUpdates();
     if (message.content.startsWith(prefix) && !message.author.bot) {
         const args = message.content.slice(prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
@@ -33,4 +32,29 @@ Client.on('message', message => {
     }
 });
 
-Client.login(key);
+function checkUpdates() {
+    var xhr = new XMLHttpRequest();
+    
+    xhr.onload = function() {
+        if (xhr.status === 200)
+        {
+            var response = JSON.parse(xhr.responseText);
+            var releaseDate = Date.parse(response[0].published_at);
+
+            if (lastUpdateDate != releaseDate && !firstFetch)
+            {
+                console.log("Mamy update!");
+                lastUpdateDate = releaseDate;
+            }
+            else if (firstFetch)
+            {
+                firstFetch = false;
+            }
+        }
+    }
+        
+    xhr.open('GET', 'https://api.github.com/repos/slushiegoose/Town-Of-Us/releases', true);
+    xhr.send(null);
+}
+
+Client.login("ODQ0OTI2NzE3MDg0MDQxMjM4.YKZhUw.LACq4pIL6MAufhWJgPS-NIXCG1g");
