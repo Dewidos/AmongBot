@@ -1,13 +1,9 @@
 const Discord = require('discord.js');
+const Client = new Discord.Client();
+const fs = require('fs');
+Client.commands = new Discord.Collection();
 
 const prefix = "ab!";
-
-const Client = new Discord.Client();
-
-const fs = require('fs');
-const { waitForDebugger } = require('inspector');
-
-Client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
