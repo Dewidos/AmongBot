@@ -34,7 +34,7 @@ Client.on('message', message => {
 
             updateConfig();
         } catch (error) {
-            message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${prefix}help**.`);
+            message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${prefix}info -komendy**.`);
             console.error(error);
         }
     }
