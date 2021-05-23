@@ -31,7 +31,7 @@ module.exports = {
 
         try {
             var user = message.guild.members.cache.get(id);
-            var verifiedRoleId = '844214020123000893';
+            var verifiedRoleId = client.configFile.find(c => c.guildId == message.guild.id).verifiedRoleId;
 
             if (user.roles.cache.has(verifiedRoleId)) {
                 user.roles.remove(verifiedRoleId);
