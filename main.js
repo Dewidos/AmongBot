@@ -64,7 +64,7 @@ Client.once('ready', () => {
 })
 
 function checkUpdates() {
-    if (!(firstImpostorFetch || firstFetch)) {
+    if (firstImpostorFetch || firstFetch) {
         lastUpdateFetchTime = new Date();
     }
     else
@@ -73,9 +73,8 @@ function checkUpdates() {
         dateNow.setDate(dateNow.getDate() - 1);
 
         if (!(dateNow >= lastUpdateFetchTime)) return;
+        else lastUpdateFetchTime = new Date();
     }
-
-    lastUpdateFetchTime = new Date();
     
     var xhr = new XMLHttpRequest();
     
@@ -104,6 +103,10 @@ function checkUpdates() {
                 lastUpdateDate = releaseDate;
                 firstFetch = false;
             }
+        }
+        else
+        {
+            console.error(`Github's servers returned ${xhr.status} code, while checking Town Of Us`);
         }
     }
         
@@ -134,6 +137,10 @@ function checkUpdates() {
                 lastImpostorUpdateDate = releaseDate;
                 firstImpostorFetch = false;
             }
+        }
+        else
+        {
+            console.error(`Github's servers returned ${xhrI.status} code, while checking Town Of Impostors`);
         }
     }
         
