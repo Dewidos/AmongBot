@@ -7,11 +7,17 @@ Client.commands = new Discord.Collection();
 Client.configFile = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'));
 Client.configFile.forEach(e => e.vcNotifyLinks = []);
 
+// Aktualizacje modów ----------
+
 var lastUpdateDate = new Date();
 var firstFetch = true;
 
 var lastImpostorUpdateDate = new Date();
 var firstImpostorFetch = true;
+
+var lastUpdateFetchTime;
+
+// -----------------------------
 
 const prefix = "ab!";
 
@@ -58,6 +64,17 @@ Client.once('ready', () => {
 })
 
 function checkUpdates() {
+    if (!(firstImpostorFetch || firstFetch)) {
+        lastUpdateFetchTime = new Date();
+    }
+    else
+    {
+        var dateNow = new Date();
+        dateNow.setDate(dateNow.getDate() - 1);
+
+        if (dateNow > lastUpdateFetchTime) return;
+    }
+    
     var xhr = new XMLHttpRequest();
     
     xhr.onload = function() {
