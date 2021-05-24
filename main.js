@@ -72,7 +72,7 @@ function checkUpdates() {
         var dateNow = new Date();
         dateNow.setDate(dateNow.getDate() - 1);
 
-        if (dateNow > lastUpdateFetchTime) return;
+        if (!(dateNow >= lastUpdateFetchTime)) return;
     }
     
     var xhr = new XMLHttpRequest();
