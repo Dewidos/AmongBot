@@ -83,7 +83,6 @@ function checkUpdates() {
         {
             var response = JSON.parse(xhr.responseText);
             var releaseDate = Date.parse(response[0].published_at);
-            console.log("Checked if Town Of Us is up to date");
 
             if ((lastUpdateDate != releaseDate) && !firstFetch)
             {
@@ -120,7 +119,6 @@ function checkUpdates() {
         {
             var response = JSON.parse(xhrI.responseText);
             var releaseDate = Date.parse(response[0].published_at);
-            console.log("Checked if Town Of Impostors is up to date");
 
             if ((lastImpostorUpdateDate != releaseDate) && !firstImpostorFetch)
             {
