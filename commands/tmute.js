@@ -1,6 +1,6 @@
 module.exports = {
 
-    "name": "tempmute",
+    "name": "tmute",
     "description": "czasowo wycisz jakiegoś użytkownika!",
 
     execute(message, args, client) {
@@ -15,15 +15,55 @@ module.exports = {
         if (typeof args[0] !== 'undefined' && args[0] != "") {
 
             if (typeof args[1] !== 'undefined' && args[1] != "") {
-
-                var czas = args[1];
-
-                if (czas.content.endsWith("m")) {
+                if (args[1].endsWith("m")) {
                     
-                    czas = czas.replace("m", "");
+                    try {
+                        var Czas = args[1].replace("m", "");
+                        Czas = parseInt(Czas);
+                        if (Czas === null) {
+                            message.channel.send("Wprowadź prawidłowy czas!");
+                            return;
+                        }
+                        Czas = Czas * 60000;
+                        console.log(Czas);
+                    } catch (error) {
+                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
+                        console.error(error);
+                    }
 
-                    console.log(czas);
-                }   
+                //mute na godziny
+                } else if (args[1].endsWith("h")) {
+
+                    try {
+                        var Czas = args[1].replace("h", "");
+                        Czas = parseInt(Czas);
+                        if (Czas === null) {
+                            message.channel.send("Wprowadź prawidłowy czas!");
+                            return;
+                        }
+                        Czas = Czas * 3600000;
+                        console.log(Czas);
+                    } catch (error) {
+                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
+                    }
+
+                //mute na dni
+                } else if (args[1].endsWith("d")) {
+
+                    try {
+                        var Czas = args[1].replace("d", "");
+                        Czas = parseInt(Czas);
+                        if (Czas === null) {
+                            message.channel.send("Wprowadź prawidłowy czas!");
+                            return;
+                        }
+                        Czas = Czas * 86400000;
+                        console.log(Czas);
+                    } catch (error) {
+                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
+                    }
+
+                }
 
                 //ustalamy powód
                 var reason = "";
@@ -39,63 +79,24 @@ module.exports = {
 
                 var id = args[0].replace(/[\\<>@#&!]/g, "");
                 
-                var user = message.guild.members.cache.get(id);
-                if (typeof duration !== 'undefined' && duration != "") {
+                if (Czas !== null) {
                     punishments.mutes.push({
 
-                        "userId": user,
+                        "userId": id,
                         "issuerId": message.author.id,
-                        "duration": duration,
+                        "duration": Czas,
                         "reason": reason,
 
                     });
                 } else {
-                    message.channel.send("Musisz podać czas na ile chcesz go wyciszyć!");
+                    message.channel.send("Podaj prawidłowy czas!");
+                    return;
                 }
                     
-    
-
-                //mute na minuty
-                /*if (args[1].content.endsWith("m")) {
-                    
-                    try {
-                        var Czas = args[1].replace("m", "");
-                        Czas = parseInt(Czas);
-                        Czas = Czas * 60000;
-                        console.log(Czas);
-                    } catch (error) {
-                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
-                    }
-
-                //mute na godziny
-                } else if (args[1].content.endsWith("h")) {
-
-                    try {
-                        var Czas = args[1].replace("h", "");
-                        Czas = parseInt(Czas);
-                        Czas = Czas * 3600000;
-                        console.log(Czas);
-                    } catch (error) {
-                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
-                    }
-
-                //mute na dni
-                } else if (args[1].content.endsWith("d")) {
-
-                    try {
-                        var Czas = args[1].replace("d", "");
-                        Czas = parseInt(Czas);
-                        Czas = Czas * 86400000;
-                        console.log(Czas);
-                    } catch (error) {
-                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
-                    }
-
-                } */
 
             } else {
 
-                message.channel.send("Musisz podać powód lub czas :unamused:")
+                message.channel.send("Musisz podać czas :unamused:")
 
             }
 
