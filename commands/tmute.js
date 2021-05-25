@@ -1,7 +1,9 @@
+const Discord = require('discord.js');
+
 module.exports = {
 
     "name": "tmute",
-    "description": "czasowo wycisz jakiegoś użytkownika!",
+    "description": "Czasowo wycisz jakiegoś użytkownika!",
 
     execute(message, args, client) {
 
@@ -15,6 +17,7 @@ module.exports = {
         if (typeof args[0] !== 'undefined' && args[0] != "") {
 
             if (typeof args[1] !== 'undefined' && args[1] != "") {
+                var time = args[1];
                 if (args[1].endsWith("m")) {
                     
                     try {
@@ -78,6 +81,14 @@ module.exports = {
                 }
 
                 var id = args[0].replace(/[\\<>@#&!]/g, "");
+                var player = message.guild.members.cache.get(id);
+
+                if (typeof player === 'undefined') {
+
+                    message.channel.send("Nie znalazłem gracza o takim id :cry:");
+                    return;
+
+                }
                 
                 if (Czas !== null) {
                     punishments.mutes.push({
@@ -88,6 +99,15 @@ module.exports = {
                         "reason": reason,
 
                     });
+
+                    var embed = new Discord.MessageEmbed();
+                                .setColor('#34c6eb')
+                                .setTitle("Najnowszy warn na serwerze")
+                                .setFooter("Polecam się na przyszłość :smiley:")
+                                .addField(`Identyfikator: `)
+
+                    message.channel.send(`**Wyciszyłem gracza o nicku: **<@${id}>\n\n**Na czas:** ${time}`);
+                    player.roles.add("841617507168288798");
                 } else {
                     message.channel.send("Podaj prawidłowy czas!");
                     return;
