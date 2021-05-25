@@ -3,7 +3,7 @@ module.exports = {
     "name": "mute",
     "description": "wycisz jakiegoś użytkownika!",
 
-    execute(message, args, Client) {
+    execute(message, args, client) {
 
         var punishments = client.punishments.find(e => e.guildId == message.guild.id);
 
@@ -14,18 +14,18 @@ module.exports = {
 
         if (typeof args[0] !== 'undefined' && args[0] != "") {
 
-            if (!(typeof args[1] !== 'undefined' && args[1] != "")) {
+            if (typeof args[1] !== 'undefined' && args[1] != "") {
                 //mute na minuty
                 if (args[1].content.endsWith("m")) {
                     
-                try {
-                    var Czas = args[1].replace("m", "");
-                    Czas = parseInt(Czas);
-                    Czas = Czas * 60000;
-                    console.log(Czas);
-                } catch (error) {
-                    message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
-                }
+                    try {
+                        var Czas = args[1].replace("m", "");
+                        Czas = parseInt(Czas);
+                        Czas = Czas * 60000;
+                        console.log(Czas);
+                    } catch (error) {
+                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
+                    }
 
                 //mute na godziny
                 } else if (args[1].content.endsWith("h")) {
