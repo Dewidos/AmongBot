@@ -2,28 +2,22 @@ module.exports = {
     "name": "weryfikujgracza",
     "description": "Komenda weryfikująca danego gracza",
     execute(message, args, client) {             
-        var roles = [
-            '844199150878064683',
-            '841576908248449055',
-            '844464566346973224',
-            '840960529191403580',
-            '844605360023273502'
-        ];
-        
-        if (!(typeof args[0] !== 'undefined' && args[0] != "")) {
-            message.channel.send("Musisz podać id bądź oznaczyć gracza w tej komendzie!");
+        var config = client.configFile.find(c => c.guildId == message.guild.id);
+
+        if (config.moderatorRoles.length <= 0) {
+            message.channel.send("Błąd konfiguracji! Nikt nie skonfigurował roli moderatorskich.");
             return;
         }
 
         var hasPermission = false;
 
-        roles.forEach(role => {
+        config.moderatorRoles.forEach(role => {
             if (message.member.roles.cache.has(role)) {
                 hasPermission = true;
             }
         });
 
-        if (hasPermission == false) {
+        if (!hasPermission) {
             message.channel.send("Nie masz wystarczających uprawnień!");
             return;
         }
