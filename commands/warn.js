@@ -11,6 +11,13 @@ module.exports = {
         var id = args[0].replace(/[\\<>@#&!]/g, "");
         var reason = "";
 
+        var checkifplayerexist = message.guild.members.cache.get(id);
+
+        if (typeof checkifplayerexist === 'undefined') {
+            message.channel.send("Podaj poprawne ID gracza");
+            return;
+        }
+        
         if (typeof args[1] !== 'undefined' && args[1] != "") {
             var length = args.length - 1;
 
