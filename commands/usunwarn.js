@@ -2,6 +2,26 @@ module.exports = {
     "name": "usunwarn",
     "descriptions": "Usuwa ostrzeżenie o podanym identyfikatorze, bądź usuwa wszystkie ostrzeżenia danego gracza.",
     execute(message, args, client) {
+        var config = client.configFile.find(c => c.guildId == message.guild.id);
+
+        if (config.moderatorRoles.length <= 0) {
+            message.channel.send("Błąd konfiguracji! Nikt nie skonfigurował roli moderatorskich.");
+            return;
+        }
+
+        var hasPermission = false;
+
+        config.moderatorRoles.forEach(role => {
+            if (message.member.roles.cache.has(role)) {
+                hasPermission = true;
+            }
+        });
+
+        if (!hasPermission) {
+            message.channel.send("Nie masz wystarczających uprawnień!");
+            return;
+        }
+        
         if (!(typeof args[0] !== 'undefined' && args[0] != "")) {
             message.channel.send("Musisz podać id ostrzeżenia w tej komendzie!");
             return;

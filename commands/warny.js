@@ -4,6 +4,26 @@ module.exports = {
     "name": "warny",
     "description": "Wypisuje ostrzeżenia danego gracza, bądź ostatnie ostrzeżenie na serwerze.",
     execute(message, args, client) {
+        var config = client.configFile.find(c => c.guildId == message.guild.id);
+
+        if (config.moderatorRoles.length <= 0) {
+            message.channel.send("Błąd konfiguracji! Nikt nie skonfigurował roli moderatorskich.");
+            return;
+        }
+
+        var hasPermission = false;
+
+        config.moderatorRoles.forEach(role => {
+            if (message.member.roles.cache.has(role)) {
+                hasPermission = true;
+            }
+        });
+
+        if (!hasPermission) {
+            message.channel.send("Nie masz wystarczających uprawnień!");
+            return;
+        }
+
         var punishments = client.punishments.find(e => e.guildId == message.guild.id);
 
         if (typeof punishments === 'undefined') {
