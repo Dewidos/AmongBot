@@ -21,7 +21,7 @@ var lastUpdateFetchTime;
 
 // -----------------------------
 
-const prefix = "ab!";
+Client.prefix = "ab!";
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
@@ -33,8 +33,8 @@ for (const file of commandFiles) {
 
 Client.on('message', message => {
     checkUpdates();
-    if (message.content.startsWith(prefix) && !message.author.bot) {
-        const args = message.content.slice(prefix.length).split(/ +/);
+    if (message.content.startsWith(Client.prefix) && !message.author.bot) {
+        const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
 
         try {
@@ -42,7 +42,7 @@ Client.on('message', message => {
 
             updateConfig();
         } catch (error) {
-            message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${prefix}info -komendy**.`);
+            message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${Client.prefix}info -komendy**.`);
             console.error(error);
         }
     }

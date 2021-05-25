@@ -9,7 +9,7 @@ module.exports = {
             }
             
             if (typeof args[0] == 'undefined' || args[0] == "") {
-                message.channel.send(`Musisz podać kod kanału głosowego. Jeżeli chcesz wyświetlić listę kodów, wpisz **ab!${this.name} -kody**`);
+                message.channel.send(`Musisz podać kod kanału głosowego. Jeżeli chcesz wyświetlić listę kodów, wpisz **${client.prefix + this.name} -kody**`);
                 return;
             }
 
@@ -34,7 +34,7 @@ module.exports = {
             var link = config.vcNotifyConfig.find(e => e.vcKey == args[0]);
 
             if (typeof link == 'undefined') {
-                message.channel.send(`Podałeś błędny kod kanału głosowego! Jeżeli chcesz wyświetlić listę kodów, wpisz **ab!${this.name} -kody**`);
+                message.channel.send(`Podałeś błędny kod kanału głosowego! Jeżeli chcesz wyświetlić listę kodów, wpisz **${client.prefix + this.name} -kody**`);
                 return;
             }
 

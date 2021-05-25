@@ -1,6 +1,6 @@
 module.exports = {
     "name": "usunwarn",
-    "descriptions": "Usuwa ostrzeżenie o podanym identyfikatorze, bądź usuwa wszystkie ostrzeżenia danego gracza.",
+    "description": "Usuwa ostrzeżenie o podanym identyfikatorze",
     execute(message, args, client) {
         var config = client.configFile.find(c => c.guildId == message.guild.id);
 
