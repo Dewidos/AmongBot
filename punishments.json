@@ -1,1 +1,8 @@
-[{"guildId":"840941220368482304","warnings":[{"userId":"514138172070952961","issuerId":"525738126564392991","warnId":"1","reason":"TestWarn"},{"userId":"525738126564392991","issuerId":"514138172070952961","warnId":"2","reason":"NextTestWarn"},{"userId":"234395307759108106","issuerId":"514138172070952961","warnId":"3","reason":"dzięki za przekorny los"},{"userId":"525738126564392991","issuerId":"514138172070952961","warnId":"4","reason":"dobry z Ciebie admin"},{"userId":"514138172070952961","issuerId":"525738126564392991","warnId":"5","reason":"stara prukwa"},{"userId":"525738126564392991","issuerId":"704954159404941342","warnId":"6","reason":"d"}],"nextWarnId":"7"}]
+[{"guildId":"840941220368482304","warnings":[{"userId":"514138172070952961","issuerId":"525738126564392991","warnId":"1","reason":"TestWarn"},{"userId":"525738126564392991","issuerId":"514138172070952961","warnId":"2","reason":"NextTestWarn"},{"userId":"234395307759108106","issuerId":"514138172070952961","warnId":"3","reason":"dzięki za przekorny los"},{"userId":"525738126564392991","issuerId":"514138172070952961","warnId":"4","reason":"dobry z Ciebie admin"},{"userId":"514138172070952961","issuerId":"525738126564392991","warnId":"5","reason":"stara prukwa"},{"userId":"525738126564392991","issuerId":"704954159404941342","warnId":"6","reason":"d"}],"nextWarnId":"7", "mutes":[
+    {
+        "userId": "514138172070952961",
+        "issuerId": "525738126564392991",
+        "duration": "30m",
+        "reason": "Test Mute"
+    }
+]}]
