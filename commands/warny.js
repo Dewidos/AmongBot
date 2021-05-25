@@ -48,7 +48,7 @@ module.exports = {
         var embed = new Discord.MessageEmbed()
                         .setColor('#34c6eb')
                         .setTitle(`Warny użytkownika: ${player.nickname}`)
-                        .setFooter("Polecam się na przyszłość :smiley:");
+                        .setFooter("Polecam się na przyszłość :)");
         
         for (const warn of punishments.warnings) {
             if (warn.userId == id) embed.addField(`ID ostrzeżenia: ${warn.warnId}`, `**Kto otrzymał:** <@${warn.userId}>\n**Kto wystawił:** <@${warn.issuerId}>\n**Powód:** ${warn.reason}`, false);
