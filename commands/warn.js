@@ -9,10 +9,16 @@ module.exports = {
         }
 
         var id = args[0].replace(/[\\<>@#&!]/g, "");
-        var reason;
+        var reason = "";
 
-        if (typeof args[1] !== 'undefined' && args[1] != "") reason = args[1];
-        else reason = "";
+        if (typeof args[1] !== 'undefined' && args[1] != "") {
+            var length = args.length - 1;
+
+            for (let i = 1; i <= length; i++) {
+                reason = reason + args[i];
+                if (i != length) reason = reason + " ";
+            }
+        }
 
         var punishments = client.punishments.find(e => e.guildId == message.guild.id);
 
@@ -30,7 +36,7 @@ module.exports = {
 
         var nextId = parseInt(punishments.nextWarnId);
         nextId++;
-        punishments.nextWarnId = toString(nextId);
+        punishments.nextWarnId = nextId.toString();
 
         message.channel.send(`Nadałem warna graczowi o nicku <@${id}>`);
     }
