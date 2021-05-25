@@ -36,8 +36,6 @@ Client.on('message', message => {
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
-        
-        message.member.voice.setChannel('844867690136993792');
 
         try {
             Client.commands.get(command).execute(message, args, Client);
