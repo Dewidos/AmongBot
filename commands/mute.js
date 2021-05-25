@@ -12,7 +12,7 @@ module.exports = {
             return;
         }
 
-        if (!(typeof args[0] !== 'undefined' && args[0] != "")) {
+        if (typeof args[0] !== 'undefined' && args[0] != "") {
 
             if (!(typeof args[1] !== 'undefined' && args[1] != "")) {
                 //mute na minuty
