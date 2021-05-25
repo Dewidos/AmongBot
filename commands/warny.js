@@ -40,18 +40,27 @@ module.exports = {
             return;
         }
 
-        if (player.id == '844926717084041238') {
-            message.channel.send("Ja nigdy nie będę miał ostrzeżeń :P");
+        if (player.user.bot) {
+            message.channel.send("Bot nigdy nie ma warnów :smiley:");
             return;
         }
         
         var embed = new Discord.MessageEmbed()
                         .setColor('#34c6eb')
-                        .setTitle(`Warny użytkownika: ${player.nickname}`)
+                        .setTitle(`Warny użytkownika: ${player.user.username}`)
                         .setFooter("Polecam się na przyszłość :)");
         
+        var thereWasAWarning = false;
+
         for (const warn of punishments.warnings) {
-            if (warn.userId == id) embed.addField(`ID ostrzeżenia: ${warn.warnId}`, `**Kto otrzymał:** <@${warn.userId}>\n**Kto wystawił:** <@${warn.issuerId}>\n**Powód:** ${warn.reason}`, false);
+            if (warn.userId == id) {
+                embed.addField(`ID ostrzeżenia: ${warn.warnId}`, `**Kto otrzymał:** <@${warn.userId}>\n**Kto wystawił:** <@${warn.issuerId}>\n**Powód:** ${warn.reason}`, false);
+                thereWasAWarning = true;
+            }
+        }
+
+        if (!thereWasAWarning) {
+            embed.addField("Ten użytkownik nie otrzymał jeszcze żadnego ostrzeżenia!", "Gratulujemy!", false);
         }
 
         message.channel.send(embed);

@@ -18,8 +18,8 @@ module.exports = {
             return;
         }
 
-        if (player.id == '844926717084041238') {
-            message.channel.send("Nie mogę dać samemu sobie ostrzeżenia!");
+        if (player.user.bot) {
+            message.channel.send("Nie możesz ostrzec bota!");
             return;
         }
         
