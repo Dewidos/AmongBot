@@ -86,6 +86,21 @@ module.exports = {
                         message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
                     }
 
+                } else if (args[1].endsWith("s")) {
+
+                    try {
+                        var Czas = args[1].replace("s", "");
+                        Czas = parseInt(Czas);
+                        if (Czas === null) {
+                            message.channel.send("Wprowadź prawidłowy czas!");
+                            return;
+                        }
+                        Czas = Czas * 1000;
+                        console.log(Czas);
+                    } catch (error) {
+                        message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
+                    }
+
                 }
 
                 //ustalamy powód
@@ -128,6 +143,7 @@ module.exports = {
 
                     message.channel.send(embed);
                     player.roles.add("841617507168288798");
+                    this.muted(Czas, player, client, message);
                 } else {
                     message.channel.send("Podaj prawidłowy czas!");
                     return;
@@ -147,6 +163,25 @@ module.exports = {
 
         }
 
-    }
 
+    },
+
+
+        muted(time, mutedplayer, client, message) {
+
+            setTimeout(function() { 
+                
+                mutedplayer.roles.remove("841617507168288798");
+
+                var punishments = client.punishments.find(e => e.guildId == message.guild.id);
+                var mute = punishments.mutes.find(m => m.userId == mutedplayer.id);
+
+                try {
+                    punishments.mutes.splice(punishments.mutes.indexOf(mute), 1);
+                } catch (error) {
+                    console.error(error);
+                    
+                }
+
+        }, time)}
 }
