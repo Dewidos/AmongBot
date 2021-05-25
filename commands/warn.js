@@ -11,10 +11,15 @@ module.exports = {
         var id = args[0].replace(/[\\<>@#&!]/g, "");
         var reason = "";
 
-        var checkifplayerexist = message.guild.members.cache.get(id);
+        var player = message.guild.members.cache.get(id);
 
-        if (typeof checkifplayerexist === 'undefined') {
-            message.channel.send("Podaj poprawne ID gracza");
+        if (typeof player === 'undefined') {
+            message.channel.send("Podaj poprawne ID gracza!");
+            return;
+        }
+
+        if (player.id == '844926717084041238') {
+            message.channel.send("Nie mogę dać samemu sobie ostrzeżenia!");
             return;
         }
         
