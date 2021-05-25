@@ -7,6 +7,8 @@ Client.commands = new Discord.Collection();
 Client.configFile = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'));
 Client.configFile.forEach(e => e.vcNotifyLinks = []);
 
+Client.punishments = JSON.parse(fs.readFileSync('./punishments.json', 'utf8'));
+
 // Aktualizacje modów ----------
 
 var lastUpdateDate = new Date();
@@ -184,6 +186,14 @@ function updateConfig() {
     }
 
     fs.writeFileSync('./appconfig.json', JSON.stringify(config));
+
+    try {
+        var punishments = Client.punishments;
+    } catch (error) {
+        console.error(error);
+    }
+
+    fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
 
     console.log("Saved config!");
 }
