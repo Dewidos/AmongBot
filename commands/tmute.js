@@ -7,6 +7,26 @@ module.exports = {
 
     execute(message, args, client) {
 
+        var config = client.configFile.find(c => c.guildId == message.guild.id);
+
+        if (config.moderatorRoles.length <= 0) {
+            message.channel.send("Błąd konfiguracji! Nikt nie skonfigurował roli moderatorskich.");
+            return;
+        }
+
+        var hasPermission = false;
+
+        config.moderatorRoles.forEach(role => {
+            if (message.member.roles.cache.has(role)) {
+                hasPermission = true;
+            }
+        });
+
+        if (!hasPermission) {
+            message.channel.send("Nie masz wystarczających uprawnień!");
+            return;
+        }
+        
         var punishments = client.punishments.find(e => e.guildId == message.guild.id);
 
         if (typeof punishments === 'undefined') {
@@ -100,13 +120,13 @@ module.exports = {
 
                     });
 
-                    var embed = new Discord.MessageEmbed();
+                    var embed = new Discord.MessageEmbed()
                                 .setColor('#34c6eb')
                                 .setTitle("Najnowszy warn na serwerze")
-                                .setFooter("Polecam się na przyszłość :smiley:")
-                                .addField(`Identyfikator: `)
+                                .setDescription(`**Wyciszyłem gracza o nicku: **<@${id}>\n\n**Na czas:** ${time}`)
+                                .setFooter("Polecam się na przyszłość :smiley:");
 
-                    message.channel.send(`**Wyciszyłem gracza o nicku: **<@${id}>\n\n**Na czas:** ${time}`);
+                    message.channel.send(embed);
                     player.roles.add("841617507168288798");
                 } else {
                     message.channel.send("Podaj prawidłowy czas!");
