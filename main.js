@@ -1,5 +1,6 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Discord = require('discord.js');
+const waitroomHandler = require('./waitroom');
 const Client = new Discord.Client();
 const fs = require('fs');
 Client.commands = new Discord.Collection();
@@ -48,8 +49,9 @@ Client.on('message', message => {
     }
 });
 
-Client.on('voiceStateUpdate', () => {
+Client.on('voiceStateUpdate', vState => {
     checkFreeSlots();
+    waitroomHandler(vState, Client);
 });
 
 Client.on('guildCreate', guild => {
