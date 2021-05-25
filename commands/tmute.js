@@ -137,7 +137,7 @@ module.exports = {
 
                     var embed = new Discord.MessageEmbed()
                                 .setColor('#34c6eb')
-                                .setTitle("Najnowszy warn na serwerze")
+                                .setTitle("Wykonano!")
                                 .setDescription(`**Wyciszyłem gracza o nicku: **<@${id}>\n\n**Na czas:** ${time}`)
                                 .setFooter("Polecam się na przyszłość :smiley:");
 
