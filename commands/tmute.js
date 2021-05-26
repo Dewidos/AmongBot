@@ -127,12 +127,10 @@ module.exports = {
                 
                 if (Czas !== null) {
                     punishments.mutes.push({
-
                         "userId": id,
                         "issuerId": message.author.id,
                         "duration": Czas,
                         "reason": reason,
-
                     });
 
                     var embed = new Discord.MessageEmbed()
@@ -144,6 +142,8 @@ module.exports = {
                     message.channel.send(embed);
                     player.roles.add("841617507168288798");
                     this.muted(Czas, player, client, message);
+
+                    client.updateConfig();
                 } else {
                     message.channel.send("Podaj prawidłowy czas!");
                     return;

@@ -41,7 +41,7 @@ Client.on('message', message => {
         try {
             Client.commands.get(command).execute(message, args, Client);
 
-            updateConfig();
+            Client.updateConfig();
         } catch (error) {
             message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${Client.prefix}info -komendy**.`);
             console.error(error);
@@ -180,7 +180,7 @@ function checkFreeSlots() {
     }
 }
 
-function updateConfig() {
+Client.updateConfig = () => {
     try {
         var config = Client.configFile;
     } catch (error) {
