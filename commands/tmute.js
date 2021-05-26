@@ -51,9 +51,7 @@ module.exports = {
 
             try {
                 var czas = args[1].replace("m", "");
-                console.log(czas);
                 czas = parseInt(czas);
-                console.log(typeof czas);
 
                 if (czas === null) {
                     message.channel.send("Wprowadź prawidłowy czas!");
@@ -61,7 +59,6 @@ module.exports = {
                 }
 
                 czas = czas * 60000;
-                console.log(czas + " - obliczone milisekundy");
             } catch (error) {
                 message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
                 console.error(error);
