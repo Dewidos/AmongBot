@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"guildId":"840941220368482304","warnings":[{"userId":"845910864976805898","issuerId":"483310917380210689","warnId":"3","reason":""},{"userId":"845910864976805898","issuerId":"483310917380210689","warnId":"4","reason":""},{"userId":"845910864976805898","issuerId":"483310917380210689","warnId":"5","reason":""},{"userId":"845910864976805898","issuerId":"483310917380210689","warnId":"6","reason":""}],"nextWarnId":"10","mutes":[{"userId":"845910864976805898","issuerId":"483310917380210689","reason":"2m Obraza Administracji"},{"userId":"795970790759727124","issuerId":"525738126564392991","duration":60000,"reason":"1m siema ez"}]}]
-=======
 [{"guildId":"840941220368482304","warnings":[],"nextWarnId":"6","mutes":[]}]
->>>>>>> 506e77c13d1432c939d453f5d0b493ccdc42b93b
