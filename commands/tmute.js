@@ -126,6 +126,8 @@ module.exports = {
                 reason = reason + args[i];
                 if (i != length) reason = reason + " ";
             }
+
+            reason = reason.slice(args[1]);
         }
 
         var player = message.guild.members.cache.get(id);
