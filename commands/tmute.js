@@ -178,6 +178,7 @@ module.exports = {
 
                 try {
                     punishments.mutes.splice(punishments.mutes.indexOf(mute), 1);
+                    client.updateConfig();
                 } catch (error) {
                     console.error(error);
                     

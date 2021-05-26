@@ -37,12 +37,6 @@
         "mutes": [
             {
                 "userId": "525738126564392991",
-                "issuerId": "514138172070952961",
-                "duration": 30000,
-                "reason": "30s hehd"
-            },
-            {
-                "userId": "525738126564392991",
                 "issuerId": "525738126564392991",
                 "duration": 60000,
                 "reason": "1m elo mordo"
@@ -55,7 +49,7 @@
             },
             {
                 "userId": "525738126564392991",
-                "issuerId": "514138172070952961",
+                "issuerId": "525738126564392991",
                 "duration": 60000,
                 "reason": "1m siema"
             }
