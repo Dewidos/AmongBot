@@ -72,6 +72,8 @@ module.exports = {
         message.channel.send(`Nadałem warna graczowi o nicku <@${id}>`);
 
         this.giveWarnRole(punishments.warnings.filter(w => w.userId == id).length, player, config.warningRoles);
+
+        client.updateConfig();
     },
     giveWarnRole(count, player, warnRolesArray) {
         if (count < 0) {
