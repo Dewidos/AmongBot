@@ -138,6 +138,11 @@ module.exports = {
             return;
         }
 
+        if (typeof punishments.mutes.find(m => m.userId == id) !== 'undefined') {
+            message.channel.send("Ten gracz jest już wyciszony!");
+            return;
+        }
+
         if (czas != null) {
             punishments.mutes.push({
                 "userId": id,
@@ -167,12 +172,18 @@ module.exports = {
     },
     muted(time, mutedplayer, client, message) {
 
-        setTimeout(function () {
+        setTimeout(() => {
 
             mutedplayer.roles.remove('841617507168288798');
 
             var punishments = client.punishments.find(e => e.guildId == message.guild.id);
-            var mute = client.punishments.mutes.find(m => m.userId == mutedplayer.id);
+
+            if (typeof punishments === 'undefined') {
+                console.error("Błąd przy szukaniu tablicy kar!");
+                return;
+            }
+
+            var mute = punishments.mutes.find(m => m.userId == mutedplayer.id);
 
             try {
                 punishments.mutes.splice(punishments.mutes.indexOf(mute), 1);
