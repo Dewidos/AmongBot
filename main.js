@@ -1,3 +1,5 @@
+const keepAlive = require('./server');
+
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Discord = require('discord.js');
 const waitroomHandler = require('./waitroom');
@@ -200,4 +202,5 @@ Client.updateConfig = () => {
     console.log("Saved config!");
 }
 
+keepAlive();
 Client.login(process.env['TOKEN']);

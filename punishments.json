@@ -1,8 +1,1 @@
-[
-    {
-        "guildId": "840941220368482304",
-        "warnings": [],
-        "nextWarnId": "1",
-        "mutes": []
-    }
-]
+[{"guildId":"840941220368482304","warnings":[{"userId":"514138172070952961","issuerId":"514138172070952961","warnId":"1","reason":"rzycie"}],"nextWarnId":"2","mutes":[]}]
