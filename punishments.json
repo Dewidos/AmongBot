@@ -1,1 +1,8 @@
-[{"guildId":"840941220368482304","warnings":[{"userId":"234395307759108106","issuerId":"514138172070952961","warnId":"3","reason":"dzięki za przekorny los"},{"userId":"525738126564392991","issuerId":"514138172070952961","warnId":"4","reason":"dobry z Ciebie admin"},{"userId":"525738126564392991","issuerId":"704954159404941342","warnId":"6","reason":"d"},{"userId":"472470846582030336","issuerId":"472470846582030336","warnId":"7","reason":""},{"userId":"845910864976805898","issuerId":"483310917380210689","warnId":"11","reason":""}],"nextWarnId":"13","mutes":[]}]
+[
+    {
+        "guildId": "840941220368482304",
+        "warnings": [],
+        "nextWarnId": "1",
+        "mutes": []
+    }
+]
