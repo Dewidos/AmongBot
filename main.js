@@ -200,4 +200,4 @@ Client.updateConfig = () => {
     console.log("Saved config!");
 }
 
-Client.login("ODQ0OTI2NzE3MDg0MDQxMjM4.YKZhUw.LACq4pIL6MAufhWJgPS-NIXCG1g");
+Client.login(process.env['TOKEN']);
