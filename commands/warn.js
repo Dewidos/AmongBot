@@ -81,15 +81,11 @@ module.exports = {
 
         var warnRoles = warnRolesArray.filter(r => r.warningCount == count);
 
-        console.log(warnRoles);
-
         for (const warnRole of warnRoles) {
             if (!player.roles.cache.has(warnRole.roleId)) player.roles.add(warnRole.roleId);
         }
 
         var otherWarnRoles = warnRolesArray.filter(r => r.warningCount != count);
-
-        console.log(otherWarnRoles);
 
         for (const otherRole of otherWarnRoles) {
             player.roles.remove(otherRole.roleId);
