@@ -18,12 +18,18 @@ module.exports = {
 
                 if (typeof mute !== 'undefined') {
 
-                    var duration = mute.duration
+                    var duration;
+                    if (typeof mute.duration === 'undefined') {
+                        duration = "nieokreślony";
+                    }
+                    else {
+                        duration = mute.duration;
+                    }
 
                     var embed = new Discord.MessageEmbed()
                     .setColor('#34c6eb')
                     .setTitle(`Informacje o mute użytkownika: ${player.user.username}!`)
-                    .setDescription(`**Wyciszona osoba: <@${id}>\nWyciszony przez: <@${mute.issuerId}>\nCzas wyciszenia (w milisekundach): ${mute.duration}\nZa: ${mute.reason}**`)
+                    .setDescription(`**Wyciszona osoba: <@${id}>\nWyciszony przez: <@${mute.issuerId}>\nCzas wyciszenia (w milisekundach): ${duration}\nZa: ${mute.reason}**`)
                     .setFooter("Polecam się na przyszłość :smiley:");
 
                     message.channel.send(embed);

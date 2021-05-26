@@ -78,17 +78,17 @@ module.exports = {
             console.warn(count + " - weird warning count");
             return;
         }
+        
+        var otherWarnRoles = warnRolesArray.filter(r => r.warningCount != count);
+
+        for (const otherRole of otherWarnRoles) {
+            player.roles.remove(otherRole.roleId);
+        }
 
         var warnRoles = warnRolesArray.filter(r => r.warningCount == count);
 
         for (const warnRole of warnRoles) {
             if (!player.roles.cache.has(warnRole.roleId)) player.roles.add(warnRole.roleId);
-        }
-
-        var otherWarnRoles = warnRolesArray.filter(r => r.warningCount != count);
-
-        for (const otherRole of otherWarnRoles) {
-            player.roles.remove(otherRole.roleId);
         }
     }
 }

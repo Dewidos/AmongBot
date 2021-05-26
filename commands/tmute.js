@@ -75,7 +75,6 @@ module.exports = {
                     return;
                 }
                 czas = czas * 3600000;
-                console.log(czas);
             } catch (error) {
                 message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
             }
@@ -91,7 +90,6 @@ module.exports = {
                     return;
                 }
                 czas = czas * 86400000;
-                console.log(czas);
             } catch (error) {
                 message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
             }
@@ -106,7 +104,6 @@ module.exports = {
                     return;
                 }
                 czas = czas * 1000;
-                console.log(czas);
             } catch (error) {
                 message.channel.send("Wystąpił błąd, prosze spróbuj ponownie.");
             }

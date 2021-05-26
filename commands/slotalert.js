@@ -25,7 +25,7 @@ module.exports = {
             }
 
             var config = client.configFile.find(e => e.guildId == message.guild.id);
-
+            
             if (typeof config == 'undefined') {
                 message.channel.send("Błąd konfiguracji! Skontaktuj się z administracją.");
                 return;
