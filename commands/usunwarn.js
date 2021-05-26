@@ -1,3 +1,5 @@
+const giveWarnRole = require('./warn').giveWarnRole;
+
 module.exports = {
     "name": "usunwarn",
     "description": "Usuwa ostrzeżenie o podanym identyfikatorze",
@@ -46,6 +48,8 @@ module.exports = {
             return;
         }
 
+        var player = message.guild.members.cache.get(warn.userId);
+
         try {
             punishments.warnings.splice(punishments.warnings.indexOf(warn), 1);
         } catch (error) {
@@ -54,6 +58,14 @@ module.exports = {
             return;
         }
 
-        message.channel.send(`Ostrzeżenie o id **${warn.warnId}** zostało usunięte :smiley:`);
+        var returnMessage = `Ostrzeżenie o id **${warn.warnId}** zostało usunięte :smiley:`;
+
+        if (typeof player === 'undefined') {
+            returnMessage = returnMessage + "\nUżytkownik jednak wyszedł już z serwera, więc był to nie potrzebny warn.";
+        } else {
+            giveWarnRole(punishments.warnings.filter(w => w.userId == player.id).length, player, config.warningRoles);
+        }
+
+        message.channel.send(returnMessage);
     }
 }

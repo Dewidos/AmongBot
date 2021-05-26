@@ -70,5 +70,25 @@ module.exports = {
         punishments.nextWarnId = nextId.toString();
 
         message.channel.send(`Nadałem warna graczowi o nicku <@${id}>`);
+
+        this.giveWarnRole(punishments.warnings.filter(w => w.userId == id).length, player, config.warningRoles);
+    },
+    giveWarnRole(count, player, warnRolesArray) {
+        if (count < 0) {
+            console.warn(count + " - weird warning count");
+            return;
+        }
+
+        var warnRoles = warnRolesArray.filter(r => r.warningCount == count);
+
+        for (const warnRole of warnRoles) {
+            if (!player.roles.cache.has(warnRole.roleId)) player.roles.add(warnRole.roleId);
+        }
+
+        var otherWarnRoles = warnRolesArray.filter(r => r.warningCount != count);
+
+        for (const otherRole of otherWarnRoles) {
+            if (player.roles.cache.has(otherRole.roleId)) player.roles.remove(otherRole.roleId);
+        }
     }
 }
