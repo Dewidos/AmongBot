@@ -41,7 +41,7 @@ module.exports = {
 
         var id = args[0].replace(/[\\<>@#&!]/g, "");
 
-        if (typeof args[1] !== 'undefined' && args[1] != "") {
+        if (typeof args[1] === 'undefined' || args[1] == "") {
             message.channel.send("Musisz podać czas :unamused:");
             return;
         }
