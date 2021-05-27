@@ -5,7 +5,7 @@ module.exports = {
 
     async execute(message, args, client) {
 
-        if (typeof args[0] === 'undefined' && args[0] != "") {
+        if (typeof args[0] !== 'undefined' && args[0] != "") {
             if (isNaN(args[0])) {
                 message.channel.send("**Podany argument musi być liczbą**");
                 return;
