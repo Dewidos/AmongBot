@@ -3,7 +3,7 @@ module.exports = (message, client) => {
     var punishments = client.punishments.find(p => p.guildId == message.guild.id);
     
     var msgContent = message.content;
-    msgContent.toLowerCase();
+    msgContent = msgContent.toLowerCase();
 
     var counter = 0;
     for (const key of msgContent) {
