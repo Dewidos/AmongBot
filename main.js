@@ -45,8 +45,6 @@ Client.on('message', message => {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
 
-        runAutomoderator(message, Client);
-
         try {
             Client.commands.get(command).execute(message, args, Client);
 
@@ -55,6 +53,8 @@ Client.on('message', message => {
             message.channel.send(`Nie znam takiej komendy :tired_face:. Jeżeli chcesz poznać listę moich komend, wpisz **${Client.prefix}info -komendy**.`);
             console.error(error);
         }
+    } else if (!message.author.bot) {
+        runAutomoderator(message, Client);
     }
 });
 
