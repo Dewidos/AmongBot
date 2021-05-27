@@ -23,7 +23,7 @@ module.exports = {
             message.channel.send("Nie masz wystarczających uprawnień!");
             return;
         }
-        
+
         //implemetowanie punishments.json
         var punishments = client.punishments.find(e => e.guildId == message.guild.id);
 
@@ -35,7 +35,7 @@ module.exports = {
 
             if (typeof user !== 'undefined') {
                 if (typeof punishments.mutes.find(m => m.userId == id) !== 'undefined') {
-                    
+
                     var mute = punishments.mutes.find(m => m.userId == id);
 
                     try {
@@ -49,6 +49,12 @@ module.exports = {
                     user.roles.remove('841617507168288798');
 
                 } else {
+                    if (user.roles.cache.has('841617507168288798')) {
+                        user.roles.remove('841617507168288798');
+                        message.channel.send(`**Odciszyłem gracza:** *__${user.user.username}__*`);
+                        return;
+                    }
+                    
                     message.channel.send("**Ten gracz nie jest wyciszony!**");
                     return;
                 }
