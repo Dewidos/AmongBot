@@ -181,6 +181,8 @@ function addExpirience(message, client) {
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
+
+    client.updateConfig();
 }
 
 function checkFreeSlots() {  

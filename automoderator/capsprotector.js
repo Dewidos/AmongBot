@@ -35,8 +35,6 @@ module.exports = (message, client) => {
         if (counter > maxCapsCount) maxCapsCount = counter;
     }
 
-    console.log("Liczba capsów: " + maxCapsCount);
-
     try {
         
         var player = message.member;
@@ -57,7 +55,7 @@ module.exports = (message, client) => {
             nextId++;
             punishments.nextWarnId = nextId.toString();
 
-            warnScript.giveWarnRole(punishments.warnings.filter(w => w.userId == id).length, player, config.warningRoles);
+            warnScript.giveWarnRole(punishments.warnings.filter(w => w.userId == message.author.id).length, player, config.warningRoles);
             client.updateConfig();
         }
 
