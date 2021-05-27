@@ -163,7 +163,8 @@ function addExpirience(message, client) {
 
     var rank = client.rank.find(e => e.guildId == message.guild.id);
 
-    var expirience = message.length * 2;
+    var expirience = message.length;
+    var expirience = expirience * 2;
     parseInt(expirience);
     console.log(expirience);
 
