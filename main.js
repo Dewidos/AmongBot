@@ -6,6 +6,7 @@ const Discord = require('discord.js');
 const waitroomHandler = require('./waitroom');
 const Client = new Discord.Client();
 const fs = require('fs');
+const { randomInt } = require('crypto');
 Client.commands = new Discord.Collection();
 
 Client.configFile = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'));
@@ -168,6 +169,12 @@ function addExpirience(message, client) {
     }
 
     var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
+
+    if (typeof rankofplayer === 'undefined') {
+        console.error(rank.textchannelrank);
+        return;
+    }
+
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
