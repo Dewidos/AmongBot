@@ -39,6 +39,10 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     checkUpdates();
 
+    const channelID = '847536755518472212';
+
+    jakiswkuriwajacychuj(channelID, message);
+
     addExpirience(message, Client);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
@@ -195,6 +199,26 @@ function checkFreeSlots() {
             }
         }
     }
+}
+
+function jakiswkuriwajacychuj(channelID, message) {
+
+    if (message.channel.id == channelID) {
+        var channeltowkurwianie = message.guild.channels.cache.get(channelID);
+
+        var wkurwiajacawiadomosc = message.content.toLowerCase();
+
+        if (wkurwiajacawiadomosc == "jestem debilem" || wkurwiajacawiadomosc == "jestem idiotą" || wkurwiajacawiadomosc == "jestem śmieciem") {
+            message.channel.send("Tak, jesteś zgodze się");
+        } else {
+            channeltowkurwianie.send(message.content);
+        }
+
+    } else {
+        return;
+    }
+
+    
 }
 
 Client.updateConfig = () => {
