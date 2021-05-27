@@ -160,14 +160,12 @@ function checkUpdates() {
 }
 
 function addExpirience(message, client) {
-
-    var rank = client.rank.find(e => e.guildId == message.guild.id);
-
-    var expirience = message.length;
-    parseInt(expirience);
+    var expirience;
+    for (let i = 1; i <= message.length; i++) {
+        expirience = expirience + 1;
+    }
+    expirience = expirience*2;
     console.log(expirience);
-
-}
 
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
