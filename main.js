@@ -160,13 +160,40 @@ function checkUpdates() {
 }
 
 function addExpirience(message, client) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2d546d7 (rank584973874578543735467437676569876854656374657849677485397465895679054768963778346578346054809635)
+>>>>>>> origin/main
     var rank = client.rank.find(e => e.guildId == message.guild.id);
 
     var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience.set(parseInt(rankofplayer.expirience) + expiriencetoget);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 6c03a49 (Solved main.js conflict)
+    var expirience;
+    for (let i = 1; i <= message.length; i++) {
+        expirience = i;
+    }
+    expirience = expirience*2;
+<<<<<<< HEAD
+>>>>>>> 6c03a49 (Solved main.js conflict)
+=======
+>>>>>>> 2d546d7 (rank584973874578543735467437676569876854656374657849677485397465895679054768963778346578346054809635)
+=======
+>>>>>>> 6c03a49 (Solved main.js conflict)
+>>>>>>> origin/main
 }
+
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
         if (guildConfig.vcNotifyLinks.length == 0) continue;
