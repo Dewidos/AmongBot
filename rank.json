@@ -1,10 +1,11 @@
 [
     {
-        "guildID": '',
+        "guildID": "840941220368482304",
         "textchanelrank": 
-        [
-            "userID": "S",
-            ""
+        [ 
+            {
+                "userID": ""
+            }
         ]
     }
 ]
