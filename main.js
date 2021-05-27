@@ -160,18 +160,17 @@ function checkUpdates() {
 }
 
 function addExpirience(message, client) {
-    var rank = client.rank.find(e => e.guildId == message.guild.id);
+    var rank = client.rank.find(e => e.guildID == message.guild.id);
+
+    if (typeof rank === 'undefined') {
+        console.error("rank.json file error");
+        return;
+    }
 
     var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
-    rankofplayer.expirience.set(parseInt(rankofplayer.expirience) + expiriencetoget);
-
-    var expirience;
-    for (let i = 1; i <= message.length; i++) {
-        expirience = i;
-    }
-    expirience = expirience*2;
+    rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
 }
 
 function checkFreeSlots() {  
