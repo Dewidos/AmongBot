@@ -86,42 +86,6 @@
                 "vcId": "844546206398283786",
                 "vcName": "Town Of Us 10",
                 "canWait": true
-            },
-            {
-                "vcKey": "AUS1",
-                "vcId": "842449258456285194",
-                "vcName": "Among Us 1",
-                "canWait": false
-            },
-            {
-                "vcKey": "AUS2",
-                "vcId": "842449633695105045",
-                "vcName": "Among Us 2",
-                "canWait": false
-            },
-            {
-                "vcKey": "AUS3",
-                "vcId": "842449649445109790",
-                "vcName": "Among Us 3",
-                "canWait": false
-            },
-            {
-                "vcKey": "AUS4",
-                "vcId": "842449718189621258",
-                "vcName": "Among Us 4",
-                "canWait": false
-            },
-            {
-                "vcKey": "AUS5",
-                "vcId": "842449731779297330",
-                "vcName": "Among Us 5",
-                "canWait": false
-            },
-            {
-                "vcKey": "AUS6",
-                "vcId": "843063178618339340",
-                "vcName": "Among Us 6",
-                "canWait": false
             }
         ],
         "moderatorRoles": [
