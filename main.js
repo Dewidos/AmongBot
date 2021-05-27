@@ -163,7 +163,7 @@ function checkUpdates() {
 }
 
 function addExpirience(message) {
-    var rank = Client.rank.find(e => e.guildId == message.guild.id);
+    var rank = Client.rank.find(e => e.guildID == message.guild.id);
 
     if (typeof rank === 'undefined') {
         console.error("rank.json file error");
@@ -222,7 +222,7 @@ function jakiswkuriwajacychuj(channelID, message) {
 
         var wkurwiajacawiadomosc = message.content.toLowerCase();
 
-        if (wkurwiajacawiadomosc == "jestem debilem" || wkurwiajacawiadomosc == "jestem idiotą" || wkurwiajacawiadomosc == "jestem śmieciem") {
+        if (wkurwiajacawiadomosc == "jestem debilem" || wkurwiajacawiadomosc == "jestem idiotą" || wkurwiajacawiadomosc == "jestem śmieciem" || wkurwiajacawiadomosc == "jestem głupi") {
             message.channel.send("Tak, jesteś zgodze się");
         } else {
             message.channel.send(message.content);
