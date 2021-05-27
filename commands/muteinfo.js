@@ -54,7 +54,7 @@ module.exports = {
                 } else {
 
                     message.channel.send("**Aktualnie ten gracz nie ma żadnego wyciszenia!**");
-
+                    
                 }
 
 
