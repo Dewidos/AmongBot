@@ -1,6 +1,4 @@
 module.exports = (message, client) => {
-    console.log("moderuje");
-    
     var config = client.configFile.find(c => c.guildId == message.guild.id);
     var punishments = client.punishments.find(p => p.guildId == message.guild.id);
     
@@ -11,8 +9,15 @@ module.exports = (message, client) => {
     for (const key of msgContent) {
         var index = msgContent.indexOf(key);
 
-        if (message.content[index] != key) counter++;
-        else counter = 0;
+        console.log(`Dajs ki: ${key}`);
+
+        if (message.content[index] != key) {
+            counter++;
+            console.log("wincyj");
+        } else {
+            counter = 0;
+            console.log("mniej");
+        }
     }
 
     console.log("Liczba capsów: " + counter);
