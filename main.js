@@ -171,8 +171,11 @@ function addExpirience(message, client) {
     var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
 
     if (typeof rankofplayer === 'undefined') {
-        console.error(rank.textchannelrank);
-        return;
+        rankofplayer = rank.textchannelrank.push({
+            "userID": message.author.id,
+            "expirience": "0",
+            "level": "0"
+        });
     }
 
     var expiriencetoget = Math.floor(Math.random()*10+1);
