@@ -48,7 +48,7 @@ module.exports = (message, client) => {
                 "userId": message.author.id,
                 "issuerId": '844926717084041238',
                 "warnId": punishments.nextWarnId,
-                "reason": "CapsProtector automod module"
+                "reason": "CapsProtector Automod Module"
             });
     
             var nextId = parseInt(punishments.nextWarnId);
