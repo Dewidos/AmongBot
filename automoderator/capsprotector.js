@@ -16,7 +16,7 @@ module.exports = (message, client) => {
             console.log("wincyj");
         } else {
             counter = 0;
-            console.log("mniej");
+            console.log(`mniej, ${key + " - " + message.content[index]}`);
         }
     }
 
