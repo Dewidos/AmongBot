@@ -1,4 +1,6 @@
 module.exports = (message, client) => {
+    console.log("moderuje");
+    
     var config = client.configFile.find(c => c.guildId == message.guild.id);
     var punishments = client.punishments.find(p => p.guildId == message.guild.id);
     
