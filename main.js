@@ -165,7 +165,6 @@ function addExpirience(message, client) {
         expirience = i;
     }
     expirience = expirience*2;
-    message.channel.send(expirience);
 }
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
