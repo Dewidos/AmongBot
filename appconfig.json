@@ -149,7 +149,7 @@
             {
                 "name": "CapsProtector",
                 "enabled": true,
-                "capsLetterCount": 10
+                "capsLetterCount": 6
             }
         ]
     }
