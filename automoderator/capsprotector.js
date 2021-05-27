@@ -36,7 +36,6 @@ module.exports = (message, client) => {
     }
 
     console.log("Liczba capsów: " + maxCapsCount);
-<<<<<<< HEAD
 
     try {
         
@@ -66,6 +65,4 @@ module.exports = (message, client) => {
         console.log(error);
         return;
     }
-=======
->>>>>>> d06020c (CapsProtector test 2)
 };
