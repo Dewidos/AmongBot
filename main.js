@@ -160,12 +160,14 @@ function checkUpdates() {
 }
 
 function addExpirience(message, client) {
-    var expirience;
-    for (let i = 1; i <= message.length; i++) {
-        expirience = i;
-    }
-    expirience = expirience*2;
+    var rank = client.rank.find(e => e.guildId == message.guild.id);
+
+    var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
+    var expiriencetoget = Math.floor(Math.random()*10+1);
+
+    rankofplayer.expirience.set(parseInt(rankofplayer.expirience) + expiriencetoget);
 }
+
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
         if (guildConfig.vcNotifyLinks.length == 0) continue;
