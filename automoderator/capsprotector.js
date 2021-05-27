@@ -6,19 +6,15 @@ module.exports = (message, client) => {
     msgContent = msgContent.toLowerCase();
 
     var counter = 0;
+    var maxCapsCount = 0;
     for (const key of msgContent) {
         var index = msgContent.indexOf(key);
 
-        console.log(`Dajs ki: ${key}`);
+        if (message.content[index] != key) counter++;
+        else counter = 0;
 
-        if (message.content[index] != key) {
-            counter++;
-            console.log("wincyj");
-        } else {
-            counter = 0;
-            console.log(`mniej, ${key + " - " + message.content[index]}`);
-        }
+        if (counter > maxCapsCount) maxCapsCount = counter;
     }
 
-    console.log("Liczba capsów: " + counter);
+    console.log("Liczba capsów: " + maxCapsCount);
 };
