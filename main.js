@@ -39,8 +39,7 @@ for (const file of commandFiles) {
 
 Client.on('message', message => {
     checkUpdates();
-
-    addExpirience(message, Client);
+    addExpirience(message);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
@@ -160,8 +159,8 @@ function checkUpdates() {
     xhrI.send(null);
 }
 
-function addExpirience(message, client) {
-    var rank = client.rank.find(e => e.guildID == message.guild.id);
+function addExpirience(message) {
+    var rank = Client.rank.find(e => e.guildID == message.guild.id);
 
     if (typeof rank === 'undefined') {
         console.error("rank.json file error");
@@ -182,7 +181,7 @@ function addExpirience(message, client) {
 
     rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
 
-    client.updateConfig();
+    Client.updateConfig(true);
 }
 
 function checkFreeSlots() {  
@@ -215,31 +214,33 @@ function checkFreeSlots() {
     }
 }
 
-Client.updateConfig = () => {
-    try {
-        var config = Client.configFile;
-    } catch (error) {
-        console.error(error);
+Client.updateConfig = (updateExp = false) => {
+    if (updateExp) {
+        try {
+            var rank = Client.rank;
+        } catch (error) {
+            console.error(error);
+        }
+    
+        fs.writeFileSync('./rank.json', JSON.stringify(rank));
+    } else {
+        try {
+            var config = Client.configFile;
+        } catch (error) {
+            console.error(error);
+        }
+    
+        fs.writeFileSync('./appconfig.json', JSON.stringify(config));
+    
+        try {
+            var punishments = Client.punishments;
+        } catch (error) {
+            console.error(error);
+        }
+    
+        fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
     }
-
-    fs.writeFileSync('./appconfig.json', JSON.stringify(config));
-
-    try {
-        var punishments = Client.punishments;
-    } catch (error) {
-        console.error(error);
-    }
-
-    fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
-
-    try {
-        var rank = Client.rank;
-    } catch (error) {
-        console.error(error);
-    }
-
-    fs.writeFileSync('./rank.json', JSON.stringify(rank));
-
+    
     console.log("Saved config!");
 }
 
