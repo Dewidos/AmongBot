@@ -162,6 +162,7 @@ function checkUpdates() {
 function addExpirience(message, client) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 2d546d7 (rank584973874578543735467437676569876854656374657849677485397465895679054768963778346578346054809635)
     var rank = client.rank.find(e => e.guildId == message.guild.id);
@@ -172,14 +173,19 @@ function addExpirience(message, client) {
     rankofplayer.expirience.set(parseInt(rankofplayer.expirience) + expiriencetoget);
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 6c03a49 (Solved main.js conflict)
     var expirience;
     for (let i = 1; i <= message.length; i++) {
         expirience = i;
     }
     expirience = expirience*2;
+<<<<<<< HEAD
 >>>>>>> 6c03a49 (Solved main.js conflict)
 =======
 >>>>>>> 2d546d7 (rank584973874578543735467437676569876854656374657849677485397465895679054768963778346578346054809635)
+=======
+>>>>>>> 6c03a49 (Solved main.js conflict)
 }
 
 function checkFreeSlots() {  
