@@ -12,6 +12,7 @@ Client.configFile = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'));
 Client.configFile.forEach(e => e.vcNotifyLinks = []);
 
 Client.punishments = JSON.parse(fs.readFileSync('./punishments.json', 'utf8'));
+Client.rank = JSON.parse(fs.readFileSync('./rank.json', 'utf8'));
 
 // Aktualizacje modów ----------
 
