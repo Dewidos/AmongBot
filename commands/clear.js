@@ -3,7 +3,7 @@ module.exports = {
     "name": "clear",
     "description:": "możesz wyczyścić wiadomości",
 
-    execute(message, args, client) {
+    async execute(message, args, client) {
 
         if (typeof args[0] === 'undefined' && args[0] != "") {
             if (isNaN(args[0])) {
