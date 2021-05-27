@@ -1,39 +1,8 @@
 [
     {
         "guildId": "840941220368482304",
-        "warnings": [
-            {
-                "userId": "845910864976805898",
-                "issuerId": "483310917380210689",
-                "warnId": "3",
-                "reason": ""
-            },
-            {
-                "userId": "845910864976805898",
-                "issuerId": "483310917380210689",
-                "warnId": "4",
-                "reason": ""
-            },
-            {
-                "userId": "845910864976805898",
-                "issuerId": "483310917380210689",
-                "warnId": "5",
-                "reason": ""
-            },
-            {
-                "userId": "845910864976805898",
-                "issuerId": "483310917380210689",
-                "warnId": "6",
-                "reason": ""
-            }
-        ],
-        "nextWarnId": "10",
-        "mutes": [
-            {
-                "userId": "845910864976805898",
-                "issuerId": "483310917380210689",
-                "reason": "2m Obraza Administracji"
-            }
-        ]
+        "warnings": [],
+        "nextWarnId": "1",
+        "mutes": []
     }
 ]
