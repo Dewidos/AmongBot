@@ -29,26 +29,28 @@ module.exports = {
                     if (mute.timetype == "s") {
 
                         duration = duration / 1000;
+                        duration = duration + " sek.";
                         this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
 
                     } else if (mute.timetype == "m") {
 
                         duration = duration / 60000;
+                        duration = duration + " min.";
                         this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
                         
                     } else if (mute.timetype == "h") {
 
                         duration = duration / 3600000;
+                        duration = duration + " godz.";
                         this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
 
                     } else if (mute.timetype == "d"){
 
                         duration = duration / 86400000;
+                        duration = duration + " dni";
                         this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
 
                     }
-
-                    message.channel.send(embed);
                 } else {
 
                     message.channel.send("**Aktualnie ten gracz nie ma żadnego wyciszenia!**");
@@ -72,8 +74,8 @@ module.exports = {
         var embed = new Discord.MessageEmbed()
                         .setColor('#34c6eb')
                         .setTitle(`Informacje o mute użytkownika: ${playerusername}!`)
-                        .setDescription(`**Wyciszona osoba: <@${id}>\nWyciszony przez: <@${missuerId}>\nCzas wyciszenia (w milisekundach): ${duration}\nZa: ${reason}**`)
-                        .setFooter("Polecam się na przyszłość :smiley:");
+                        .setDescription(`**Wyciszona osoba: <@${id}>\nWyciszony przez: <@${missuerId}>\nCzas wyciszenia: ${duration}\nPowód:** ${reason}`)
+                        .setFooter("Polecam się na przyszłość :)");
         
         message.channel.send(embed);
     }

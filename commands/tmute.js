@@ -123,12 +123,10 @@ module.exports = {
         if (typeof args[2] !== 'undefined' && args[2] != "") {
             var length = args.length - 1;
 
-            for (let i = 1; i <= length; i++) {
+            for (let i = 2; i <= length; i++) {
                 reason = reason + args[i];
                 if (i != length) reason = reason + " ";
             }
-
-            reason = reason.slice(args[1]);
         }
 
         var player = message.guild.members.cache.get(id);
@@ -155,7 +153,7 @@ module.exports = {
             var embed = new Discord.MessageEmbed()
             .setColor('#34c6eb')
             .setTitle("Wykonano!")
-            .setDescription(`**Wyciszyłem gracza o nicku: **<@${id}>\n\n**Na czas:** ${time}`)
+            .setDescription(`**Wyciszyłem gracza o nicku: **<@${id}>\n\n**Czas wyciszenia:** ${time}\n**Powód:** ${reason}`)
             .setFooter("Polecam się na przyszłość :smiley:");
 
             message.channel.send(embed);
