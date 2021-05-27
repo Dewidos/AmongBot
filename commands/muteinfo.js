@@ -29,22 +29,22 @@ module.exports = {
                     if (mute.timetype == "s") {
 
                         duration = duration / 1000;
-                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
 
                     } else if (mute.timetype == "m") {
 
                         duration = duration / 60000;
-                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
                         
                     } else if (mute.timetype == "h") {
 
                         duration = duration / 3600000;
-                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
 
                     } else if (mute.timetype == "d"){
 
                         duration = duration / 86400000;
-                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, mute.reason, id);
 
                     }
 
