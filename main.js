@@ -41,8 +41,6 @@ Client.on('message', message => {
 
     const channelID = '847536755518472212';
 
-    jakiswkuriwajacychuj(channelID, message);
-
     addExpirience(message);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
@@ -59,6 +57,7 @@ Client.on('message', message => {
         }
     } else if (!message.author.bot) {
         runAutomoderator(message, Client);
+        jakiswkuriwajacychuj(channelID, message);
     }
 });
 
@@ -184,6 +183,8 @@ function addExpirience(message) {
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
+
+    Client.updateConfig(true);
 }
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
@@ -234,22 +235,32 @@ function jakiswkuriwajacychuj(channelID, message) {
     
 }
 
-Client.updateConfig = () => {
-    try {
+Client.updateConfig = (expUpdate = false) => {
+    if (!expUpdate) {
+      try {
         var config = Client.configFile;
-    } catch (error) {
+      } catch (error) {
         console.error(error);
-    }
+      }
 
-    fs.writeFileSync('./appconfig.json', JSON.stringify(config));
+      fs.writeFileSync('./appconfig.json', JSON.stringify(config));
 
-    try {
+      try {
         var punishments = Client.punishments;
-    } catch (error) {
+      } catch (error) {
         console.error(error);
-    }
+      }
 
-    fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
+      fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
+    } else {
+      try {
+        var rank = Client.rank;
+      } catch (error) {
+        console.error(error);
+      }
+
+      fs.writeFileSync('./rank.json', JSON.stringify(rank));
+    }
 
     console.log("Saved config!");
 }
