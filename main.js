@@ -160,12 +160,20 @@ function checkUpdates() {
 }
 
 function addExpirience(message, client) {
+<<<<<<< HEAD
     var rank = client.rank.find(e => e.guildId == message.guild.id);
 
     var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience.set(parseInt(rankofplayer.expirience) + expiriencetoget);
+=======
+    var expirience;
+    for (let i = 1; i <= message.length; i++) {
+        expirience = i;
+    }
+    expirience = expirience*2;
+>>>>>>> 6c03a49 (Solved main.js conflict)
 }
 
 function checkFreeSlots() {  
