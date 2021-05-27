@@ -8,6 +8,8 @@ module.exports = (message, client) => {
     var counter = 0;
     var maxCapsCount = 0;
     for (const key of msgContent) {
+        if (key == ' ') continue;
+        
         var index = msgContent.indexOf(key);
 
         if (message.content[index] != key) counter++;
