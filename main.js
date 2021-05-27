@@ -38,7 +38,7 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     checkUpdates();
 
-    addExpirience(message, client);
+    addExpirience(message, Client);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
