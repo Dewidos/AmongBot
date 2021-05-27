@@ -36,6 +36,9 @@ for (const file of commandFiles) {
 
 Client.on('message', message => {
     checkUpdates();
+
+    addExpirience(message);
+
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
@@ -150,6 +153,16 @@ function checkUpdates() {
         
     xhrI.open('GET', 'https://api.github.com/repos/Town-of-Impostors/TownOfImpostors/releases', true);
     xhrI.send(null);
+}
+
+function addExpirience(message) {
+
+    var rank = client.rank.find(e => e.guildId == message.guild.id);
+
+    var expirience = message.length * 2;
+
+    console.log(expirience);
+
 }
 
 function checkFreeSlots() {  
