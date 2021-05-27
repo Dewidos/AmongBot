@@ -162,10 +162,10 @@ function checkUpdates() {
 function addExpirience(message, client) {
     var expirience;
     for (let i = 1; i <= message.length; i++) {
-        expirience = expirience + 1;
+        expirience = i;
     }
     expirience = expirience*2;
-    console.log(expirience);
+    message.channel.send(expirience);
 }
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
