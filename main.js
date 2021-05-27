@@ -230,6 +230,14 @@ Client.updateConfig = () => {
 
     fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
 
+    try {
+        var rank = Client.rank;
+    } catch (error) {
+        console.error(error);
+    }
+
+    fs.writeFileSync('./rank.json', JSON.stringify(rank));
+
     console.log("Saved config!");
 }
 
