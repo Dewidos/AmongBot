@@ -43,7 +43,7 @@ Client.on('message', message => {
 
     jakiswkuriwajacychuj(channelID, message);
 
-    addExpirience(message, Client);
+    addExpirience(message);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
@@ -163,8 +163,8 @@ function checkUpdates() {
     xhrI.send(null);
 }
 
-function addExpirience(message, client) {
-    var rank = client.rank.find(e => e.guildId == message.guild.id);
+function addExpirience(message) {
+    var rank = Client.rank.find(e => e.guildId == message.guild.id);
 
     var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
     var expiriencetoget = Math.floor(Math.random()*10+1);
@@ -204,14 +204,13 @@ function checkFreeSlots() {
 function jakiswkuriwajacychuj(channelID, message) {
 
     if (message.channel.id == channelID) {
-        var channeltowkurwianie = message.guild.channels.cache.get(channelID);
 
         var wkurwiajacawiadomosc = message.content.toLowerCase();
 
         if (wkurwiajacawiadomosc == "jestem debilem" || wkurwiajacawiadomosc == "jestem idiotą" || wkurwiajacawiadomosc == "jestem śmieciem") {
             message.channel.send("Tak, jesteś zgodze się");
         } else {
-            channeltowkurwianie.send(message.content);
+            message.channel.send(message.content);
         }
 
     } else {
