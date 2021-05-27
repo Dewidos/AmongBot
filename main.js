@@ -166,7 +166,7 @@ function addExpirience(message, client) {
     }
     expirience = expirience*2;
     console.log(expirience);
-
+}
 function checkFreeSlots() {  
     for (const guildConfig of Client.configFile) {
         if (guildConfig.vcNotifyLinks.length == 0) continue;
