@@ -38,7 +38,7 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     checkUpdates();
 
-    addExpirience(message);
+    addExpirience(message, client);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
@@ -158,7 +158,7 @@ function checkUpdates() {
     xhrI.send(null);
 }
 
-function addExpirience(message) {
+function addExpirience(message, client) {
 
     var rank = client.rank.find(e => e.guildId == message.guild.id);
 
