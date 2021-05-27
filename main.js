@@ -1,4 +1,5 @@
 const keepAlive = require('./server');
+const runAutomoderator = require('./automoderator/automoderatorhandler');
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Discord = require('discord.js');
@@ -39,6 +40,8 @@ Client.on('message', message => {
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
+
+        runAutomoderator(message, Client);
 
         try {
             Client.commands.get(command).execute(message, args, Client);
