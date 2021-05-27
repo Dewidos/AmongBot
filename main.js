@@ -203,4 +203,5 @@ Client.updateConfig = () => {
 }
 
 keepAlive();
-Client.login(process.env['TOKEN']);
+//Client.login(process.env['TOKEN']);
+Client.login('ODQ0OTI2NzE3MDg0MDQxMjM4.YKZhUw.mElHeEQJGoxh8fBLsb4pcwsUtao');

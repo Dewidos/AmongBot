@@ -26,11 +26,27 @@ module.exports = {
                         duration = mute.duration;
                     }
 
-                    var embed = new Discord.MessageEmbed()
-                    .setColor('#34c6eb')
-                    .setTitle(`Informacje o mute użytkownika: ${player.user.username}!`)
-                    .setDescription(`**Wyciszona osoba: <@${id}>\nWyciszony przez: <@${mute.issuerId}>\nCzas wyciszenia (w milisekundach): ${duration}\nZa: ${mute.reason}**`)
-                    .setFooter("Polecam się na przyszłość :smiley:");
+                    if (mute.timetype == "s") {
+
+                        duration = duration / 1000;
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+
+                    } else if (mute.timetype == "m") {
+
+                        duration = duration / 60000;
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+                        
+                    } else if (mute.timetype == "h") {
+
+                        duration = duration / 3600000;
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+
+                    } else if (mute.timetype == "d"){
+
+                        duration = duration / 86400000;
+                        this.sendembed(message, player.user.username, mute.issuerId, duration, reason, id);
+
+                    }
 
                     message.channel.send(embed);
                 } else {
@@ -50,5 +66,15 @@ module.exports = {
 
         }
 
+    },
+
+    sendembed(message, playerusername, missuerId, duration, reason, id) {
+        var embed = new Discord.MessageEmbed()
+                        .setColor('#34c6eb')
+                        .setTitle(`Informacje o mute użytkownika: ${playerusername}!`)
+                        .setDescription(`**Wyciszona osoba: <@${id}>\nWyciszony przez: <@${missuerId}>\nCzas wyciszenia (w milisekundach): ${duration}\nZa: ${reason}**`)
+                        .setFooter("Polecam się na przyszłość :smiley:");
+        
+        message.channel.send(embed);
     }
 }

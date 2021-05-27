@@ -51,6 +51,7 @@ module.exports = {
 
             try {
                 var czas = args[1].replace("m", "");
+                var timetype = "m";
                 czas = parseInt(czas);
 
                 if (czas === null) {
@@ -69,6 +70,7 @@ module.exports = {
 
             try {
                 var czas = args[1].replace("h", "");
+                var timetype = "h";
                 czas = parseInt(czas);
                 if (czas === null) {
                     message.channel.send("Wprowadź prawidłowy czas!");
@@ -84,6 +86,7 @@ module.exports = {
 
             try {
                 var czas = args[1].replace("d", "");
+                var timetype = "d";
                 czas = parseInt(czas);
                 if (czas === null) {
                     message.channel.send("Wprowadź prawidłowy czas!");
@@ -98,6 +101,7 @@ module.exports = {
 
             try {
                 var czas = args[1].replace("s", "");
+                var timetype = "s";
                 czas = parseInt(czas);
                 if (czas === null) {
                     message.channel.send("Wprowadź prawidłowy czas!");
@@ -145,6 +149,7 @@ module.exports = {
                 "issuerId": message.author.id,
                 "duration": czas,
                 "reason": reason,
+                "timetype": timetype,
             });
 
             var embed = new Discord.MessageEmbed()
