@@ -148,7 +148,6 @@
         "autoModConfig": [
             {
                 "name": "CapsProtector",
-                "enabled": true,
                 "capsLetterCount": 6
             }
         ]
