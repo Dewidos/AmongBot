@@ -181,6 +181,8 @@ function addExpirience(message) {
         });
     }
 
+    if (message.author.bot) return;
+
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
@@ -192,18 +194,19 @@ function addExpirience(message) {
     if (expirienceofplayer >= expiriencetogefornextplayerlvl) {
         rankofplayer.level = acctuallvlofplayer + 1;
         var channeltosendnextlvlmessage = message.guild.channels.cache.get('841712082306334750');
+        var messagesender = message.guild.members.cache.get(message.author.id);
         channeltosendnextlvlmessage.send(`**Gratulacje: <@${rankofplayer.userID}> Udało ci się wbić kolejny lvl! To już twój: ${rankofplayer.level}lvl!**`);
         var nextlvlplayer = expiriencetogefornextplayerlvl * 3;
         nextlvlplayer.toString();
         rankofplayer.expiriencetonextlvl = nextlvlplayer;
         if (rankofplayer.level >= 1 && rankofplayer.level < 5) {
-            message.author.roles.add('841264313087033374');
+            messagesender.roles.add('841264313087033374');
         } else if (rankofplayer.level >= 5 && rankofplayer.level < 10) {
-            message.author.roles.add('841264314937114644');
+            messagesender.roles.add('841264314937114644');
         } else if (rankofplayer.level >= 10 && rankofplayer.level < 25) {
-            message.author.roles.add('841264317076996096');
+            messagesender.roles.add('841264317076996096');
         } else if (rankofplayer.level == 25) {
-            message.author.roles.add('841711436752486425');
+            messagesender.roles.add('841711436752486425');
         }
     }
 
