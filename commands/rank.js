@@ -13,14 +13,14 @@ module.exports = {
 
                 var rankofplayer = rank.textchannelrank.find(r => r.userID == id);
 
-                if (typeof rankofplayer !== 'undefined') {
+                if (typeof rankofplayer === 'undefined') {
                     message.channel.send("**Wystąpił bład lub podanego gracza nie ma na serverze, bądź nie napisał jeszcze żadnej wiadomości!**");
                     return;
                 }
 
-                var checkingrankplayer = message.guild.member.cache.get(id);
+                var checkingrankplayer = message.guild.members.cache.get(id);
 
-                var progress = `${rankofplayer.level} / ${rankofplayer.expiriencetonextlvl}`;
+                var progress = `${rankofplayer.expirience} / ${rankofplayer.expiriencetonextlvl}`;
 
                 var embed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
