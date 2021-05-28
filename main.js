@@ -193,7 +193,9 @@ function addExpirience(message) {
         rankofplayer.level = acctuallvlofplayer + 1;
         var channeltosendnextlvlmessage = message.guild.channels.cache.get('841712082306334750');
         channeltosendnextlvlmessage.send(`**Gratulacje: <@${rankofplayer.userID}> Udało ci się wbić kolejny lvl!**`);
-        rankofplayer.expiriencetonextlvl = expiriencetogefornextplayerlvl * 3;
+        var nextlvlplayer = expiriencetogefornextplayerlvl * 3;
+        nextlvlplayer.toString();
+        rankofplayer.expiriencetonextlvl = nextlvlplayer;
     }
 
     Client.updateConfig(true);
