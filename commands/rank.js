@@ -6,7 +6,7 @@ module.exports = {
     "description": "Pozwala sprawdzić twój ranking",
 
     execute(message, args, client) {
-        var rank = Client.rank.find(e => e.guildID == message.guild.id);
+        var rank = client.rank.find(e => e.guildID == message.guild.id);
         if (typeof args[0] !== 'undefined' && args[0] != "") {
             var id = args[0].replace(/[\\<>@#&!]/g, "");
             if (args[0] !== message.author.id) {
