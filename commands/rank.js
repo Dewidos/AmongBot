@@ -40,7 +40,7 @@ module.exports = {
             
             var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
 
-            var progress = `${rankofplayer.level} / ${rankofplayer.expiriencetonextlvl}`;
+            var progress = `${rankofplayer.expirience} / ${rankofplayer.expiriencetonextlvl}`;
 
             var embed = new Discord.MessageEmbed()
             .setColor('#34c6eb')
