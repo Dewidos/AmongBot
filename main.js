@@ -39,7 +39,7 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     checkUpdates();
 
-    const channelID = '847536755518472212';
+    const channelID = '847800029103128586';
 
     addExpirience(message);
 
@@ -224,8 +224,10 @@ function jakiswkuriwajacychuj(channelID, message) {
 
         if (wkurwiajacawiadomosc == "jestem debilem" || wkurwiajacawiadomosc == "jestem idiotą" || wkurwiajacawiadomosc == "jestem śmieciem" || wkurwiajacawiadomosc == "jestem głupi") {
             message.channel.send("Tak, jesteś zgodze się");
+        } else if (wkurwiajacawiadomosc == "bot jest głupi" || wkurwiajacawiadomosc == "jesteś głupi"){
+            message.channel.send("chyba ty")
         } else {
-            message.channel.send(message.content);
+          message.channel.send(message.content);
         }
 
     } else {

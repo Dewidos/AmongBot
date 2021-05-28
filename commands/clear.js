@@ -32,6 +32,7 @@ module.exports = {
             } else {
                 if (args[0] > 100) {
                     message.channel.send("Nie możesz usunać wiecej niż 100 wiadomości!");
+                    return;
                 }
                 if (args[0] < 1) {
                     
