@@ -184,7 +184,7 @@ function addExpirience(message) {
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
-
+    //levelup
     var expirienceofplayer = parseInt(rankofplayer.expirience);
     var expiriencetogefornextplayerlvl = parseInt(rankofplayer.expiriencetonextlvl);
     var acctuallvlofplayer = parseInt(rankofplayer.level);
@@ -192,7 +192,7 @@ function addExpirience(message) {
     if (expirienceofplayer >= expiriencetogefornextplayerlvl) {
         rankofplayer.level = acctuallvlofplayer + 1;
         var channeltosendnextlvlmessage = message.guild.channels.cache.get('841712082306334750');
-        channeltosendnextlvlmessage.send(`**Gratulacje: <@${rankofplayer.userID}> Udało ci się wbić kolejny lvl! To już: ${rankofplayer.level}**`);
+        channeltosendnextlvlmessage.send(`**Gratulacje: <@${rankofplayer.userID}> Udało ci się wbić kolejny lvl! To już twój: ${rankofplayer.level}lvl!**`);
         var nextlvlplayer = expiriencetogefornextplayerlvl * 3;
         nextlvlplayer.toString();
         rankofplayer.expiriencetonextlvl = nextlvlplayer;
