@@ -196,6 +196,15 @@ function addExpirience(message) {
         var nextlvlplayer = expiriencetogefornextplayerlvl * 3;
         nextlvlplayer.toString();
         rankofplayer.expiriencetonextlvl = nextlvlplayer;
+        if (rankofplayer.level >= 1 && rankofplayer.level < 5) {
+            message.author.roles.add('841264313087033374');
+        } else if (rankofplayer.level >= 5 && rankofplayer.level < 10) {
+            message.author.roles.add('841264314937114644');
+        } else if (rankofplayer.level >= 10 && rankofplayer.level < 25) {
+            message.author.roles.add('841264317076996096');
+        } else if (rankofplayer.level == 25) {
+            message.author.roles.add('841711436752486425');
+        }
     }
 
     Client.updateConfig(true);
