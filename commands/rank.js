@@ -44,8 +44,8 @@ module.exports = {
 
             var embed = new Discord.MessageEmbed()
             .setColor('#34c6eb')
-            .setTitle("Twój ranking!")
-            .setDescription(`**Twój aktualny level to: ${rankofplayer.level}\nDo następnego levela zostało ci: ${progress}**`)
+            .setTitle("Twój poziom!")
+            .setDescription(`**Aktualny LVL:** ${rankofplayer.level}\n**Do następnego levela zostało ci __${progress}__ punktów EXPa.**`)
             .setFooter("Polecam się na przyszłość!");
 
             message.channel.send(embed);

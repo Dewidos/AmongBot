@@ -41,6 +41,7 @@ module.exports = {
         }
 
         var embed = new Discord.MessageEmbed()
+        .setColor('#34c6eb')
         .setTitle("**Top 10 wyników exp na serwerze:**")
         .setFooter("Polecam się na przyszłość :)");
 
