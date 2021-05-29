@@ -14,7 +14,7 @@ module.exports = {
 
             if (typeof user !== 'undefined') {
                 
-                new embed = Discord.MessageEmbed()
+                var embed = Discord.MessageEmbed()
                 .setColor('#8B0000')
                 .setTitle(`Gracz: ${message.author.username} ci sie oświadczył!`)
                 .setDescription(`**Czy ty: <@${id}>, wyjdziesz za: ${message.author.username}?**`)
