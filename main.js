@@ -184,20 +184,23 @@ function addExperience(message) {
     }
 
     var experienceToGet = message.content.length;
+
+    if (experienceToGet > 15) experienceToGet = 15;
+
     var playerExp = parseInt(rankOfPlayer.experience) + experienceToGet;
     rankOfPlayer.experience = playerExp.toString();
 
-    var experienceToNextLvl = parseInt(rankOfPlayer.experienceToNextlvl);
+    var experienceToNextLvl = parseInt(rankOfPlayer.experienceToNextLvl);
     var playerLvl = parseInt(rankOfPlayer.level);
 
-    if (playerExp >= experienceToNextLvl) {
+    if (playerExp >= experienceToNextLvl) {        
         playerLvl += 1;
-        rankOfPlayer = playerLvl.toString();
+        rankOfPlayer.level = playerLvl.toString();
 
         var lvlNotifyChannel = message.guild.channels.cache.get('841712082306334750');
         var messageSender = message.member;
 
-        lvlNotifyChannel.send(`**Gratulacje: <@${rankofplayer.userID}>!** Udało ci się wbić **${rankofplayer.level} poziom!**`);
+        lvlNotifyChannel.send(`**Gratulacje: <@${message.author.id}>!** Udało ci się wbić **${playerLvl} poziom!**`);
                 
         if (playerLvl >= 30) experienceToNextLvl = Math.floor(experienceToNextLvl * 1.5);
         else if (playerLvl >= 20) experienceToNextLvl *= 2;
@@ -206,13 +209,13 @@ function addExperience(message) {
         rankOfPlayer.experienceToNextLvl = experienceToNextLvl.toString();
 
         if (rankOfPlayer.level >= 1 && rankOfPlayer.level < 5) {
-            messagesender.roles.add('841264313087033374');
+            messageSender.roles.add('841264313087033374');
         } else if (rankOfPlayer.level >= 5 && rankOfPlayer.level < 10) {
-            messagesender.roles.add('841264314937114644');
+            messageSender.roles.add('841264314937114644');
         } else if (rankOfPlayer.level >= 10 && rankOfPlayer.level < 25) {
-            messagesender.roles.add('841264317076996096');
+            messageSender.roles.add('841264317076996096');
         } else if (rankOfPlayer.level >= 25) {
-            messagesender.roles.add('841711436752486425');
+            messageSender.roles.add('841711436752486425');
         }
     }
 
