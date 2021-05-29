@@ -45,7 +45,7 @@ module.exports = {
         .setFooter("Polecam się na przyszłość :)");
 
         for (const expObj of topExperienceObjects) {
-            embed.addField(`Miejsce ${topExperienceObjects.indexOf(expObj) + 1}:`, `**Gracz:** <@${expObj.userID}>\n**Exp:** ${parseInt(expObj.experience)}`, false);
+            embed.addField(`Miejsce ${topExperienceObjects.indexOf(expObj) + 1}:`, `**Gracz:** <@${expObj.userID}>\n**Poziom:** ${parseInt(expObj.level)}\n**Exp:** ${parseInt(expObj.experience)}`, false);
         }
 
         message.channel.send(embed);

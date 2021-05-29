@@ -30,7 +30,7 @@ module.exports = {
                 .setColor('#34c6eb')
                 .setTitle(`Ranking gracza: ${checkingrankplayer.user.username}`)
                 .setDescription(`**Aktualny level to: ${rankofplayer.level}\nTemu graczowi do następnego levela zostało: ${progress}**`)
-                .setFooter("Polecam się na przyszłość!");
+                .setFooter("Polecam się na przyszłość :)");
 
                 message.channel.send(embed);
 
