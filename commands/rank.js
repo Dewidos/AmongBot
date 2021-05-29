@@ -11,10 +11,14 @@ module.exports = {
             var id = args[0].replace(/[\\<>@#&!]/g, "");
             if (args[0] !== message.author.id) {
 
+                if (typeof message.guild.members.cache.get(id) === 'undefined') {
+                  message.channel.send("Gracza o takim ID nie ma na serwerze!");
+                }
+                
                 var rankofplayer = rank.textChannelRank.find(r => r.userID == id);
 
                 if (typeof rankofplayer === 'undefined') {
-                    message.channel.send("**Wystąpił bład lub podanego gracza nie ma na serverze, bądź nie napisał jeszcze żadnej wiadomości!**");
+                    message.channel.send("Ten gracz nie napisał jeszcze żadnej wiadomości!");
                     return;
                 }
 
