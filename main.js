@@ -169,7 +169,14 @@ function liczenie(message, channelToLiczenie) {
 
     if (message.author.bot) return;
 
-    var number = Client.number.find(e => e.guildID == message.guild.id);
+    var config = Client.config.find(c => c.guildID == message.guild.id);
+
+    if (typeof config === 'undefined') {
+        console.error("Config error!");
+        return;
+    }
+
+    var number = config.actualConfigNumber;
 
     if (message.channel.id != channelToLiczenie) return;
 
