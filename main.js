@@ -173,7 +173,7 @@ function addExperience(message) {
     var rankofplayer = rank.textChannelRank.find(r => r.userID == message.author.id);
 
     if (typeof rankofplayer === 'undefined') {
-        rankofplayer = rank.textchannelrank.push({
+        rankofplayer = rank.textChannelRank.push({
             "userID": message.author.id,
             "experienceToNextLvl": "50",
             "experience": "0",
