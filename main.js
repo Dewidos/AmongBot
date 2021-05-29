@@ -59,7 +59,7 @@ Client.on('message', message => {
         }
     } else if (!message.author.bot) {
         runAutomoderator(message, Client);
-        jakiswkuriwajacychuj(channelID, message);
+        jakiswkuriwajacychuj(channelID1, message);
     }
 });
 
@@ -169,25 +169,23 @@ function liczenie(message, channelToLiczenie) {
 
     if (message.author.bot) return;
 
-    var config = Client.config.find(c => c.guildID == message.guild.id);
+    var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
     if (typeof config === 'undefined') {
-        console.error("Config error!");
-        return;
+      console.error("Config error!");
+      return;
     }
 
-    var number = config.actualConfigNumber;
+    var number = parseInt(config.actualConfigNumber);
 
     if (message.channel.id != channelToLiczenie) return;
 
-    if (message.content == number.acctualNumber) {
+    if (message.content == number.actualNumber) {
 
-        number.acctualNumber = number.acctualNumber + 1;
+      number.actualNumber = (number + 1).toString();
 
     } else {
-
-        message.bulkDelete(message);
-
+      message.channel.messages.delete(message);
     }
 
 }
