@@ -13,7 +13,7 @@ module.exports = {
             return;
         }
 
-        var sortTest = [2, 4, 4, 9, 1, 4];
+        var sortTest = [2, 4, 4, 9, 1, 4, 18, 9, 128, 26, 7];
 
         for (let i = 0; i < sortTest.length; i++) {
             for (let j = sortTest.length - 1; j >= 0; j--) {
