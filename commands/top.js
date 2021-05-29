@@ -34,7 +34,8 @@ module.exports = {
                 }
             }
 
-            var topExperienceObjects = rank.textChannelRank.filter(e => rank.textChannelRank.indexOf(e) <= 9);
+            //var topExperienceObjects = rank.textChannelRank.filter(e => rank.textChannelRank.indexOf(e) <= 9);
+            var topExperienceObjects = rank.textChannelRank;
         }
 
         var embed = new Discord.MessageEmbed()
