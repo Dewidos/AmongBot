@@ -17,14 +17,12 @@ module.exports = {
 
         for (let i = 0; i < sortTest.length; i++) {
             for (let j = sortTest.length - 1; j >= 0; j--) {
-                const index = sortTest.indexOf(xpObject);
-
-                let firstXp = xpObject;
-                let secondXp = sortTest[index - 1];
+                let firstXp = sortTest[j];
+                let secondXp = sortTest[j - 1];
 
                 if (firstXp > secondXp) {
-                    sortTest[index] = secondXp;
-                    sortTest[index - 1] = firstXp;
+                    sortTest[j] = secondXp;
+                    sortTest[j - 1] = firstXp;
                 }
             }
         }
