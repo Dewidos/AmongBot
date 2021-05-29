@@ -34,7 +34,7 @@ module.exports = {
                 }
             }
 
-            var topExperienceObjects = rank.textChannelRank.filter(e => topExperienceObjects.indexOf(e) <= 9);
+            var topExperienceObjects = rank.textChannelRank.filter(e => rank.textChannelRank.indexOf(e) <= 9);
         }
 
         var embed = new Discord.MessageEmbed()
@@ -42,7 +42,7 @@ module.exports = {
         .setFooter("Polecam się na przyszłość :)");
 
         for (const expObj of topExperienceObjects) {
-            embed.addField(`Miejsce ${topExperienceObjects.indexOf(expObj) + 1}:`, `**Gracz:** <@${topExperienceObjects.userID}>\n**Exp:** ${parseInt(expObj.experience)}`, false);
+            embed.addField(`Miejsce ${topExperienceObjects.indexOf(expObj) + 1}:`, `**Gracz:** <@${expObj.userID}>\n**Exp:** ${parseInt(expObj.experience)}`, false);
         }
 
         message.channel.send(embed);
