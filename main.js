@@ -41,7 +41,7 @@ Client.on('message', message => {
 
     const channelID = '847800029103128586';
 
-    addExpirience(message);
+    addExperience(message);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
@@ -162,7 +162,7 @@ function checkUpdates() {
     xhrI.send(null);
 }
 
-function addExpirience(message) {
+function addExperience(message) {
     var rank = Client.rank.find(e => e.guildID == message.guild.id);
 
     if (typeof rank === 'undefined') {
@@ -170,13 +170,13 @@ function addExpirience(message) {
         return;
     }
 
-    var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
+    var rankofplayer = rank.textChannelRank.find(r => r.userID == message.author.id);
 
     if (typeof rankofplayer === 'undefined') {
         rankofplayer = rank.textchannelrank.push({
             "userID": message.author.id,
-            "expiriencetonextlvl": "50",
-            "expirience": "0",
+            "experienceToNextLvl": "50",
+            "experience": "0",
             "level": "0"
         });
     }
@@ -185,20 +185,25 @@ function addExpirience(message) {
 
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
-    rankofplayer.expirience = (parseInt(rankofplayer.expirience) + expiriencetoget).toString();
+    rankofplayer.expirience = (parseInt(rankofplayer.experience) + experiencetoget).toString();
     //levelup
-    var expirienceofplayer = parseInt(rankofplayer.expirience);
-    var expiriencetogefornextplayerlvl = parseInt(rankofplayer.expiriencetonextlvl);
+    var expirienceofplayer = parseInt(rankofplayer.experience);
+    var expiriencetogefornextplayerlvl = parseInt(rankofplayer.experienceToNextlvl);
     var acctuallvlofplayer = parseInt(rankofplayer.level);
 
     if (expirienceofplayer >= expiriencetogefornextplayerlvl) {
         rankofplayer.level = acctuallvlofplayer + 1;
+
         var channeltosendnextlvlmessage = message.guild.channels.cache.get('841712082306334750');
+
         var messagesender = message.guild.members.cache.get(message.author.id);
         channeltosendnextlvlmessage.send(`**Gratulacje: <@${rankofplayer.userID}> Udało ci się wbić kolejny lvl! To już twój: ${rankofplayer.level}lvl!**`);
+        
         var nextlvlplayer = expiriencetogefornextplayerlvl * 3;
         nextlvlplayer.toString();
-        rankofplayer.expiriencetonextlvl = nextlvlplayer;
+        
+        rankofplayer.experienceToNextLvl = nextlvlplayer;
+
         if (rankofplayer.level >= 1 && rankofplayer.level < 5) {
             messagesender.roles.add('841264313087033374');
         } else if (rankofplayer.level >= 5 && rankofplayer.level < 10) {
