@@ -24,8 +24,10 @@ module.exports = {
         } else {          
             for (let i = 0; i < rank.textChannelRank.length; i++) {
                 for (let j = rank.textChannelRank.length - 1; j >= 0; j--) {
-                    let firstXp = rank.textChannelRank[j];
-                    let secondXp = rank.textChannelRank[j - 1];
+                    if (j == 0) break;
+                    
+                    const firstXp = rank.textChannelRank[j];
+                    const secondXp = rank.textChannelRank[j - 1];
     
                     if (parseInt(firstXp.experience) > parseInt(secondXp.experience)) {
                         rank.textChannelRank[j] = secondXp;
