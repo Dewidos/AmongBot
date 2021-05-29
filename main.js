@@ -167,13 +167,15 @@ function liczenie(message, channelToLiczenie) {
         return;
     }
 
-    var number = parseInt(config.actualCountingNumber);
+    var number = config.actualConfigNumber;
 
     if (message.channel.id != channelToLiczenie) return;
 
-    if (message.content == config.actualCountingNumber) {
+    console.log(`${message.content} = ${number}`);
 
-        number.actualCountingNumber = (number + 1).toString();
+    if (message.content == number) {
+
+      config.actualConfigNumber = number + 1;
 
     } else {
         message.channel.messages.delete(message);
