@@ -39,9 +39,11 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     checkUpdates();
 
-    const channelID = '847800029103128586';
+    const channelID1 = '847800029103128586';
+    const channelID2 = '848257904582066207';
 
     addExperience(message);
+    liczenie(message, channelID2);
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
@@ -161,10 +163,30 @@ function checkUpdates() {
     xhrI.open('GET', 'https://api.github.com/repos/Town-of-Impostors/TownOfImpostors/releases', true);
     xhrI.send(null);
 }
+    
+    
+function liczenie(message, channelToLiczenie) {
+
+    if (message.author.bot) return;
+
+    var number = Client.number.find(e => e.guildID == message.guild.id);
+
+    if (message.channel.id != channelToLiczenie) return;
+
+    if (message.content == number.acctualNumber) {
+
+        number.acctualNumber = number.acctualNumber + 1;
+
+    } else {
+
+        message.bulkDelete(message);
+
+    }
+
+}
 
 function addExperience(message) {
     if (message.author.bot) return;
-    
     var rank = Client.rank.find(e => e.guildID == message.guild.id);
 
     if (typeof rank === 'undefined') {
