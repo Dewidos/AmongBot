@@ -11,7 +11,7 @@ module.exports = {
             var id = args[0].replace(/[\\<>@#&!]/g, "");
             if (args[0] !== message.author.id) {
 
-                var rankofplayer = rank.textchannelrank.find(r => r.userID == id);
+                var rankofplayer = rank.textChannelRank.find(r => r.userID == id);
 
                 if (typeof rankofplayer === 'undefined') {
                     message.channel.send("**Wystąpił bład lub podanego gracza nie ma na serverze, bądź nie napisał jeszcze żadnej wiadomości!**");
@@ -20,7 +20,7 @@ module.exports = {
 
                 var checkingrankplayer = message.guild.members.cache.get(id);
 
-                var progress = `${rankofplayer.expirience} / ${rankofplayer.expiriencetonextlvl}`;
+                var progress = `${rankofplayer.experience} / ${rankofplayer.experienceToNextLvl}`;
 
                 var embed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
@@ -38,9 +38,9 @@ module.exports = {
 
         } else {
             
-            var rankofplayer = rank.textchannelrank.find(r => r.userID == message.author.id);
+            var rankofplayer = rank.textChannelRank.find(r => r.userID == message.author.id);
 
-            var progress = `${rankofplayer.expirience} / ${rankofplayer.expiriencetonextlvl}`;
+            var progress = `${rankofplayer.experience} / ${rankofplayer.experienceToNextLvl}`;
 
             var embed = new Discord.MessageEmbed()
             .setColor('#34c6eb')
