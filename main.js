@@ -163,6 +163,8 @@ function checkUpdates() {
 }
 
 function addExperience(message) {
+    if (message.author.bot) return;
+    
     var rank = Client.rank.find(e => e.guildID == message.guild.id);
 
     if (typeof rank === 'undefined') {
@@ -180,8 +182,6 @@ function addExperience(message) {
             "level": "0"
         });
     }
-
-    if (message.author.bot) return;
 
     var experiencetoget = Math.floor(Math.random()*10+1);
 
