@@ -185,7 +185,7 @@ function addExperience(message) {
 
     var expiriencetoget = Math.floor(Math.random()*10+1);
 
-    rankofplayer.expirience = (parseInt(rankofplayer.experience) + experiencetoget).toString();
+    rankofplayer.experience = (parseInt(rankofplayer.experience) + experiencetoget).toString();
     //levelup
     var expirienceofplayer = parseInt(rankofplayer.experience);
     var expiriencetogefornextplayerlvl = parseInt(rankofplayer.experienceToNextlvl);
