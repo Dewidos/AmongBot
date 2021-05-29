@@ -172,10 +172,10 @@ function addExperience(message) {
         return;
     }
 
-    var rankofplayer = rank.textChannelRank.find(r => r.userID == message.author.id);
+    var rankOfPlayer = rank.textChannelRank.find(r => r.userID == message.author.id);
 
-    if (typeof rankofplayer === 'undefined') {
-        rankofplayer = rank.textChannelRank.push({
+    if (typeof rankOfPlayer === 'undefined') {
+        rankOfPlayer = rank.textChannelRank.push({
             "userID": message.author.id,
             "experienceToNextLvl": "50",
             "experience": "0",
@@ -183,34 +183,35 @@ function addExperience(message) {
         });
     }
 
-    var experiencetoget = Math.floor(Math.random()*10+1);
+    var experienceToGet = message.content.length;
+    var playerExp = parseInt(rankOfPlayer.experience) + experienceToGet;
+    rankOfPlayer.experience = playerExp.toString();
 
-    rankofplayer.experience = (parseInt(rankofplayer.experience) + experiencetoget).toString();
-    //levelup
-    var expirienceofplayer = parseInt(rankofplayer.experience);
-    var expiriencetogefornextplayerlvl = parseInt(rankofplayer.experienceToNextlvl);
-    var acctuallvlofplayer = parseInt(rankofplayer.level);
+    var experienceToNextLvl = parseInt(rankOfPlayer.experienceToNextlvl);
+    var playerLvl = parseInt(rankOfPlayer.level);
 
-    if (expirienceofplayer >= expiriencetogefornextplayerlvl) {
-        rankofplayer.level = acctuallvlofplayer + 1;
+    if (playerExp >= experienceToNextLvl) {
+        playerLvl += 1;
+        rankOfPlayer = playerLvl.toString();
 
-        var channeltosendnextlvlmessage = message.guild.channels.cache.get('841712082306334750');
+        var lvlNotifyChannel = message.guild.channels.cache.get('841712082306334750');
+        var messageSender = message.member;
 
-        var messagesender = message.guild.members.cache.get(message.author.id);
-        channeltosendnextlvlmessage.send(`**Gratulacje: <@${rankofplayer.userID}> Udało ci się wbić kolejny lvl! To już twój: ${rankofplayer.level}lvl!**`);
+        lvlNotifyChannel.send(`**Gratulacje: <@${rankofplayer.userID}>!** Udało ci się wbić **${rankofplayer.level} poziom!**`);
+                
+        if (playerLvl >= 30) experienceToNextLvl *= 1.5;
+        else if (playerLvl >= 20) experienceToNextLvl *= 2;
+        else experienceToNextLvl *= 3;
         
-        var nextlvlplayer = expiriencetogefornextplayerlvl * 3;
-        nextlvlplayer.toString();
-        
-        rankofplayer.experienceToNextLvl = nextlvlplayer;
+        rankOfPlayer.experienceToNextLvl = experienceToNextLvl.toString();
 
-        if (rankofplayer.level >= 1 && rankofplayer.level < 5) {
+        if (rankOfPlayer.level >= 1 && rankOfPlayer.level < 5) {
             messagesender.roles.add('841264313087033374');
-        } else if (rankofplayer.level >= 5 && rankofplayer.level < 10) {
+        } else if (rankOfPlayer.level >= 5 && rankOfPlayer.level < 10) {
             messagesender.roles.add('841264314937114644');
-        } else if (rankofplayer.level >= 10 && rankofplayer.level < 25) {
+        } else if (rankOfPlayer.level >= 10 && rankOfPlayer.level < 25) {
             messagesender.roles.add('841264317076996096');
-        } else if (rankofplayer.level == 25) {
+        } else if (rankOfPlayer.level >= 25) {
             messagesender.roles.add('841711436752486425');
         }
     }
