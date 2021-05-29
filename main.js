@@ -85,25 +85,22 @@ function checkUpdates() {
     if (firstImpostorFetch || firstFetch) {
         lastUpdateFetchTime = new Date();
     }
-    else
-    {
+    else {
         var dateNow = new Date();
         dateNow.setDate(dateNow.getDate() - 1);
 
         if (!(dateNow >= lastUpdateFetchTime)) return;
         else lastUpdateFetchTime = new Date();
     }
-    
+
     var xhr = new XMLHttpRequest();
-    
-    xhr.onload = function() {
-        if (xhr.status === 200)
-        {
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             var releaseDate = Date.parse(response[0].published_at);
 
-            if ((lastUpdateDate != releaseDate) && !firstFetch)
-            {
+            if ((lastUpdateDate != releaseDate) && !firstFetch) {
                 for (const guild of Client.guilds.cache) {
                     var guildConfig = Client.configFile.find(c => c.guildId == guild.id);
 
@@ -115,56 +112,50 @@ function checkUpdates() {
                 }
                 lastUpdateDate = releaseDate;
             }
-            else if (firstFetch)
-            {
+            else if (firstFetch) {
                 lastUpdateDate = releaseDate;
                 firstFetch = false;
             }
         }
-        else
-        {
+        else {
             console.error(`Github's servers returned ${xhr.status} code, while checking Town Of Us`);
         }
     }
-        
+
     xhr.open('GET', 'https://api.github.com/repos/slushiegoose/Town-Of-Us/releases', true);
     xhr.send(null);
 
     var xhrI = new XMLHttpRequest();
 
-    xhrI.onload = function() {
-        if (xhrI.status === 200)
-        {
+    xhrI.onload = function () {
+        if (xhrI.status === 200) {
             var response = JSON.parse(xhrI.responseText);
             var releaseDate = Date.parse(response[0].published_at);
 
-            if ((lastImpostorUpdateDate != releaseDate) && !firstImpostorFetch)
-            {
+            if ((lastImpostorUpdateDate != releaseDate) && !firstImpostorFetch) {
                 for (const guild of Client.guilds.cache) {
                     var guildConfig = Client.configFile.find(c => c.guildId == guild.id);
                     var infoChannel = guild.channels.cache.get(guildConfig.modUpdateChannelId);
 
-                    infoChannel.send(`**Wyszła nowa wersja Town Of Impostors!** Jej numerek to: **${response[0].tag_name}**. Link do pobrania: https://github.com/Town-of-Impostors/TownOfImpostors`);                
+                    infoChannel.send(`**Wyszła nowa wersja Town Of Impostors!** Jej numerek to: **${response[0].tag_name}**. Link do pobrania: https://github.com/Town-of-Impostors/TownOfImpostors`);
                 }
-                lastImpostorUpdateDate = releaseDate;                
+                lastImpostorUpdateDate = releaseDate;
             }
-            else if (firstImpostorFetch)
-            {
+            else if (firstImpostorFetch) {
                 lastImpostorUpdateDate = releaseDate;
                 firstImpostorFetch = false;
             }
         }
-        else
-        {
+        else {
             console.error(`Github's servers returned ${xhrI.status} code, while checking Town Of Impostors`);
         }
     }
-        
+
     xhrI.open('GET', 'https://api.github.com/repos/Town-of-Impostors/TownOfImpostors/releases', true);
     xhrI.send(null);
 }
-    
-    
+
+
 function liczenie(message, channelToLiczenie) {
 
     if (message.author.bot) return;
@@ -172,20 +163,20 @@ function liczenie(message, channelToLiczenie) {
     var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
     if (typeof config === 'undefined') {
-      console.error("Config error!");
-      return;
+        console.error("Config error!");
+        return;
     }
 
     var number = parseInt(config.actualConfigNumber);
 
     if (message.channel.id != channelToLiczenie) return;
 
-    if (message.content == number.actualNumber) {
+    if (message.content == config.actualNumber) {
 
-      number.actualNumber = (number + 1).toString();
+        number.actualNumber = (number + 1).toString();
 
     } else {
-      message.channel.messages.delete(message);
+        message.channel.messages.delete(message);
     }
 
 }
@@ -220,7 +211,7 @@ function addExperience(message) {
     var experienceToNextLvl = parseInt(rankOfPlayer.experienceToNextLvl);
     var playerLvl = parseInt(rankOfPlayer.level);
 
-    if (playerExp >= experienceToNextLvl) {        
+    if (playerExp >= experienceToNextLvl) {
         playerLvl += 1;
         rankOfPlayer.level = playerLvl.toString();
 
@@ -228,11 +219,11 @@ function addExperience(message) {
         var messageSender = message.member;
 
         lvlNotifyChannel.send(`**Gratulacje <@${message.author.id}>!** Udało ci się wbić **${playerLvl} poziom!**`);
-                
+
         if (playerLvl >= 30) experienceToNextLvl = Math.floor(experienceToNextLvl * 1.5);
         else if (playerLvl >= 20) experienceToNextLvl *= 2;
         else experienceToNextLvl *= 3;
-        
+
         rankOfPlayer.experienceToNextLvl = experienceToNextLvl.toString();
 
         if (rankOfPlayer.level >= 1 && rankOfPlayer.level < 5) {
@@ -248,7 +239,7 @@ function addExperience(message) {
 
     Client.updateConfig(true);
 }
-function checkFreeSlots() {  
+function checkFreeSlots() {
     for (const guildConfig of Client.configFile) {
         if (guildConfig.vcNotifyLinks.length == 0) continue;
 
@@ -257,10 +248,10 @@ function checkFreeSlots() {
         } catch (error) {
             console.error(error);
         }
-    
-        for (const linkIndex in guildConfig.vcNotifyLinks) {        
+
+        for (const linkIndex in guildConfig.vcNotifyLinks) {
             var link = guildConfig.vcNotifyLinks[linkIndex];
-            
+
             var counter = 0;
             guild.members.cache.forEach(m => {
                 if (m.voice.channel != null) {
@@ -286,44 +277,44 @@ function jakiswkuriwajacychuj(channelID, message) {
 
         if (wkurwiajacawiadomosc == "jestem debilem" || wkurwiajacawiadomosc == "jestem idiotą" || wkurwiajacawiadomosc == "jestem śmieciem" || wkurwiajacawiadomosc == "jestem głupi") {
             message.channel.send("Tak, jesteś zgodze się");
-        } else if (wkurwiajacawiadomosc == "bot jest głupi" || wkurwiajacawiadomosc == "jesteś głupi"){
+        } else if (wkurwiajacawiadomosc == "bot jest głupi" || wkurwiajacawiadomosc == "jesteś głupi") {
             message.channel.send("chyba ty")
         } else {
-          message.channel.send(message.content);
+            message.channel.send(message.content);
         }
 
     } else {
         return;
     }
 
-    
+
 }
 
 Client.updateConfig = (expUpdate = false) => {
     if (!expUpdate) {
-      try {
-        var config = Client.configFile;
-      } catch (error) {
-        console.error(error);
-      }
+        try {
+            var config = Client.configFile;
+        } catch (error) {
+            console.error(error);
+        }
 
-      fs.writeFileSync('./appconfig.json', JSON.stringify(config));
+        fs.writeFileSync('./appconfig.json', JSON.stringify(config));
 
-      try {
-        var punishments = Client.punishments;
-      } catch (error) {
-        console.error(error);
-      }
+        try {
+            var punishments = Client.punishments;
+        } catch (error) {
+            console.error(error);
+        }
 
-      fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
+        fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
     } else {
-      try {
-        var rank = Client.rank;
-      } catch (error) {
-        console.error(error);
-      }
+        try {
+            var rank = Client.rank;
+        } catch (error) {
+            console.error(error);
+        }
 
-      fs.writeFileSync('./rank.json', JSON.stringify(rank));
+        fs.writeFileSync('./rank.json', JSON.stringify(rank));
     }
 
     console.log("Saved config!");
