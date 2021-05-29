@@ -22,8 +22,8 @@ module.exports = {
         if (rank.textChannelRank.length == 1) {
             var topExperienceObjects = [rank.textChannelRank[0]];
         } else {          
-            for (let i = 0; i < rank.textChannelRank; i++) {
-                for (let j = rank.textChannelRank - 1; j >= 0; j--) {
+            for (let i = 0; i < rank.textChannelRank.length; i++) {
+                for (let j = rank.textChannelRank.length - 1; j >= 0; j--) {
                     let firstXp = rank.textChannelRank[j];
                     let secondXp = rank.textChannelRank[j - 1];
     
