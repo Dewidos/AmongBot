@@ -199,7 +199,7 @@ function addExperience(message) {
 
         lvlNotifyChannel.send(`**Gratulacje: <@${rankofplayer.userID}>!** Udało ci się wbić **${rankofplayer.level} poziom!**`);
                 
-        if (playerLvl >= 30) experienceToNextLvl *= 1.5;
+        if (playerLvl >= 30) experienceToNextLvl = Math.floor(experienceToNextLvl * 1.5);
         else if (playerLvl >= 20) experienceToNextLvl *= 2;
         else experienceToNextLvl *= 3;
         
