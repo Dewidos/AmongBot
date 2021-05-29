@@ -183,7 +183,7 @@ function addExperience(message) {
 
     if (message.author.bot) return;
 
-    var expiriencetoget = Math.floor(Math.random()*10+1);
+    var experiencetoget = Math.floor(Math.random()*10+1);
 
     rankofplayer.experience = (parseInt(rankofplayer.experience) + experiencetoget).toString();
     //levelup
