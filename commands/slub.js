@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const createMarryChannel = require('./../createMarryChannel');
+
 module.exports = {
 
     "name": "slub",
@@ -14,6 +16,13 @@ module.exports = {
             var id = args[0].replace(/[\\<>@#&!]/g, "");
 
             var user = message.guild.members.cache.get(id);
+            var authorUser = message.guild.members.cache.get(message.author.id);
+            var marryChannel = message.guild.channels.cache.get('848277078058860584');
+
+            if (!marryChannel) {
+                console.error("I can't find marry channel!");
+                return;
+            }
 
             if (typeof user !== 'undefined') {
 
@@ -38,16 +47,17 @@ module.exports = {
                     if (reaction.message != MessageEmbed) return;
 
                     if (reaction.emoji.name === yes) {
-                        user.send("Żona kurskiego wybrała Brzozowskiego");
-                        console.log("zgodził siee");
+                        authorUser.send(`${user.user.username} zaakceptował Twoje oświadczyny!`);                        
+                        marryChannel.send(`<@${user.id}> zaakceptował oświadczyny <@${message.author.id}>!`);
+
+                        createMarryChannel(user, authorUser, message.guild, client);
 
                         return true;
                     } else if (reaction.emoji.name === no) {
-                        user.send("Żona kurskiego nie wybrała Brzozowskiego");
-                        console.log("nie zgodził siee");
+                        authorUser.send(`${user.user.username} odrzucił Twoje oświadczyny :(`);
+                        marryChannel.send(`<@${user.id}> odrzucił oświadczyny <@${message.author.id}> :(`);
+
                         return true;
-                    } else {
-                        console.log("nie wiem kurwa");
                     }
 
                     return false;
