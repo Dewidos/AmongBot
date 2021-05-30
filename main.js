@@ -4,6 +4,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Discord = require('discord.js');
 const waitroomHandler = require('./waitroom');
 const Client = new Discord.Client();
+const speakToBot = require('./speakingToBot');
 const fs = require('fs');
 
 Client.commands = new Discord.Collection();
@@ -50,9 +51,14 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     refreshHandler(message.guild);
 
+    
+
     const channelID1 = '847800029103128586';
     const channelID2 = '848257904582066207';
+    const channelID3 = '848615755255644180';
     const shipChannelID = '848494212538171442';
+    
+    speakToBot(message, Client, channelID3);
 
     addExperience(message);
     liczenie(message, channelID2);
