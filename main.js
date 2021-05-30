@@ -19,10 +19,10 @@ Client.reactionCallbacks = new Array();
 Client.on('messageReactionAdd', (reaction, user) => {
     if (Client.reactionCallbacks.length <= 0) return;
 
-    for (const callback of Client.reactionCallbacks) {
-        if (callback(reaction, user)) {
-            console.log(`tryna delete ${Client.reactionCallbacks.indexOf(callback)}`);
-            Client.reactionCallbacks = Client.reactionCallbacks.slice(Client.reactionCallbacks.indexOf(callback), 1);
+    for (const callbackIndex in Client.reactionCallbacks) {
+        if (Client.reactionCallbacks[callbackIndex](reaction, user)) {
+            console.log(`tryna delete ${callbackIndex}`);
+            Client.reactionCallbacks.slice(callbackIndex, 1);
         }
     }
 });
