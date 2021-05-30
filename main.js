@@ -14,6 +14,19 @@ Client.configFile.forEach(e => e.vcNotifyLinks = []);
 Client.punishments = JSON.parse(fs.readFileSync('./punishments.json', 'utf8'));
 Client.rank = JSON.parse(fs.readFileSync('./rank.json', 'utf8'));
 
+Client.reactionCallbacks = new Array();
+
+Client.on('messageReactionAdd', (reaction, user) => {
+    if (Client.reactionCallbacks.length <= 0) return;
+
+    for (const callback of Client.reactionCallbacks) {
+        if (callback(reaction, user)) {
+            console.log(`tryna delete ${Client.reactionCallbacks.indexOf(callback)}`);
+            Client.reactionCallbacks = Client.reactionCallbacks.slice(Client.reactionCallbacks.indexOf(callback), 1);
+        }
+    }
+});
+
 // Aktualizacje modów ----------
 
 var lastUpdateDate = new Date();
