@@ -35,7 +35,7 @@ module.exports = {
                     if (!reaction.message.guild) return;
 
                     if (user.id = id) {
-                        if (reaction.name === yes) {
+                        if (reaction.emoji.name === yes) {
                             message.channel.send("cos");
                         } else if (reaction.name == no){
 
