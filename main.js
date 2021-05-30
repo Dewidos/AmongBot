@@ -20,10 +20,7 @@ Client.on('messageReactionAdd', async (reaction, user) => {
     if (Client.reactionCallbacks.length <= 0) return;
 
     for (const callbackIndex in Client.reactionCallbacks) {
-        if (await Client.reactionCallbacks[callbackIndex](reaction, user)) {
-            console.log(`tryna delete ${callbackIndex}`);
-            Client.reactionCallbacks.splice(callbackIndex, 1);
-        }
+        if (await Client.reactionCallbacks[callbackIndex](reaction, user)) Client.reactionCallbacks.splice(callbackIndex, 1);
     }
 });
 
