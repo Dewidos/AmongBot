@@ -1,12 +1,1 @@
-[
-    {
-        "guildID": "",
-        "ships": [
-            {
-                "firstNickId": "847362253735854101" ,
-                "secondNickId": "514138172070952961",
-                "howMuchProcent": 43
-            }
-        ]
-    }
-]
+[{"guildID":"840941220368482304","ships":[{"firstNickId":"847362253735854101","secondNickId":"514138172070952961","howMuchProcent":43},{"firstNickId":"470994346439737346","secondNickId":"269021337522143232","howMuchProcent":19},{"firstNickId":"470994346439737346","secondNickId":"514138172070952961","howMuchProcent":87},{"firstNickId":"847362253735854101","secondNickId":"470994346439737346","howMuchProcent":75},{"firstNickId":"847362253735854101","secondNickId":"458276816071950337","howMuchProcent":11},{"firstNickId":"704954159404941342","secondNickId":"470994346439737346","howMuchProcent":10}]}]

@@ -52,10 +52,11 @@ Client.on('message', message => {
 
     const channelID1 = '847800029103128586';
     const channelID2 = '848257904582066207';
+    const shipChannelID = '848494212538171442';
 
     addExperience(message);
     liczenie(message, channelID2);
-
+    
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
@@ -69,10 +70,22 @@ Client.on('message', message => {
             console.error(error);
         }
     } else if (!message.author.bot) {
+        if (!message.content.startsWith(`${Client.prefix}ship`) && message.channel.id == shipChannelID) {
+          let marryChannel = message.guild.channels.cache.get(shipChannelID);
+
+          if (!marryChannel) {
+            message.channel.send("Błędne ID kanału do komendy ab!ship");
+            return;
+          }
+
+          marryChannel.messages.delete(message);
+        }
+        
         runAutomoderator(message, Client);
         jakiswkuriwajacychuj(channelID1, message);
     }
 });
+
 
 Client.on('voiceStateUpdate', vState => {
     checkFreeSlots();
@@ -327,7 +340,7 @@ Client.updateConfig = (expUpdate = false) => {
             console.error(error);
         }
 
-        fs.writeFileSync('./punishments.json', JSON.stringify(forFun));
+        fs.writeFileSync('./forfun.json', JSON.stringify(forFun));
     } else {
         try {
             var rank = Client.rank;
