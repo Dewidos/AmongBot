@@ -15,7 +15,7 @@ module.exports = {
 
             var id = args[0].replace(/[\\<>@#&!]/g, "");
 
-            var user = message.guild.members.cache.get(id);
+            var userFromId = message.guild.members.cache.get(id);
             var authorUser = message.guild.members.cache.get(message.author.id);
             var marryChannel = message.guild.channels.cache.get('848277078058860584');
 
@@ -24,9 +24,9 @@ module.exports = {
                 return;
             }
 
-            if (typeof user !== 'undefined') {
+            if (typeof userFromId !== 'undefined') {
 
-                if (user.bot) return;
+                if (userFromId.bot) return;
 
                 let embed = new Discord.MessageEmbed()
                     .setColor('#8B0000')
@@ -34,28 +34,28 @@ module.exports = {
                     .setDescription(`**Czy ty: <@${id}>, wyjdziesz za: ${message.author.username}?**`)
                     .setFooter("Wybierz emotke: ✅ oznacza ze sie zgadzasz, ❌ oznacza że nie.")
 
-                let MessageEmbed = await user.send(embed);
+                let MessageEmbed = await userFromId.send(embed);
                 MessageEmbed.react(yes);
-                MessageEmbed.react(no);
+                await MessageEmbed.react(no);
 
                 var callback = async (reaction, user) => {
                     
                     if (reaction.message.partial) await reaction.message.fetch();
                     if (reaction.partial) await reaction.fetch();
-                    if (user.bot) return;
+                    if (userFromId.partial) await user.fetch();
 
                     if (reaction.message != MessageEmbed) return;
 
                     if (reaction.emoji.name === yes) {
-                        authorUser.send(`${user.user.username} zaakceptował Twoje oświadczyny!`);                        
-                        marryChannel.send(`<@${user.id}> zaakceptował oświadczyny <@${message.author.id}>!`);
+                        authorUser.send(`${userFromId.user.username} zaakceptował Twoje oświadczyny!`);                        
+                        marryChannel.send(`<@${userFromId.id}> zaakceptował oświadczyny <@${message.author.id}>!`);
 
-                        createMarryChannel(user, authorUser, message.guild, client);
+                        createMarryChannel(userFromId, authorUser, message.guild, client);
 
                         return true;
                     } else if (reaction.emoji.name === no) {
-                        authorUser.send(`${user.user.username} odrzucił Twoje oświadczyny :(`);
-                        marryChannel.send(`<@${user.id}> odrzucił oświadczyny <@${message.author.id}> :(`);
+                        authorUser.send(`${userFromId.user.username} odrzucił Twoje oświadczyny :(`);
+                        marryChannel.send(`<@${userFromId.id}> odrzucił oświadczyny <@${message.author.id}> :(`);
 
                         return true;
                     }
