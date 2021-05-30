@@ -13,6 +13,7 @@ Client.configFile.forEach(e => e.vcNotifyLinks = []);
 
 Client.punishments = JSON.parse(fs.readFileSync('./punishments.json', 'utf8'));
 Client.rank = JSON.parse(fs.readFileSync('./rank.json', 'utf8'));
+Client.forFun = JSON.parse(fs.readFileSync('./forfun.json', 'utf8'));
 
 Client.reactionCallbacks = new Array();
 
@@ -319,6 +320,14 @@ Client.updateConfig = (expUpdate = false) => {
         }
 
         fs.writeFileSync('./punishments.json', JSON.stringify(punishments));
+
+        try {
+            var forFun = Client.forFun;
+        } catch (error) {
+            console.error(error);
+        }
+
+        fs.writeFileSync('./punishments.json', JSON.stringify(forFun));
     } else {
         try {
             var rank = Client.rank;
