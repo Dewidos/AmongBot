@@ -1,11 +1,11 @@
 const keepAlive = require('./server');
 const runAutomoderator = require('./automoderator/automoderatorhandler');
-
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Discord = require('discord.js');
 const waitroomHandler = require('./waitroom');
 const Client = new Discord.Client();
 const fs = require('fs');
+
 Client.commands = new Discord.Collection();
 
 Client.configFile = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'));
@@ -25,6 +25,8 @@ Client.on('messageReactionAdd', async (reaction, user) => {
     }
 });
 
+const nextRefreshTime = new Date();
+
 // Aktualizacje modów ----------
 
 var lastUpdateDate = new Date();
@@ -32,8 +34,6 @@ var firstFetch = true;
 
 var lastImpostorUpdateDate = new Date();
 var firstImpostorFetch = true;
-
-var lastUpdateFetchTime;
 
 // -----------------------------
 
@@ -48,7 +48,7 @@ for (const file of commandFiles) {
 }
 
 Client.on('message', message => {
-    checkUpdates();
+    refreshHandler(message.guild);
 
     const channelID1 = '847800029103128586';
     const channelID2 = '848257904582066207';
@@ -106,17 +106,6 @@ Client.once('ready', () => {
 })
 
 function checkUpdates() {
-    if (firstImpostorFetch || firstFetch) {
-        lastUpdateFetchTime = new Date();
-    }
-    else {
-        var dateNow = new Date();
-        dateNow.setDate(dateNow.getDate() - 1);
-
-        if (!(dateNow >= lastUpdateFetchTime)) return;
-        else lastUpdateFetchTime = new Date();
-    }
-
     var xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
@@ -314,6 +303,51 @@ function jakiswkuriwajacychuj(channelID, message) {
     }
 
 
+}
+
+function refreshHandler(guild) {
+    if (new Date() <= nextRefreshTime) return;
+
+    nextRefreshTime.setMinutes(nextRefreshTime.getMinutes() + 5);
+    
+    checkUpdates();
+    refreshMutes(guild);
+}
+
+function refreshMutes(guild) {
+    var punishments = Client.punishments.find(p => p.guildId == guild.id);
+
+    if (typeof punishments.mutes === 'undefined' || punishments.mutes.length <= 0) return;
+
+    var dateNow = new Date();
+
+    for (const mute of punishments.mutes) {
+        if (!mute.expires) continue;
+        
+        let muteExpiryDate = new Date(mute.expires);
+
+        let mutedPlayer = guild.members.cache.get(mute.userId);
+
+        if (!mutedPlayer) {
+            try {
+                punishments.mutes.splice(punishments.mutes.indexOf(mute), 1);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        if (dateNow < muteExpiryDate) continue;
+
+        mutedPlayer.roles.remove('841617507168288798');
+
+        try {
+            punishments.mutes.splice(punishments.mutes.indexOf(mute), 1);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    Client.updateConfig();
 }
 
 Client.updateConfig = (expUpdate = false) => {

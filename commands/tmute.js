@@ -142,12 +142,18 @@ module.exports = {
         }
 
         if (czas != null) {
+            let currentDate = new Date();
+            currentDate.setMilliseconds(currentDate.getMilliseconds() + czas);
+            
+            let dateJSON = currentDate.toJSON();
+            
             punishments.mutes.push({
                 "userId": id,
                 "issuerId": message.author.id,
                 "duration": czas,
                 "reason": reason,
                 "timetype": timetype,
+                "expires": dateJSON
             });
 
             var embed = new Discord.MessageEmbed()
