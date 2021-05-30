@@ -16,7 +16,7 @@ module.exports = {
             var user = message.guild.members.cache.get(id);
 
             if (typeof user !== 'undefined') {
-                
+
                 let embed = new Discord.MessageEmbed()
                     .setColor('#8B0000')
                     .setTitle(`Gracz: ${message.author.username} ci sie oświadczył!`)
@@ -27,23 +27,23 @@ module.exports = {
                 MessageEmbed.react(yes);
                 MessageEmbed.react(no);
 
-                client.on('messageReactionAdd', async (reaction, user) =>{
+                client.on('messageReactionAdd', async (reaction, user) => {
 
                     if (reaction.message.partial) await reaction.message.fetch();
                     if (reaction.partial) await reaction.fetch();
                     if (user.bot) return;
-                    if (!reaction.message.guild) return;
+                    if (reaction.message.guild.id != message.guild.id) return;
 
-                    if (user.id = id) {
-                        if (reaction.emoji.name === yes) {
-                            message.channel.send("cos");
-                        } else if (reaction.name == no){
+                    console.log(reaction.name + " - " + reaction.emoji.name);
 
-                        } else {
-                            return;
-                        }
+                    if (reaction.name === yes) {
+                        user.send("Żona kurskiego wybrała Brzozowskiego");
+                        console.log("zgodził siee");
+                    } else if (reaction.name === no) {
+                        user.send("Żona kurskiego nie wybrała Brzozowskiego");
+                        console.log("nie zgodził siee");
                     } else {
-                        return
+                        return;
                     }
                 });
 
