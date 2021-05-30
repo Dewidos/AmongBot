@@ -16,13 +16,13 @@ Client.rank = JSON.parse(fs.readFileSync('./rank.json', 'utf8'));
 
 Client.reactionCallbacks = new Array();
 
-Client.on('messageReactionAdd', (reaction, user) => {
+Client.on('messageReactionAdd', async (reaction, user) => {
     if (Client.reactionCallbacks.length <= 0) return;
 
     for (const callbackIndex in Client.reactionCallbacks) {
-        if (Client.reactionCallbacks[callbackIndex](reaction, user)) {
+        if (await Client.reactionCallbacks[callbackIndex](reaction, user)) {
             console.log(`tryna delete ${callbackIndex}`);
-            Client.reactionCallbacks.slice(callbackIndex, 1);
+            Client.reactionCallbacks.splice(callbackIndex, 1);
         }
     }
 });
