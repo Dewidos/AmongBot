@@ -2,7 +2,8 @@ module.exports = (message, client) => {
     var messageToSend = "Mamy teraz ";
 
     var date = new Date();
-    var time = date.toTimeString();
+    date.setHours(date.getHours() + 2);
+    var time = date.toTimeString().split(" ")[0];
 
     messageToSend = messageToSend + `**${time}**.`;
 
