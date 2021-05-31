@@ -21,8 +21,8 @@ module.exports = {
             return;
         }
 
-        var walletMoney = userBalance.walletMoney;
-        var bankMoney = userBalance.bankMoney;
+        var walletMoney = parseInt(userBalance.walletMoney);
+        var bankMoney = parseInt(userBalance.bankMoney);
 
         if (bankMoney <= 0) {
             message.channel.send(`Nie masz żadnych środków do wypłaty! Aby podejrzeć swój majątek, użyj komendy **${client.prefix}balans**.`);
