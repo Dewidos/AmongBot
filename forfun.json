@@ -1,1 +1,98 @@
-[{"guildID":"840941220368482304","ships":[{"firstNickId":"847362253735854101","secondNickId":"514138172070952961","howMuchProcent":43},{"firstNickId":"470994346439737346","secondNickId":"269021337522143232","howMuchProcent":19},{"firstNickId":"470994346439737346","secondNickId":"514138172070952961","howMuchProcent":87},{"firstNickId":"847362253735854101","secondNickId":"470994346439737346","howMuchProcent":75},{"firstNickId":"847362253735854101","secondNickId":"458276816071950337","howMuchProcent":11},{"firstNickId":"704954159404941342","secondNickId":"470994346439737346","howMuchProcent":10},{"firstNickId":"685853228440485951","secondNickId":"270904126974590976","howMuchProcent":67},{"firstNickId":"685853228440485951","secondNickId":"470994346439737346","howMuchProcent":98},{"firstNickId":"483310917380210689","secondNickId":"483310917380210689","howMuchProcent":16},{"firstNickId":"418842777720193037","secondNickId":"483310917380210689","howMuchProcent":46},{"firstNickId":"483310917380210689","secondNickId":"514138172070952961","howMuchProcent":74}],"marriages":[{"id":"1","firstPlayerId":"","secondPlayerId":""}],"nextMarriageId":"2","dialogs":[{"message":["która godzina?"],"functionName":"hour"},{"message":["xd","xdd","xddd"],"functionName":"laughReact"}]}]
+[
+  {
+    "guildID": "840941220368482304",
+    "ships": [
+      {
+        "firstNickId": "847362253735854101",
+        "secondNickId": "514138172070952961",
+        "howMuchProcent": 43
+      },
+      {
+        "firstNickId": "470994346439737346",
+        "secondNickId": "269021337522143232",
+        "howMuchProcent": 19
+      },
+      {
+        "firstNickId": "470994346439737346",
+        "secondNickId": "514138172070952961",
+        "howMuchProcent": 87
+      },
+      {
+        "firstNickId": "847362253735854101",
+        "secondNickId": "470994346439737346",
+        "howMuchProcent": 75
+      },
+      {
+        "firstNickId": "847362253735854101",
+        "secondNickId": "458276816071950337",
+        "howMuchProcent": 11
+      },
+      {
+        "firstNickId": "704954159404941342",
+        "secondNickId": "470994346439737346",
+        "howMuchProcent": 10
+      },
+      {
+        "firstNickId": "685853228440485951",
+        "secondNickId": "270904126974590976",
+        "howMuchProcent": 67
+      },
+      {
+        "firstNickId": "685853228440485951",
+        "secondNickId": "470994346439737346",
+        "howMuchProcent": 98
+      },
+      {
+        "firstNickId": "483310917380210689",
+        "secondNickId": "483310917380210689",
+        "howMuchProcent": 16
+      },
+      {
+        "firstNickId": "418842777720193037",
+        "secondNickId": "483310917380210689",
+        "howMuchProcent": 46
+      },
+      {
+        "firstNickId": "483310917380210689",
+        "secondNickId": "514138172070952961",
+        "howMuchProcent": 74
+      }
+    ],
+    "marriages": [
+      {
+        "id": "1",
+        "firstPlayerId": "",
+        "secondPlayerId": ""
+      }
+    ],
+    "nextMarriageId": "2",
+    "dialogs": [
+      {
+        "message": [
+          "która godzina?"
+        ],
+        "functionName": "hour"
+      },
+      {
+        "message": [
+          "xd",
+          "xdd",
+          "xddd"
+        ],
+        "functionName": "laughReact"
+      },
+      {
+        "message": [
+          "jesteś idiotą",
+          "jesteś idiotom",
+          "jestes idiotą",
+          "jestes idiotom",
+          "jesteś debilem",
+          "jesteś chujem",
+          "jestes chujem"
+        ],
+        "functionName": "Cos tam"
+      }
+    ]
+  }
+]
