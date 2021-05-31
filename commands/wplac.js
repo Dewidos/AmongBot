@@ -25,7 +25,7 @@ module.exports = {
         var bankMoney = userBalance.bankMoney;
 
         if (walletMoney <= 0) {
-            message.channel.send(`Nie masz żadnych środków do wpłaty! Aby podejrzeć swój majątek, użyj komendy **${client.prefix}balance**.`);
+            message.channel.send(`Nie masz żadnych środków do wpłaty! Aby podejrzeć swój majątek, użyj komendy **${client.prefix}balans**.`);
             return;
         }
 

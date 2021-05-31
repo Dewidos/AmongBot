@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    "name": "bal",
+    "name": "balans",
     "description": "Sprawdź ile masz pieniędzy!",
     execute(message, args, client) {
         var economy = client.economy.find(e => e.guildId == message.guild.id);
