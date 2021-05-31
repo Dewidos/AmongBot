@@ -10,6 +10,8 @@ module.exports = (message, client, channelToSpeakId) => {
     var array = new Array();
 
     var functionObject = forFun.dialogs.find(d => d.message.includes(messageContent));
+    console.log(messageContent);
+    console.log(functionObject);
 
     if (!actionFunction) {
         message.channel.send("Przepraszam, ale nie rozumiem :(");
