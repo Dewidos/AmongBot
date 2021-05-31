@@ -2,34 +2,22 @@ const Discord = require('discord.js');
 
 module.exports = (message, client, channelToSpeakId) => {
 
-    var forfun = client.forFun.find(d => d.guildID == message.guild.id);
+    if (message.channel.id != channelToSpeakId) return;
+
+    const messageContent = message.content.toLowerCase();
     
-    if (message.channel.id === channelToSpeakId) {
+    var forFun = client.forFun.find(d => d.guildID == message.guild.id);
+    var array = new Array();
 
-        if (message.author.bot) return;
+    var functionObject = forFun.dialogs.find(d => d.message.includes(messageContent));
+
+    if (!actionFunction) {
+        message.channel.send("Przepraszam, ale nie rozumiem :(");
         
-        var playerMessage = message.content.toLowerCase();
-
-        playerMessage = playerMessage.replace(/[\\<>@#&!]/g, "");
-
-        var MessageAtJSON = forfun.dialogs.find(d => d.messageOfPlayer == playerMessage);
-
-        if (typeof MessageAtJSON !== 'undefined') {
-            if (message.content === "która godzina") {
-              var godzina = getHours();
-              MessageAtJSON = (MessageAtJSON + `${godzina}`);
-            }
-            var embed = new Discord.MessageEmbed()
-                    .setColor('#8B0000')
-                    .setTitle(`Już rozumiem!`)
-                    .setDescription(`**${MessageAtJSON.awanser}**`)
-                    .setFooter("Nie ma sprawy.")
-            message.channel.send(embed);
-        } else {
-            message.channel.send("**Przykro mi ale nie rozumiem o co ci chodzi**");
-        }
-
-    } else {
         return;
     }
+
+    var actionFunction = client.speakFunctions[functionObject.functionName];
+
+    actionFunction(message, client);
 }
