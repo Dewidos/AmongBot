@@ -1,0 +1,16 @@
+[
+    {
+        "guildId": "840941220368482304",
+        "playerBalance": [
+            {
+                "playerId": "514138172070952961",
+                "walletMoney": "0",
+                "bankMoney": "1000000000000000"
+            }
+        ],
+        "currency": {
+            "name": "SUS",
+            "symbol": ":amongus_sus:"
+        }
+    }
+]
