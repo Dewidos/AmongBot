@@ -54,7 +54,7 @@ for (const file of speakFunctionsFiles) {
     const speakFunction = require(`./dialogs/${file}`);
     const functionName = file.split('.')[0];
 
-    Client.speakFunctions[functionName](speakFunction);
+    Client.speakFunctions[functionName] = speakFunction;
 }
 
 Client.on('message', message => {
