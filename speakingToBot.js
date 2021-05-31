@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = (message, client, channelToSpeakId) => {
 
-    if (message.channel.id != channelToSpeakId) return;
+    if (message.channel.id != channelToSpeakId || message.author.bot) return;
 
     const messageContent = message.content.toLowerCase();
     
