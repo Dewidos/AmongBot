@@ -49,6 +49,7 @@ for (const file of commandFiles) {
 }
 
 const speakFunctionsFiles = fs.readdirSync('./dialogs/').filter(file => file.endsWith('.js'));
+Client.speakFunctions = new Object();
 
 for (const file of speakFunctionsFiles) {
     const speakFunction = require(`./dialogs/${file}`);
