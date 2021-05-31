@@ -41,8 +41,8 @@ module.exports = {
             }
         }
 
-        userBalance.bankMoney -= moneyToTransfer;
-        userBalance.walletMoney += moneyToTransfer;
+        userBalance.bankMoney = (bankMoney - moneyToTransfer).toString();
+        userBalance.walletMoney = (walletMoney + moneyToTransfer).toString();
 
         var embed = new Discord.MessageEmbed()
         .setColor('#34c6eb')
