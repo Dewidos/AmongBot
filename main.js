@@ -51,8 +51,6 @@ for (const file of commandFiles) {
 Client.on('message', message => {
     refreshHandler(message.guild);
 
-    
-
     const channelID1 = '847800029103128586';
     const channelID2 = '848257904582066207';
     const channelID3 = '848615755255644180';
