@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = {
     "name": "pracuj",
     "description": "Użyj tej komendy aby pracować i coś zarobić!",
@@ -33,7 +35,8 @@ module.exports = {
             let nextPossibleWorkTime = new Date(userBalance.nextPossibleWorkTime);
             
             if (nextPossibleWorkTime > dateNow) {
-                let timeToNextWork = nextPossibleWorkTime - dateNow;
+                let timeToNextWork = new Date();
+                timeToNextWork.setMinutes(timeToNextWork.getMinutes() - dateNow.getMinutes());
                 let minutesLeft = timeToNextWork.getMinutes();
                 
                 message.channel.send(`Nie możesz jeszcze pracować! Poczekaj jeszcze **${minutesLeft}**.`);
