@@ -1,0 +1,1 @@
+module.exports = (message, client) => message.react('😂');
