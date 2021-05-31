@@ -5,7 +5,8 @@
             {
                 "playerId": "514138172070952961",
                 "walletMoney": "0",
-                "bankMoney": "1000000000000000"
+                "bankMoney": "1000000000000000",
+                "nextPossibleWorkTime": ""
             }
         ],
         "currency": {

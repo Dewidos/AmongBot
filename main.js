@@ -390,6 +390,14 @@ Client.updateConfig = (expUpdate = false) => {
         }
 
         fs.writeFileSync('./forfun.json', JSON.stringify(forFun));
+
+        try {
+            var economy = Client.economy;
+        } catch (error) {
+            console.error(error);
+        }
+
+        fs.writeFileSync('./economy.json', JSON.stringify(economy));
     } else {
         try {
             var rank = Client.rank;

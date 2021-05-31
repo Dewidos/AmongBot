@@ -41,6 +41,11 @@ module.exports = {
             }
         }
 
+        if (bankMoney < moneyToTransfer) {
+            message.channel.send(`Nie masz wystarczającej ilości środków do wypłaty! Aby podejrzeć swój majątek, użyj komendy **${client.prefix}balans**.`);
+            return;
+        }
+
         userBalance.bankMoney = (bankMoney - moneyToTransfer).toString();
         userBalance.walletMoney = (walletMoney + moneyToTransfer).toString();
 
