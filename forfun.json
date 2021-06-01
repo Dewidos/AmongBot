@@ -1,1 +1,200 @@
-[{"guildID":"840941220368482304","ships":[{"firstNickId":"847362253735854101","secondNickId":"514138172070952961","howMuchProcent":43},{"firstNickId":"470994346439737346","secondNickId":"269021337522143232","howMuchProcent":19},{"firstNickId":"470994346439737346","secondNickId":"514138172070952961","howMuchProcent":87},{"firstNickId":"847362253735854101","secondNickId":"470994346439737346","howMuchProcent":75},{"firstNickId":"847362253735854101","secondNickId":"458276816071950337","howMuchProcent":11},{"firstNickId":"704954159404941342","secondNickId":"470994346439737346","howMuchProcent":10},{"firstNickId":"685853228440485951","secondNickId":"270904126974590976","howMuchProcent":67},{"firstNickId":"685853228440485951","secondNickId":"470994346439737346","howMuchProcent":98},{"firstNickId":"483310917380210689","secondNickId":"483310917380210689","howMuchProcent":16},{"firstNickId":"418842777720193037","secondNickId":"483310917380210689","howMuchProcent":46},{"firstNickId":"483310917380210689","secondNickId":"514138172070952961","howMuchProcent":74}],"marriages":[{"id":"1","firstPlayerId":"","secondPlayerId":""}],"nextMarriageId":"2","dialogs":[{"message":["która godzina?"],"functionName":"hour"},{"message":["xd","xdd","xddd"],"functionName":"laughReact"},{"message":["jesteś idiotą","jesteś idiotom","jestes idiota","jesteś idiota","jestes idiotą","jestes idiotom","jesteś debilem","jesteś chujem","jestes chujem"],"functionName":"!No chyba ty"},{"message":["mem","meme","daj jakiegos mema","zapodaj mema brachu","memy","memiksy","zmemuj cos prosze","daj jakiegoś mema","zmemuj coś prosze","meme bank","mems"],"functionName":"!**Jeśli chcesz zobaczyć jakiegos mema pisz do mojego kolegi (Dank Memer): 'pls meme'**"},{"message":["jak ci dzien mija","jak ci dzien mija?","jak ci dzień mija?","jak ci dzień mija","jak ci dzien mija brachu?","jak ci dzień mija brachu","jak ci dzien mija brachu","jak ci dzień mija brachu?","co tam u ciebie","co tam u ciebie?","co tam u ciebie brachu?","co tam u ciebie brachu"],"functionName":"!Bardzo dobrze dzięki że pytasz"},{"message":["co dzisiaj robiłeś?","co dzisiaj robiłes?","co dzisiaj robiles?","co dzisiaj robiłeś","co dzisiaj robiłes","co tam dzisiaj robiles","co tam dzisiaj robiles?","co tam dzisiaj robileś","co tam dzisiaj robileś?","co tam dzisiaj robiłeś","co tam dzisiaj robiłeś?","co tam dzisiaj u ciebie?","co tam dzisiaj u ciebie","co tam u ciebie?","co tam dzisiaj u ciebie","co porabiasz?","co porabiasz"],"functionName":"!Nic szczególnego to co zawsze: pomoc administracji w zarządaniu serverem; zabawianie ludzi na 4Fun; a teraz gadanie z tobą :smile:"},{"message":["co dzisiaj robiłeś?","co dzisiaj robiłes?","co dzisiaj robiles?","co dzisiaj robiłeś","co dzisiaj robiłes","co dzisiaj robiles","co tam dzisiaj u ciebie?","co tam dzisiaj u ciebie","co porabiasz?","co porabiasz"],"functionName":"!Nic szczególnego to co zawsze: pomoc administracji w zarządaniu serverem; zabawianie ludzi na 4Fun; a teraz gadanie z tobą :smile:"},{"message":["jak się nazywasz","jak sie nazywasz","jak sie nazywasz?","jak się nazywasz?","jak masz na imie","jak masz na imię","jak masz na imie?","jak masz na imię?","jakie jest twoje imie","jakie jest twoje imię","jakie jest twoje imie?","jakie jest twoje imię?"],"functionName":"!Moje imię to jak widać: AmongBot#8491. Jeśli chcesz więcej informacji o mnie to polecam wpisać ab!info"}]}]
+[
+  {
+    "guildID": "840941220368482304",
+    "ships": [
+      {
+        "firstNickId": "847362253735854101",
+        "secondNickId": "514138172070952961",
+        "howMuchProcent": 43
+      },
+      {
+        "firstNickId": "470994346439737346",
+        "secondNickId": "269021337522143232",
+        "howMuchProcent": 19
+      },
+      {
+        "firstNickId": "470994346439737346",
+        "secondNickId": "514138172070952961",
+        "howMuchProcent": 87
+      },
+      {
+        "firstNickId": "847362253735854101",
+        "secondNickId": "470994346439737346",
+        "howMuchProcent": 75
+      },
+      {
+        "firstNickId": "847362253735854101",
+        "secondNickId": "458276816071950337",
+        "howMuchProcent": 11
+      },
+      {
+        "firstNickId": "704954159404941342",
+        "secondNickId": "470994346439737346",
+        "howMuchProcent": 10
+      },
+      {
+        "firstNickId": "685853228440485951",
+        "secondNickId": "270904126974590976",
+        "howMuchProcent": 67
+      },
+      {
+        "firstNickId": "685853228440485951",
+        "secondNickId": "470994346439737346",
+        "howMuchProcent": 98
+      },
+      {
+        "firstNickId": "483310917380210689",
+        "secondNickId": "483310917380210689",
+        "howMuchProcent": 16
+      },
+      {
+        "firstNickId": "418842777720193037",
+        "secondNickId": "483310917380210689",
+        "howMuchProcent": 46
+      },
+      {
+        "firstNickId": "483310917380210689",
+        "secondNickId": "514138172070952961",
+        "howMuchProcent": 74
+      }
+    ],
+    "marriages": [
+      {
+        "id": "1",
+        "firstPlayerId": "",
+        "secondPlayerId": ""
+      }
+    ],
+    "nextMarriageId": "2",
+    "dialogs": [
+      {
+        "message": [
+          "która godzina?"
+        ],
+        "functionName": "hour"
+      },
+      {
+        "message": [
+          "xd",
+          "xdd",
+          "xddd"
+        ],
+        "functionName": "laughReact"
+      },
+      {
+        "message": [
+          "jesteś idiotą",
+          "jesteś idiotom",
+          "jestes idiota",
+          "jesteś idiota",
+          "jestes idiotą",
+          "jestes idiotom",
+          "jesteś debilem",
+          "jesteś chujem",
+          "jestes chujem"
+        ],
+        "functionName": "!No chyba ty"
+      },
+      {
+        "message": [
+          "mem",
+          "meme",
+          "daj jakiegos mema",
+          "zapodaj mema brachu",
+          "memy",
+          "memiksy",
+          "zmemuj cos prosze",
+          "daj jakiegoś mema",
+          "zmemuj coś prosze",
+          "meme bank",
+          "mems"
+        ],
+        "functionName": "!**Jeśli chcesz zobaczyć jakiegos mema pisz do mojego kolegi (Dank Memer): 'pls meme'**"
+      },
+      {
+        "message": [
+          "jak ci dzien mija",
+          "jak ci dzien mija?",
+          "jak ci dzień mija?",
+          "jak ci dzień mija",
+          "jak ci dzien mija brachu?",
+          "jak ci dzień mija brachu",
+          "jak ci dzien mija brachu",
+          "jak ci dzień mija brachu?",
+          "co tam u ciebie",
+          "co tam u ciebie?",
+          "co tam u ciebie brachu?",
+          "co tam u ciebie brachu"
+        ],
+        "functionName": "!Bardzo dobrze dzięki że pytasz"
+      },
+      {
+        "message": [
+          "co dzisiaj robiłeś?",
+          "co dzisiaj robiłes?",
+          "co dzisiaj robiles?",
+          "co dzisiaj robiłeś",
+          "co dzisiaj robiłes",
+          "co tam dzisiaj robiles",
+          "co tam dzisiaj robiles?",
+          "co tam dzisiaj robileś",
+          "co tam dzisiaj robileś?",
+          "co tam dzisiaj robiłeś",
+          "co tam dzisiaj robiłeś?",
+          "co tam dzisiaj u ciebie?",
+          "co tam dzisiaj u ciebie",
+          "co tam u ciebie?",
+          "co tam dzisiaj u ciebie",
+          "co porabiasz?",
+          "co porabiasz"
+        ],
+        "functionName": "!Nic szczególnego to co zawsze: pomoc administracji w zarządaniu serverem; zabawianie ludzi na 4Fun; a teraz gadanie z tobą :smile:"
+      },
+      {
+        "message": [
+          "ok",
+          "ok, rozumiem",
+          "rozumiem",
+          "dobra",
+          "dobrze",
+          "zrozumiano",
+          "nie ma problemu",
+          "oczywiscie",
+          "oki",
+          "okej",
+          "okejka",
+          "luzik",
+          "oczywiście",
+          "luz",
+          "spoko",
+          "naturalnie",
+          "ależ naturalnie",
+          "alez naturalnie",
+          "ależ naturalnie nie ma sprawy",
+          "alez naturalnie nie ma sprawy",
+          "przyjalem",
+          "przyjąlem",
+          "przyjąłem"
+        ],
+        "functionName": "!:thumbsup:"
+      },
+      {
+        "message": [
+          "jak się nazywasz",
+          "jak sie nazywasz",
+          "jak sie nazywasz?",
+          "jak się nazywasz?",
+          "jak masz na imie",
+          "jak masz na imię",
+          "jak masz na imie?",
+          "jak masz na imię?",
+          "jakie jest twoje imie",
+          "jakie jest twoje imię",
+          "jakie jest twoje imie?",
+          "jakie jest twoje imię?"
+        ],
+        "functionName": "!Moje imię to jak widać: AmongBot#8491. Jeśli chcesz więcej informacji o mnie to polecam wpisać ab!info"
+      }
+    ]
+  }
+]
