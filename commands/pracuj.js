@@ -32,7 +32,7 @@ module.exports = {
             var walletMoney = 0;
             var bankMoney = 0;
         } else {
-            let nextPossibleWorkTime = new Date(userBalance.nextPossibleWorkTime);
+            /*let nextPossibleWorkTime = new Date(userBalance.nextPossibleWorkTime);
             
             if (nextPossibleWorkTime > dateNow) {
                 let timeToNextWork = new Date();
@@ -41,7 +41,7 @@ module.exports = {
                 
                 message.channel.send(`Nie możesz jeszcze pracować! Poczekaj jeszcze **${minutesLeft}**.`);
                 return;
-            }
+            }*/
             
             var walletMoney = parseInt(userBalance.walletMoney);
             var bankMoney = parseInt(userBalance.bankMoney);

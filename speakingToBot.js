@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports = (message, client, channelToSpeakId) => {
+module.exports = (message, client, channelToSpeakId, StringPrefix) => {
 
     if (message.channel.id != channelToSpeakId || message.author.bot) return;
 
@@ -15,6 +15,17 @@ module.exports = (message, client, channelToSpeakId) => {
         message.channel.send("Przepraszam, ale nie rozumiem :(");
         
         return;
+    }
+
+    if (functionObject.functionName.startsWith(StringPrefix)) {
+
+      var thisString = functionObject.functionName;
+
+      var messageToSend = thisString.slice(StringPrefix.length);
+
+      message.channel.send(messageToSend);
+
+      return;
     }
 
     var actionFunction = client.speakFunctions[functionObject.functionName];

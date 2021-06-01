@@ -40,6 +40,7 @@ var firstImpostorFetch = true;
 // -----------------------------
 
 Client.prefix = "ab!";
+Client.stringPrefix = "!";
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
@@ -67,7 +68,7 @@ Client.on('message', message => {
     const channelID3 = '848615755255644180';
     const shipChannelID = '848494212538171442';
     
-    speakToBot(message, Client, channelID3);
+    speakToBot(message, Client, channelID3, Client.stringPrefix);
 
     addExperience(message);
     liczenie(message, channelID2);
@@ -331,6 +332,11 @@ function refreshHandler(guild) {
 
 function refreshMutes(guild) {
     var punishments = Client.punishments.find(p => p.guildId == guild.id);
+
+    if (typeof punishments === 'undefined') {
+      console.error("Can't get to mutes when refreshing them.");
+      return;
+    }
 
     if (typeof punishments.mutes === 'undefined' || punishments.mutes.length <= 0) return;
 
