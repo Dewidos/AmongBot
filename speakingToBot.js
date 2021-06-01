@@ -11,7 +11,7 @@ module.exports = (message, client, channelToSpeakId, StringPrefix) => {
 
     var functionObject = forFun.dialogs.find(d => d.message.includes(messageContent));
     
-    if (!functionObject) {
+    if (!functionObject || !functionObject + "?") {
         message.channel.send("Przepraszam, ale nie rozumiem :(");
         
         return;
