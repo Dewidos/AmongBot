@@ -11,10 +11,14 @@ module.exports = (message, client, channelToSpeakId, StringPrefix) => {
 
     var functionObject = forFun.dialogs.find(d => d.message.includes(messageContent));
     
-    if (!functionObject || !functionObject + "?") {
+    if (!functionObject) {
         message.channel.send("Przepraszam, ale nie rozumiem :(");
         
         return;
+    }
+
+    if (message.content === "pls meme") {
+      return;
     }
 
     if (functionObject.functionName.startsWith(StringPrefix)) {
@@ -26,6 +30,7 @@ module.exports = (message, client, channelToSpeakId, StringPrefix) => {
       message.channel.send(messageToSend);
 
       return;
+
     }
 
     var actionFunction = client.speakFunctions[functionObject.functionName];
