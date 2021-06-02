@@ -4,15 +4,8 @@ module.exports = (message, client, channelToSpeakId, StringPrefix) => {
 
     if (message.channel.id != channelToSpeakId || message.author.bot) return;
 
-    const messageContent = message.content.toLowerCase();
+    var messageContent = message.content.toLowerCase();
     messageContent = messageContent.replace(/[\\<>@#&!?]/g, "");
-
-module.exports = (message, client, channelToSpeakId, StringPrefix) => {
-
-    if (message.channel.id != channelToSpeakId || message.author.bot) return;
-
-    const messageContent = message.content.toLowerCase();
-    
     var forFun = client.forFun.find(d => d.guildID == message.guild.id);
     var array = new Array();
 
@@ -45,7 +38,7 @@ module.exports = (message, client, channelToSpeakId, StringPrefix) => {
     actionFunction(message, client);
 
     client.lastExecutedSpeakingAction = functionObject;
-}
+
     var forFun = client.forFun.find(d => d.guildID == message.guild.id);
     var array = new Array();
 
