@@ -222,6 +222,25 @@
           "siemanemaneczko"
         ],
         "functionName": "!Cześć, co tam u Ciebie?"
+      },
+      {
+          "message": [
+            "srajtaśma",
+            "srajtasma",
+            "papier toaletowy",
+            "sranie",
+            "kupa",
+            "siku",
+            "mocz",
+            "szczanie",
+            "toaleta",
+            "wc",
+            "dasz papier toaletowy?",
+            "dasz mi papier toaletowy?",
+            "daj papier toaletowy?",
+            "daj papier toaletowy"
+          ],
+          "functionName": "toiletPaper"
       }
     ]
   }
