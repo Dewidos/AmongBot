@@ -22,22 +22,24 @@ module.exports = function (voiceState, client) {
 
     for (const waitingMember of usersOnChannel) {
 
-        for (const gameChannel of config.vcNotifyConfig) {
-            if (!gameChannel.canWait) continue;
+        setTimeout(() => {
+            for (const gameChannel of config.vcNotifyConfig) {
+                if (!gameChannel.canWait) continue;
 
-            var counter = 0;
-            voiceState.guild.members.cache.forEach(m => {
-                if (m.voice.channel != null) {
-                    if (m.voice.channel.id == gameChannel.vcId) {
-                        counter++;
+                var counter = 0;
+                voiceState.guild.members.cache.forEach(m => {
+                    if (m.voice.channel != null) {
+                        if (m.voice.channel.id == gameChannel.vcId) {
+                            counter++;
+                        }
                     }
-                }
-            });
+                });
 
-            if (!(counter >= 5 && counter < 10)) continue;
+                if (!(counter >= 5 && counter < 10)) continue;
 
-            waitingMember.voice.setChannel(gameChannel.vcId);
-            break;
-        }
+                waitingMember.voice.setChannel(gameChannel.vcId);
+                break;
+            }
+        }, 300);
     }
 }
