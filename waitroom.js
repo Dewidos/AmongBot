@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports = function (voiceState, client) {
+module.exports = async function (voiceState, client) {
     var config = client.configFile.find(c => c.guildId == voiceState.guild.id);
 
     if (typeof config === 'undefined') {
@@ -22,7 +22,7 @@ module.exports = function (voiceState, client) {
 
     for (const waitingMember of usersOnChannel) {
 
-        setTimeout(() => {
+        var memberChecker = async () => {
             for (const gameChannel of config.vcNotifyConfig) {
                 if (!gameChannel.canWait) continue;
 
@@ -40,6 +40,12 @@ module.exports = function (voiceState, client) {
                 waitingMember.voice.setChannel(gameChannel.vcId);
                 break;
             }
-        }, 300);
+
+            return new Promise(
+                resolve => setTimeout(resolve, 300)
+            );
+        }
+
+        await memberChecker();
     }
 }
