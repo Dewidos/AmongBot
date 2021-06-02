@@ -253,7 +253,7 @@ function addExperience(message) {
 
         if (playerLvl >= 30) experienceToNextLvl = Math.floor(experienceToNextLvl * 1.5);
         else if (playerLvl >= 20) experienceToNextLvl *= 2;
-        else experienceToNextLvl *= 3;
+        else experienceToNextLvl *= 1.5;
 
         rankOfPlayer.experienceToNextLvl = experienceToNextLvl.toString();
 
