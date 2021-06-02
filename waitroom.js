@@ -25,6 +25,7 @@ module.exports = async function (voiceState, client) {
         var memberChecker = async () => {
             for (const gameChannel of config.vcNotifyConfig) {
                 if (!gameChannel.canWait) continue;
+                if (voiceState.guild.partial) await voiceState.guild.fetch();
 
                 var counter = 0;
                 voiceState.guild.members.cache.forEach(m => {
