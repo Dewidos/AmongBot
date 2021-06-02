@@ -93,7 +93,7 @@
           "jesteś chujem",
           "jestes chujem"
         ],
-        "functionName": "!No chyba ty"
+        "functionName": "!No chyba ty 😒"
       },
       {
         "message": [
@@ -109,7 +109,7 @@
           "meme bank",
           "mems"
         ],
-        "functionName": "!**Jeśli chcesz zobaczyć jakiegos mema pisz do mojego kolegi (Dank Memer): 'pls meme'**"
+        "functionName": "!Jeśli chcesz zobaczyć jakiegoś śmiesznego mema, pisz do mojego kolegi po fachu, czyli **Dank Memera**. Użyj na przykład jego komendy **pls meme**."
       },
       {
         "message": [
@@ -126,7 +126,7 @@
           "co tam u ciebie brachu?",
           "co tam u ciebie brachu"
         ],
-        "functionName": "!Bardzo dobrze dzięki że pytasz"
+        "functionName": "!Bardzo dobrze, dziękuję Ci, że pytasz"
       },
       {
         "message": [
@@ -148,7 +148,7 @@
           "co porabiasz?",
           "co porabiasz"
         ],
-        "functionName": "!Nic szczególnego to co zawsze: pomoc administracji w zarządaniu serverem; zabawianie ludzi na 4Fun; a teraz gadanie z tobą :smile:"
+        "functionName": "!Nic szczególnego! Pomagałem administracji w zarządaniu serwerem, zabawianie ludzi w sekcji 4Fun, a teraz rozmawiam z Tobą :smile:"
       },
       {
         "message": [
@@ -176,7 +176,7 @@
           "przyjąlem",
           "przyjąłem"
         ],
-        "functionName": "!:thumbsup:"
+        "functionName": "thumbsUp"
       },
       {
         "message": [
@@ -193,7 +193,7 @@
           "jakie jest twoje imie?",
           "jakie jest twoje imię?"
         ],
-        "functionName": "!Moje imię to jak widać: AmongBot#8491. Jeśli chcesz więcej informacji o mnie to polecam wpisać ab!info"
+        "functionName": "!Nazywam się **AmongBot#8491**. Jeśli chcesz poznać więcej informacji o mnie, polecam użyć komendy **ab!info** :)"
       },
       {
         "message": [
@@ -221,7 +221,7 @@
           "elko",
           "siemanemaneczko"
         ],
-        "functionName": "!Cześć co tam u ciebie?"
+        "functionName": "!Cześć, co tam u Ciebie?"
       }
     ]
   }
