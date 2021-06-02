@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 
-module.exports = (message, client, channelToSpeakId, StringPrefix, prefix) => {
+module.exports = (message, client, channelToSpeakId, StringPrefix) => {
 
-    if (message.content.startsWith(prefix)) return;
+    if (message.content.startsWith(client.prefix)) return;
 
     if (message.channel.id != channelToSpeakId || message.author.bot) return;
 
@@ -14,15 +14,17 @@ module.exports = (message, client, channelToSpeakId, StringPrefix, prefix) => {
 
     var functionObject = forFun.dialogs.find(d => d.message.includes(messageContent));
     
+    if (message.content == "pls meme") {
+      return;
+    }
+
     if (!functionObject) {
         message.channel.send("Przepraszam, ale nie rozumiem :(");
         
         return;
     }
 
-    if (message.content === "pls meme") {
-      return;
-    }
+    
 
     if (functionObject.functionName.startsWith(StringPrefix)) {
 
