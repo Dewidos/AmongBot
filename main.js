@@ -68,7 +68,7 @@ Client.on('message', message => {
     const channelID3 = '848615755255644180';
     const shipChannelID = '848494212538171442';
     
-    speakToBot(message, Client, channelID3, Client.stringPrefix);
+    speakToBot(message, Client, channelID3, Client.stringPrefix, Client.prefix);
 
     addExperience(message);
     liczenie(message, channelID2);

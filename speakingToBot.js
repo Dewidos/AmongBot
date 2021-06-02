@@ -1,11 +1,14 @@
 const Discord = require('discord.js');
 
-module.exports = (message, client, channelToSpeakId, StringPrefix) => {
+module.exports = (message, client, channelToSpeakId, StringPrefix, prefix) => {
+
+    if (message.content.startsWith(prefix)) return;
 
     if (message.channel.id != channelToSpeakId || message.author.bot) return;
 
     var messageContent = message.content.toLowerCase();
     messageContent = messageContent.replace(/[\\<>@#&!?]/g, "");
+
     var forFun = client.forFun.find(d => d.guildID == message.guild.id);
     var array = new Array();
 
@@ -35,7 +38,7 @@ module.exports = (message, client, channelToSpeakId, StringPrefix) => {
 
     var actionFunction = client.speakFunctions[functionObject.functionName];
 
-    actionFunction(message, client);
+    actionFunction(message, client); 
 
     client.lastExecutedSpeakingAction = functionObject;
 
