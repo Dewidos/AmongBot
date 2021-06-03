@@ -63,16 +63,23 @@ for (const file of speakFunctionsFiles) {
 Client.on('message', message => {
     refreshHandler(message.guild);
 
-    const channelID1 = '847800029103128586';
-    const channelID2 = '848257904582066207';
-    const channelID3 = '848615755255644180';
-    const shipChannelID = '848494212538171442';
-    
-    speakToBot(message, Client, channelID3, Client.stringPrefix);
+    var config = Client.configFile.find(c => c.guildId == message.guild.id);
+
+    if (typeof config === 'undefined') {
+        message.channel.send("Błąd konfiguracji!");
+        return;
+    }
+
+    const channelID1 = config.speakToBotChannelId;
+    const channelID2 = config.countingChannelId;
+    const channelID3 = config.repeatingChannelId;
+    const shipChannelID = config.shipChannelId;
+
+    speakToBot(message, Client, channelID1, Client.stringPrefix);
 
     addExperience(message);
     liczenie(message, channelID2);
-    
+
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         const command = args.shift().toLowerCase();
@@ -87,18 +94,18 @@ Client.on('message', message => {
         }
     } else if (!message.author.bot) {
         if (!message.content.startsWith(`${Client.prefix}ship`) && message.channel.id == shipChannelID) {
-          let marryChannel = message.guild.channels.cache.get(shipChannelID);
+            let marryChannel = message.guild.channels.cache.get(shipChannelID);
 
-          if (!marryChannel) {
-            message.channel.send("Błędne ID kanału do komendy ab!ship");
-            return;
-          }
+            if (!marryChannel) {
+                message.channel.send("Błędne ID kanału do komendy ab!ship");
+                return;
+            }
 
-          marryChannel.messages.delete(message);
+            marryChannel.messages.delete(message);
         }
-        
+
         runAutomoderator(message, Client);
-        jakiswkuriwajacychuj(channelID1, message);
+        jakiswkuriwajacychuj(channelID3, message);
     }
 });
 
@@ -204,12 +211,13 @@ function liczenie(message, channelToLiczenie) {
 
     if (message.content == number) {
 
-      config.actualConfigNumber = number + 1;
+        config.actualConfigNumber = number + 1;
 
     } else {
         message.channel.messages.delete(message);
     }
 
+    Client.updateConfig();
 }
 
 function addExperience(message) {
@@ -323,7 +331,7 @@ function refreshHandler(guild) {
     if (new Date() <= nextRefreshTime) return;
 
     nextRefreshTime.setMinutes(nextRefreshTime.getMinutes() + 5);
-    
+
     checkUpdates();
     refreshMutes(guild);
 }
@@ -332,8 +340,8 @@ function refreshMutes(guild) {
     var punishments = Client.punishments.find(p => p.guildId == guild.id);
 
     if (typeof punishments === 'undefined') {
-      console.error("Can't get to mutes when refreshing them.");
-      return;
+        console.error("Can't get to mutes when refreshing them.");
+        return;
     }
 
     if (typeof punishments.mutes === 'undefined' || punishments.mutes.length <= 0) return;
@@ -342,7 +350,7 @@ function refreshMutes(guild) {
 
     for (const mute of punishments.mutes) {
         if (!mute.expires) continue;
-        
+
         let muteExpiryDate = new Date(mute.expires);
 
         let mutedPlayer = guild.members.cache.get(mute.userId);
