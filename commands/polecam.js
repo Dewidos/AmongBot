@@ -4,6 +4,7 @@ module.exports = {
 
     "name": "polecam",
     "description": "możesz polecić tym admina!",
+    "aliases": "polec",
 
     execute(message, args, client) {
 
@@ -14,6 +15,11 @@ module.exports = {
         if (typeof args[0] !== 'undefined') {
 
             var id = args[0].replace(/[\\<>@#&!]/g, "");
+
+            if (message.author.id == id) {
+                message.channel.send("Nie możesz sam sobie wystawić pochwały!");
+                return;
+            }
 
             if (config.moderatorRoles.length <= 0) {
                 message.channel.send("Błąd konfiguracji! Nikt nie skonfigurował roli moderatorskich.");
@@ -30,6 +36,19 @@ module.exports = {
 
             if (!hasPermission) {
                 message.channel.send("Ta osoba nie należy do administracji!");
+                return;
+            }
+    
+            var itsAdmin = false;
+    
+            config.moderatorRoles.forEach(role => {
+                if (message.member.roles.cache.has(role)) {
+                    itsAdmin = true;
+                }
+            });
+
+            if (!itsAdmin) {
+                message.channel.send("Administrator nie moze wystawiać pochwały!");
                 return;
             }
 
