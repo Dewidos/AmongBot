@@ -72,6 +72,8 @@ module.exports = {
                                         .setDescription(`**Poleciłeś gracza <@${id}>\nZa: ${powodPolecenia}\nTwoja ocena: ${args[1]}**`)
                                         .setFooter("Pamiętaj! Jendego admina możesz polecić tylko raz.");
 
+                                    message.channel.send(embed);
+
                                 } else {
                                     message.channel.send("Już raz poleciłeś tego admina!");
                                 }
