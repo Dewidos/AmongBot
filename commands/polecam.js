@@ -33,11 +33,11 @@ module.exports = {
                                     if (i != length) powodPolecenia = powodPolecenia + " ";
                                 }
                                 
-                                var poleceniaTegoGracza = polecenia.polecenia.find(p => p.ktoPoleca == message.author.id && p.userId == id);
+                                var poleceniaTegoGracza = poleceni.polecenia.find(p => p.ktoPoleca == message.author.id && p.userId == id);
 
                                 if (typeof poleceniaTegoGracza === 'undefined') {
 
-                                    polecenia.polecenia.push({
+                                    poleceni.polecenia.push({
 
                                         "userId": id,
                                         "stars": args[1],
