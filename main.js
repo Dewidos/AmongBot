@@ -15,6 +15,7 @@ Client.configFile.forEach(e => e.vcNotifyLinks = []);
 Client.punishments = JSON.parse(fs.readFileSync('./punishments.json', 'utf8'));
 Client.rank = JSON.parse(fs.readFileSync('./rank.json', 'utf8'));
 Client.forFun = JSON.parse(fs.readFileSync('./forfun.json', 'utf8'));
+Client.polecenia = JSON.parse(fs.readFileSync('./poleceni.json', 'utf8'));
 Client.economy = JSON.parse(fs.readFileSync('./economy.json', 'utf8'));
 
 Client.reactionCallbacks = new Array();
