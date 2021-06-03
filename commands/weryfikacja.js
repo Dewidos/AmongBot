@@ -55,7 +55,7 @@ module.exports = {
       .setDescription(`**${content}**`)
       .setFooter("Kliknij ✅, aby się zweryfikować!");
 
-    var messageEmbed = await message.channel.send(embed);
+    var messageEmbed = await verificationChannel.send(embed);
 
     await messageEmbed.react('✅');
 
