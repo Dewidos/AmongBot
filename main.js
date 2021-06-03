@@ -433,6 +433,14 @@ Client.updateConfig = (expUpdate = false) => {
         }
 
         fs.writeFileSync('./economy.json', JSON.stringify(economy));
+
+        try {
+            var poleceni = Client.poleceni;
+        } catch (error) {
+          console.error(error);
+        }
+
+        fs.writeFileSync('./poleceni.json', JSON.stringify(poleceni));
     } else {
         try {
             var rank = Client.rank;
