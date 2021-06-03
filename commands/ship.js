@@ -14,16 +14,16 @@ module.exports = {
       return;
     }
     
-    const shipChannelID = config.shipChannelID;
+    const shipChannelID = config.shipChannelId;
     
-    if (message.channel.id !== channelId) {
-      message.channel.send(`**Do tej komendy jest przeznaczony specjalny kanał: <#${channelId}>**`);
+    if (message.channel.id !== shipChannelID) {
+      message.channel.send(`**Do tej komendy jest przeznaczony specjalny kanał: <#${shipChannelID}>**`);
       return;
     }
 
     if (typeof args[0] !== 'undefined' && args[0] != "" && typeof args[1] !== 'undefined' && args[1] != "") {
 
-      var channel = message.guild.channels.cache.get(channelId);
+      var channel = message.guild.channels.cache.get(shipChannelID);
 
       if (typeof channel === 'undefined') {
         message.channel.send("**Błąd konfiguracji! Skontaktuj się z administracją!**");
