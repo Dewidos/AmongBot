@@ -5,6 +5,8 @@ module.exports = {
 
     execute(message, args, client) {
 
+        var polecenia = client.polecenia.find(e => e.guildId == message.guild.id);
+
         var config = client.configFile.find(c => c.guildId == message.guild.id);
 
         if (typeof args[0] !== 'undefined') {
@@ -30,7 +32,26 @@ module.exports = {
                                     powodPolecenia = powodPolecenia + args[i];
                                     if (i != length) powodPolecenia = powodPolecenia + " ";
                                 }
-                                message.channel.send(powodPolecenia);
+                                
+                                var poleceniaTegoGracza = polecenia.polecenia.find(p => p.ktoPoleca == message.author.id && p.userId == id);
+
+                                if (typeof poleceniaTegoGracza === 'undefined') {
+
+                                    polecenia.polecenia.push({
+
+                                        "userId": id,
+                                        "stars": args[1],
+                                        "reason": powodPolecenia,
+                                        "ktoPoleca": message.author.id
+
+                                    });
+
+                                } else {
+                                    message.channel.send("Już raz poleciłeś tego admina!");
+                                }
+
+                                    
+                                
 
                             } else {
                                 message.channel.send("Powiedz dlaczego chcesz go polecić!");
