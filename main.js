@@ -88,11 +88,14 @@ Client.on('message', message => {
 
 
         try {           
-            let possibleCommand = Client.commands.find(c => {
+            Client.commands.forEach(c => {
                 console.log(c[1]);
-                if (typeof c[1].aliases === 'undefined') return false;
+                if (typeof c[1].aliases === 'undefined') {
+                    possibleCommand = null;
+                    return;
+                }
 
-                if (c[1].aliases.includes(command)) return true;
+                if (c[1].aliases.includes(command)) possibleCommand = c[1];
             });
 
             if (typeof possibleCommand !== 'undefined') command = possibleCommand.name;
