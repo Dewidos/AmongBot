@@ -18,7 +18,29 @@ module.exports = {
                     
                     if (!(isNaN(args[1]))) {
 
-                        message.channel.send("wszystko działa!");
+                        if (args[1] < 6 && args[1] > 0) {
+
+                            if (typeof args[2] !== 'undefined') {
+
+                                var powodPolecenia = "";
+
+                                var length = args.length - 1;
+                    
+                                for (let i = 2; i <= length; i++) {
+                                    powodPolecenia = powodPolecenia + args[i];
+                                    if (i != length) powodPolecenia = powodPolecenia + " ";
+                                }
+                                message.channel.send(powodPolecenia);
+
+                            } else {
+                                message.channel.send("Powiedz dlaczego chcesz go polecić!");
+                            }
+
+                        } else {
+
+                            message.channel.send("Ocena musi być w skali od 1 do 5 (napisz samą cyfre np. 2 a nie np. 2/5)");
+
+                        }
 
                     } else {
                         message.channel.send("ocena musi być cyfrą!");
