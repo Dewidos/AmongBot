@@ -83,9 +83,19 @@ Client.on('message', message => {
 
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
-        const command = args.shift().toLowerCase();
+        var command = args.shift().toLowerCase();
 
-        try {
+
+
+        try {           
+            let possibleCommand = Client.commands.find(c => {
+                if (typeof c[1].aliases === 'undefined') return false;
+
+                if (c[1].aliases.includes(command)) return true;
+            });
+
+            if (typeof possibleCommand !== 'undefined') command = possibleCommand.name;
+            
             Client.commands.get(command).execute(message, args, Client);
 
             Client.updateConfig();

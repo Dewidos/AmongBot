@@ -12,7 +12,7 @@ module.exports = {
 
         var config = client.configFile.find(c => c.guildId == message.guild.id);
 
-        if (typeof args[0] !== 'undefined') {
+        if (typeof args[0] === 'undefined') {
             message.channel.send("Podaj prawidłowy nick admina, którego chcesz polecić!");
             return;
         }
