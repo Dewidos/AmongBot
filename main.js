@@ -254,24 +254,35 @@ function addExperience(message) {
         playerLvl += 1;
         rankOfPlayer.level = playerLvl.toString();
 
-        var lvlNotifyChannel = message.guild.channels.cache.get('841712082306334750');
-        var messageSender = message.member;
+        var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
+        var lvlNotifyChannel = message.guild.channels.cache.get(config.lvlNotifyChannel);
+        var messageSender = message.member;
+        
         lvlNotifyChannel.send(`**Gratulacje <@${message.author.id}>!** Udało ci się wbić **${playerLvl} poziom!**`);
 
-        experienceToNextLvl *= 1.26;
-
-        rankOfPlayer.experienceToNextLvl = experienceToNextLvl.toString();
+        experienceToNextLvl *= 1.30;
 
         if (rankOfPlayer.level >= 1 && rankOfPlayer.level < 5) {
-            messageSender.roles.add('841264313087033374');
+          
+            messageSender.roles.add(`850033254668304384`);
+
+            experienceToNextLvl = 500;
+
         } else if (rankOfPlayer.level >= 5 && rankOfPlayer.level < 10) {
-            messageSender.roles.add('841264314937114644');
+
+            messageSender.roles.add(`850033980216311819`);
+
         } else if (rankOfPlayer.level >= 10 && rankOfPlayer.level < 25) {
-            messageSender.roles.add('841264317076996096');
+
+            messageSender.roles.add(`850034522141491251`);
+
         } else if (rankOfPlayer.level >= 25) {
-            messageSender.roles.add('841711436752486425');
+
+            messageSender.roles.add(`850034775481778177`);
+
         }
+        rankOfPlayer.experienceToNextLvl = experienceToNextLvl.toString();
     }
 
     Client.updateConfig(true);
@@ -307,6 +318,17 @@ function checkFreeSlots() {
 }
 
 function jakiswkuriwajacychuj(channelID, message) {
+
+    
+    var messageToSend = message.content.replace("@everyone", "everyone");
+
+    var messageToSend = messageToSend.replace("@here", "here");
+
+    if (messageToSend != message.content) {
+      message.channel.send("```"+ messageToSend +"```");
+      return;
+    } 
+    
 
     if (message.channel.id == channelID) {
 
