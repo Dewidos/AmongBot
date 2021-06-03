@@ -227,23 +227,45 @@
         "functionName": "!Cześć, co tam u Ciebie?"
       },
       {
-          "message": [
-            "srajtaśma",
-            "srajtasma",
-            "papier toaletowy",
-            "sranie",
-            "kupa",
-            "siku",
-            "mocz",
-            "szczanie",
-            "toaleta",
-            "wc",
-            "dasz papier toaletowy?",
-            "dasz mi papier toaletowy?",
-            "daj papier toaletowy?",
-            "daj papier toaletowy"
-          ],
-          "functionName": "toiletPaper"
+        "message": [
+          "srajtaśma",
+          "srajtasma",
+          "papier toaletowy",
+          "sranie",
+          "kupa",
+          "siku",
+          "mocz",
+          "szczanie",
+          "toaleta",
+          "wc",
+          "dasz papier toaletowy?",
+          "dasz mi papier toaletowy?",
+          "daj papier toaletowy?",
+          "daj papier toaletowy"
+        ],
+        "functionName": "toiletPaper"
+      },
+      {
+        "message": [
+          "ciekawostka",
+          "daj jakąś ciekawostke",
+          "daj jakaś ciekawostke",
+          "daj jakas ciekawostke",
+          "daj jakąs ciekawostke",
+          "daj jakąś ciekawostkę",
+          "daj jakaś ciekawostkę",
+          "daj jakas ciekawostkę",
+          "daj jakąs ciekawostkę",
+          "zapodaj jakąś ciekawostke",
+          "zapodaj jakąs ciekawostke",
+          "zapodaj jakaś ciekawostke",
+          "zapodaj jakas ciekawostke",
+          "zapodaj jakąś ciekawostkę",
+          "zapodaj jakąs ciekawostkę",
+          "zapodaj jakas ciekawostkę",
+          "zapodaj jakaś ciekawostkę"
+        ],
+        "functionName": "toiletPaper"
       }
     ]
   }
