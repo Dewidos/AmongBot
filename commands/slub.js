@@ -17,7 +17,7 @@ module.exports = {
 
             var userFromId = message.guild.members.cache.get(id);
             var authorUser = message.guild.members.cache.get(message.author.id);
-            var marryChannel = message.guild.channels.cache.get('848277078058860584');
+            var marryChannel = message.guild.channels.cache.get(config.marryChannelId);
 
             if (!marryChannel) {
                 console.error("I can't find marry channel!");

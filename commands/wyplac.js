@@ -34,6 +34,7 @@ module.exports = {
         } else {
             try {
                 var moneyToTransfer = parseInt(args[0]);
+                if (Number.isNaN(moneyToTransfer)) throw new Error();
             } catch (error) {
                 message.channel.send("Podano zły format ilości pieniędzy do wypłaty!");
                 console.error(error);

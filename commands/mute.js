@@ -61,7 +61,7 @@ module.exports = {
                             "reason": reason,
                         });
     
-                        player.roles.add('841617507168288798');
+                        player.roles.add(config.muteRole);
                     } catch (error) {
                         console.error(error);
                     }
@@ -91,7 +91,7 @@ module.exports = {
                             "reason": "Powód nie został określony",
                         });
     
-                        player.roles.add('841617507168288798');
+                        player.roles.add(config.muteRole);
                     } catch (error) {
                         console.error(error);
                     }

@@ -7,7 +7,14 @@ module.exports = {
 
   execute(message, args, client) {
 
-    const channelId = "848494212538171442";
+    var config = client.configFile.find(c => c.guildId == message.guild.id);
+
+    if (typeof config === 'undefined') {
+      message.channel.send("Błąd konfiguracji!");
+      return;
+    }
+    
+    const shipChannelID = config.shipChannelID;
     
     if (message.channel.id !== channelId) {
       message.channel.send(`**Do tej komendy jest przeznaczony specjalny kanał: <#${channelId}>**`);

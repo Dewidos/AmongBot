@@ -46,11 +46,11 @@ module.exports = {
                         console.error(error);
                     }
 
-                    user.roles.remove('841617507168288798');
+                    user.roles.remove(config.muteRole);
 
                 } else {
-                    if (user.roles.cache.has('841617507168288798')) {
-                        user.roles.remove('841617507168288798');
+                    if (user.roles.cache.has(config.muteRole)) {
+                        user.roles.remove(config.muteRole);
                         message.channel.send(`**Odciszyłem gracza:** *__${user.user.username}__*`);
                         return;
                     }

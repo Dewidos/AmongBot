@@ -163,7 +163,7 @@ module.exports = {
             .setFooter("Polecam się na przyszłość :smiley:");
 
             message.channel.send(embed);
-            player.roles.add('841617507168288798');
+            player.roles.add(config.muteRole);
             
             this.muted(czas, player, client, message);
 
@@ -179,7 +179,7 @@ module.exports = {
 
         setTimeout(() => {
 
-            mutedplayer.roles.remove('841617507168288798');
+            mutedplayer.roles.remove(config.muteRole);
 
             var punishments = client.punishments.find(e => e.guildId == message.guild.id);
 
