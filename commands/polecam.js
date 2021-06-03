@@ -5,7 +5,7 @@ module.exports = {
 
     execute(message, args, client) {
 
-        var polecenia = client.polecenia.find(e => e.guildId == message.guild.id);
+        var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
 
         var config = client.configFile.find(c => c.guildId == message.guild.id);
 
