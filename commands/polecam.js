@@ -13,6 +13,24 @@ module.exports = {
 
             var id = args[0].replace(/[\\<>@#&!]/g, "");
 
+            if (config.moderatorRoles.length <= 0) {
+                message.channel.send("Błąd konfiguracji! Nikt nie skonfigurował roli moderatorskich.");
+                return;
+            }
+    
+            var hasPermission = false;
+    
+            config.moderatorRoles.forEach(role => {
+                if (message.guild.members.cache.get(id).roles.cache.has(role)) {
+                    hasPermission = true;
+                }
+            });
+
+            if (!hasPermission) {
+                message.channel.send("Ta osoba nie należy do administracji!");
+                return;
+            }
+
             if (message.channel.id == config.polecAdminaChannelId) {
                 
                 if (typeof args[1] !== 'undefined') {
