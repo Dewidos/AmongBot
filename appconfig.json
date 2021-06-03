@@ -1,78 +1,78 @@
 [
-    {
-        "guildId": "844177833492480021",
-        "modUpdateChannelId": "844199246336098314",
-        "waitroomChannelId": "0",
-        "verifiedRoleId": "844573953459486741",
-        "vcNotifyLinks": [],
-        "vcNotifyConfig": [
-            {
-                "vcKey": "T1",
-                "vcId": "844180736331874344",
-                "vcName": "Town Of Impostors 1"
-            },
-            {
-                "vcKey": "T2",
-                "vcId": "844191145319858176",
-                "vcName": "Town Of Impostors 2"
-            }
-        ],
-        "moderatorRoles": [],
-        "warningRoles": []
-    },
-    {
-        "guildId": "849016068289986591",
-        "modUpdateChannelId": "849017058061713458",
-        "waitroomChannelId": "849018859079860225",
-        "verifiedRoleId": "849963726384005131",
-        "shipChannelId": "849920599090397204",
-        "lvlNotifyChannel": "850016147805962310",
-        "marryChannelId": "849920409520177172",
-        "muteRole": "849922393127649311",
-        "verificationChannel": "849964812934053898",
-        "polecAdminaChannelId": "849930174722998303",
-        "verificationRole": "849990322952208434",
-        "speakToBotChannelId": "849920572779659264",
-        "countingChannelId": "849920671513444362",
-        "repeatingChannelId": "849920629901099018",
-        "levelRoles": [
-            {
-                "roleFor1Lvl": "850033254668304384",
-                "roleFor5Lvl": "850033980216311819",
-                "roleFor10Lvl": "850034522141491251",
-                "roleFor25Lvl": "850034775481778177"
-            }
-        ],
-        "actualConfigNumber": 1,
-        "vcNotifyLinks": [],
-        "vcNotifyConfig": [],
-        "moderatorRoles": [
-            "849021715162202122",
-            "849990500064690185",
-            "849991056853696512",
-            "849990191095742485",
-            "849356065148633158",
-            "849355964389523466",
-            "849377383395098645",
-            "849377520910204928",
-            "850051899695693844"
-        ],
-        "warningRoles": [],
-        "autoModConfig": [
-            {
-                "name": "CapsProtector",
-                "capsLetterCount": 6
-            },
-            {
-                "name": "FloodProtector",
-                "messagesPerSecond": 3
-            }
-        ]
-    },
-    {
-        "guildId": "849918219888230400",
-        "modUpdateChannelId": "0",
-        "vcNotifyLinks": [],
-        "vcNotifyConfig": []
-    }
+  {
+    "guildId": "844177833492480021",
+    "modUpdateChannelId": "844199246336098314",
+    "waitroomChannelId": "0",
+    "verifiedRoleId": "844573953459486741",
+    "vcNotifyLinks": [],
+    "vcNotifyConfig": [
+      {
+        "vcKey": "T1",
+        "vcId": "844180736331874344",
+        "vcName": "Town Of Impostors 1"
+      },
+      {
+        "vcKey": "T2",
+        "vcId": "844191145319858176",
+        "vcName": "Town Of Impostors 2"
+      }
+    ],
+    "moderatorRoles": [],
+    "warningRoles": []
+  },
+  {
+    "guildId": "849016068289986591",
+    "modUpdateChannelId": "849017058061713458",
+    "waitroomChannelId": "849018859079860225",
+    "verifiedRoleId": "849963726384005131",
+    "shipChannelId": "849920599090397204",
+    "lvlNotifyChannel": "850016147805962310",
+    "marryChannelId": "849920409520177172",
+    "muteRole": "849922393127649311",
+    "verificationChannel": "849964812934053898",
+    "polecAdminaChannelId": "849930174722998303",
+    "verificationRole": "849990322952208434",
+    "speakToBotChannelId": "849920572779659264",
+    "countingChannelId": "849920671513444362",
+    "repeatingChannelId": "849920629901099018",
+    "levelRoles": [
+      {
+        "roleFor1Lvl": "850033254668304384",
+        "roleFor5Lvl": "850033980216311819",
+        "roleFor10Lvl": "850034522141491251",
+        "roleFor25Lvl": "850034775481778177"
+      }
+    ],
+    "actualConfigNumber": 1,
+    "vcNotifyLinks": [],
+    "vcNotifyConfig": [],
+    "moderatorRoles": [
+      "849021715162202122",
+      "849990500064690185",
+      "849991056853696512",
+      "849990191095742485",
+      "849356065148633158",
+      "849355964389523466",
+      "849377383395098645",
+      "849377520910204928",
+      "850051899695693844"
+    ],
+    "warningRoles": [],
+    "autoModConfig": [
+      {
+        "name": "CapsProtector",
+        "capsLetterCount": 6
+      },
+      {
+        "name": "FloodProtector",
+        "messagesPerSecond": 3
+      }
+    ]
+  },
+  {
+    "guildId": "849918219888230400",
+    "modUpdateChannelId": "0",
+    "vcNotifyLinks": [],
+    "vcNotifyConfig": []
+  }
 ]
