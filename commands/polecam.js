@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = {
 
     "name": "polecam",
@@ -63,6 +65,12 @@ module.exports = {
                                         "ktoPoleca": message.author.id
 
                                     });
+
+                                    var embed = new Discord.MessageEmbed()
+                                        .setColor('#34c6eb')
+                                        .setTitle("Twoje polecenie zostało przekazane do bazy danych :smiley:")
+                                        .setDescription(`**Poleciłeś gracza <@${id}>\nZa: ${powodPolecenia}\nTwoja ocena: ${args[1]}**`)
+                                        .setFooter("Pamiętaj! Jendego admina możesz polecić tylko raz.");
 
                                 } else {
                                     message.channel.send("Już raz poleciłeś tego admina!");
