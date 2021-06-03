@@ -14,10 +14,10 @@ module.exports = {
       return;
     }
 
-    var verificationChannel = config.verificationChannel;
+    var verificationChannel = message.guild.channels.cache.get(config.verificationChannel);
 
     if (typeof verificationChannel === "undefined") {
-      message.channel.send("Tej komendy można używać tylko na kanale do weryfikacji!");
+      message.channel.send("Błąd konfiguracji!");
       return;
     }
 
@@ -63,7 +63,6 @@ module.exports = {
 
       if (reaction.message.partial) await reaction.message.fetch();
       if (reaction.partial) await reaction.fetch();
-      if (userFromId.partial) await user.fetch();
 
       if (reaction.message != messageEmbed) return false;
 
