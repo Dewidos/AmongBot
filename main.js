@@ -89,6 +89,7 @@ Client.on('message', message => {
 
         try {           
             let possibleCommand = Client.commands.find(c => {
+                console.log(c[1]);
                 if (typeof c[1].aliases === 'undefined') return false;
 
                 if (c[1].aliases.includes(command)) return true;

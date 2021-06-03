@@ -4,7 +4,7 @@ module.exports = {
 
     "name": "polecam",
     "description": "możesz polecić tym admina!",
-    "aliases": "polec",
+    "aliases": ["polec"],
 
     execute(message, args, client) {
 
