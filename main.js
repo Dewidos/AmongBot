@@ -366,6 +366,13 @@ function jakiswkuriwajacychuj(channelID, message) {
 
 }
 
+Client.on('guildMemberAdd', member => {
+
+
+    var channel = member.guild.channels.cache.get("849739721721774120").send("cos tam");
+
+})
+
 function refreshHandler(guild) {
     if (new Date() <= nextRefreshTime) return;
 
