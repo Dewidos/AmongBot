@@ -78,12 +78,6 @@ module.exports = {
             return;
         }
 
-        if (!message.content.startsWith("ab!polecam") || !message.content.startsWith("ab!polec")) {
-
-            message.guild.channels.cache.get(message.channel.id).delete(message);
-
-        }
-
         if (typeof args[1] === 'undefined') {
             message.channel.send("Podaj ocene w skali 1 do 5 (napisz samą cyfre a nie np. 2/5)")
             return;

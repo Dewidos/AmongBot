@@ -64,6 +64,8 @@ for (const file of speakFunctionsFiles) {
 Client.on('message', message => {
     refreshHandler(message.guild);
 
+    checkChannels(message);
+
     var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
     if (typeof config === 'undefined') {
@@ -124,6 +126,20 @@ Client.on('message', message => {
     }
 });
 
+function checkChannels(message) {
+
+    if (message.channel.id == '849930174722998303') {
+
+        if (message.content.startsWith("ab!polec" || "ab!polecam")) return;
+        else {
+            message.channel.messages.delete(message);
+        }
+
+
+    }
+
+
+}
 
 Client.on('voiceStateUpdate', vState => {
     checkFreeSlots();
