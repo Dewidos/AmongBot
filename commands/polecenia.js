@@ -31,9 +31,7 @@ module.exports = {
 
                     if (polecony.userId == id) {
 
-                        var ktoPoleca = message.guild.members.cache.get(polecony.ktoPoleca);
-
-                        embed.addField(`**Polecony przez: **<@${ktoPoleca.user.username}>\n`, `**Za:** ${polecony.reason}\n`, `Ocena: ${polecony.stars}\n\n`, false);
+                        embed.addField(`**Za:** ${polecony.reason}\n`, `Ocena: ${polecony.stars}\n\n`, false);
                         mamyPolecenie = true;
                         
                     }
