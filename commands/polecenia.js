@@ -14,7 +14,7 @@ module.exports = {
 
             var user = message.guild.members.cache.get(id);
 
-            if (typeof user === 'undefined') {
+            if (typeof user !== 'undefined') {
 
                 var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
 
