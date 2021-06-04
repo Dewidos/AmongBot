@@ -335,17 +335,19 @@ function checkFreeSlots() {
 function jakiswkuriwajacychuj(channelID, message) {
 
     
-    var messageToSend = message.content.replace("@everyone", "everyone");
-
-    var messageToSend = messageToSend.replace("@here", "here");
-
-    if (messageToSend != message.content) {
-      message.channel.send("```"+ messageToSend +"```");
-      return;
-    } 
+    
     
 
     if (message.channel.id == channelID) {
+
+        var messageToSend = message.content.replace("@everyone", "everyone");
+
+        var messageToSend = messageToSend.replace("@here", "here");
+
+        if (messageToSend != message.content) {
+        message.channel.send("```"+ messageToSend +"```");
+        return;
+        } 
 
         var wkurwiajacawiadomosc = message.content.toLowerCase();
 
