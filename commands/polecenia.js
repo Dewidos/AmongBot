@@ -40,6 +40,9 @@ module.exports = {
 
                 if (!mamyPolecenie) {
                     embed.addField("Ten administrator nie otrzymał jeszcze żadnego polecenia!", false);
+
+                    message.channel.send(embed);
+
                     return;
                 } else {
                     message.channel.send(embed);
