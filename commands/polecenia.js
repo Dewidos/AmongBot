@@ -25,7 +25,7 @@ module.exports = {
                         .setTitle(`Polecenia gracza ${user.user.username}!`)
                         .setFooter("Polecam się na przyszłość!");
 
-                var mamyPolecenie = flase;
+                var mamyPolecenie = false;
 
                 for (var polecony of poleceni.polecenia) {
 
