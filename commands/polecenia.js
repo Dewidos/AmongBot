@@ -31,7 +31,7 @@ module.exports = {
 
                     if (polecony.userId == id) {
 
-                        embed.addField(`**Za:** ${polecony.reason}\n`, `Ocena: ${polecony.stars}\n\n`, false);
+                        embed.addField(`**Za:** ${polecony.reason}\n`, `**Ocena:** ${polecony.stars}\n\n`, false);
                         mamyPolecenie = true;
                         
                     }
