@@ -88,17 +88,17 @@ Client.on('message', message => {
 
 
         try {           
-            Client.commands.forEach(c => {
-                console.log(c[1]);
-                if (typeof c[1].aliases === 'undefined') {
-                    possibleCommand = null;
-                    return;
-                }
+            var possibleCommand = null;
 
-                if (c[1].aliases.includes(command)) possibleCommand = c[1];
+            Client.commands.forEach(c => {
+                if (typeof c.aliases === 'undefined' && possibleCommand == null) {
+                    possibleCommand = null;
+                } else if (typeof c.aliases !== 'undefined') {
+                    if (typeof c.aliases.find(a => a == command) !== 'undefined') possibleCommand = c;
+                };
             });
 
-            if (typeof possibleCommand !== 'undefined') command = possibleCommand.name;
+            if (typeof possibleCommand !== 'undefined' && possibleCommand != null) command = possibleCommand.name;
             
             Client.commands.get(command).execute(message, args, Client);
 
