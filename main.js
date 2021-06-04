@@ -132,7 +132,12 @@ function checkChannels(message) {
 
         if (message.content.startsWith("ab!polec" || "ab!polecam")) return;
         else {
-            message.channel.messages.delete(message);
+            if (!message.author.bot) {
+                message.channel.messages.delete(message);
+            } else {
+                return;
+            }
+            
         }
 
 
