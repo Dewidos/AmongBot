@@ -130,7 +130,7 @@ function checkChannels(message) {
 
     if (message.channel.id == '849930174722998303') {
 
-        if (message.content.startsWith("ab!polec" || "ab!polecam")) return;
+        if (message.content.startsWith("ab!")) return;
         else {
             if (!message.author.bot) {
                 message.channel.messages.delete(message);
