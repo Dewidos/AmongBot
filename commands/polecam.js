@@ -8,6 +8,28 @@ module.exports = {
 
     execute(message, args, client) {
 
+        var messages = message.channel.messages.fetch({ limit: 2 }).then(messages => {
+            let firstMessage = true;
+            
+            for (const messageFetched of messages) {
+                if (firstMessage) {
+                    firstMessage = false;
+                    continue;
+                }
+
+                console.log(messageFetched);
+                let lines = messageFetched.content.split("\n");
+
+                message.channel.send(`Ilość linijek: ${lines.length}\n${() => {
+                    let sklejka = "";
+                    
+                    lines.forEach(l => sklejka = `${sklejka}\n${l}`);
+
+                    return sklejka;
+                }} \n--------`);
+            }
+        });
+
         var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
 
         var config = client.configFile.find(c => c.guildId == message.guild.id);

@@ -5,7 +5,6 @@ module.exports = {
     "name": "polecenia",
     "description": "Sprawdz polecenia tego admina",
 
-
     execute(message, args, client) {
         
         if (typeof args[0] !== 'undefined') {
