@@ -8,9 +8,23 @@ module.exports = {
 
     execute(message, args, client) {
 
+        var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
+
+        if (typeof poleceni === 'undefined') {
+            message.channel.send("Błąd konfiguracji systemu poleceń!");
+            return;
+        }
+
+        var config = client.configFile.find(c => c.guildId == message.guild.id);
+
+        if (typeof args[0] === 'undefined') {
+            message.channel.send("Podaj prawidłowy nick admina, którego chcesz polecić!");
+            return;
+        }
+
         var messages = message.channel.messages.fetch({ limit: 2 }).then(messages => {
             let firstMessage = true;
-            
+
             for (const collectionElement of messages) {
                 if (firstMessage) {
                     firstMessage = false;
@@ -22,24 +36,30 @@ module.exports = {
                 console.log(messageFetched);
                 let lines = messageFetched.content.split("\n");
 
-                let sklejka = "";
-                    
-                lines.forEach(l => sklejka = `${sklejka}\n${l}`);
+                lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
 
-                message.channel.send(`Ilość linijek: ${lines.length}\n${sklejka}\n--------`);
+                try {
+                    if (lines.length != 3) throw new Error();
+
+                    let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
+
+                    if (typeof idLine === 'undefined') throw new Error();
+                    
+                    var id = idLine[1].replace(/[\\<>@#&!]/g, "");
+
+                    let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
+
+                    if (typeof markLine === 'undefined') throw new Error();
+
+                    var ocena = parseInt(markLine[1]);
+            
+                    if (typeof ocena === 'undefined' || isNaN(ocena)) throw new Error();
+                } catch (error) {
+                    message.channel.send("Błędny format polecenia!");
+                    return;
+                }
             }
         });
-
-        var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
-
-        var config = client.configFile.find(c => c.guildId == message.guild.id);
-
-        if (typeof args[0] === 'undefined') {
-            message.channel.send("Podaj prawidłowy nick admina, którego chcesz polecić!");
-            return;
-        }
-
-        var id = args[0].replace(/[\\<>@#&!]/g, "");
 
         if (message.author.id == id) {
             message.channel.send("Nie możesz sam sobie wystawić pochwały!");
@@ -100,20 +120,6 @@ module.exports = {
             return;
         }
 
-        if (typeof args[1] === 'undefined') {
-            message.channel.send("Podaj ocene w skali 1 do 5 (napisz samą cyfre a nie np. 2/5)")
-            return;
-        }
-
-        if (isNaN(args[1])) {
-            message.channel.send("Ocena musi być cyfrą!");
-            return;
-        }
-
-        if (!(args[1] < 6 && args[1] > 0)) {
-            message.channel.send("Ocena musi być w skali od 1 do 5 (napisz samą cyfrę np. 2 a nie np. 2/5)");
-        }
-
         if (typeof args[2] !== 'undefined') {
 
             var powodPolecenia = "";
@@ -132,7 +138,7 @@ module.exports = {
                 poleceni.polecenia.push({
 
                     "userId": id,
-                    "stars": args[1],
+                    "stars": ocena,
                     "reason": powodPolecenia,
                     "ktoPoleca": message.author.id
 
@@ -141,7 +147,7 @@ module.exports = {
                 var embed = new Discord.MessageEmbed()
                     .setColor('#34c6eb')
                     .setTitle("Twoje polecenie zostało przekazane do bazy danych :smiley:")
-                    .setDescription(`**Poleciłeś gracza <@${id}>\nZa: ${powodPolecenia}\nTwoja ocena: ${args[1]}**`)
+                    .setDescription(`**Poleciłeś gracza <@${id}>\nZa: ${powodPolecenia}\nTwoja ocena: ${ocena}**`)
                     .setFooter("Pamiętaj! Jendego admina możesz polecić tylko raz.");
 
                 message.channel.send(embed);
