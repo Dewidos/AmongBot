@@ -8,6 +8,12 @@ module.exports = {
 
     execute(message, args, client) {
 
+        var messages = message.channel.messages.fetch({ limit: 2 }).then(messages => {
+            messages.forEach(m => {
+                if (!m.author.bot) message.channel.send(m.content);
+            });
+        });
+
         var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
 
         var config = client.configFile.find(c => c.guildId == message.guild.id);
