@@ -7,7 +7,7 @@ module.exports = {
 
         if(typeof args[0] !== 'undefined') {
 
-            var forfun = client.forFun.find(e => e.guildId == message.guild.id);
+            var forfun = client.forFun.find(e => e.guildID == message.guild.id);
 
             var tickTacToeOptions = forfun.pkn.find(e => e.args[0] !== 'undefined');
 
