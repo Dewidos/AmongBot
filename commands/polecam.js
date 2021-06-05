@@ -9,8 +9,23 @@ module.exports = {
     execute(message, args, client) {
 
         var messages = message.channel.messages.fetch({ limit: 2 }).then(messages => {
+            let firstMessage = true;
+            
             for (const messageFetched of messages) {
-                message.channel.send(messageFetched);
+                if (firstMessage) {
+                    firstMessage = false;
+                    continue;
+                }
+
+                let lines = messageFetched.content.splice("\n");
+
+                message.channel.send(`Ilość linijek: ${lines.length}\n${() => {
+                    let sklejka = "";
+                    
+                    lines.forEach(l => sklejka = `${sklejka}\n${l}`);
+
+                    return sklejka;
+                }} \n--------`);
             }
         });
 
