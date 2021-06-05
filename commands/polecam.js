@@ -17,8 +17,11 @@ module.exports = {
                     continue;
                 }
 
+<<<<<<< HEAD
                 const messageFetched = collectionElement[1];
 
+=======
+>>>>>>> 6ed148b (Fixed something)
                 console.log(messageFetched);
                 let lines = messageFetched.content.split("\n");
 
