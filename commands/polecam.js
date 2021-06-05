@@ -22,13 +22,11 @@ module.exports = {
                 console.log(messageFetched);
                 let lines = messageFetched.content.split("\n");
 
-                message.channel.send(`Ilość linijek: ${lines.length}\n${() => {
-                    let sklejka = "";
+                let sklejka = "";
                     
-                    lines.forEach(l => sklejka = `${sklejka}\n${l}`);
+                lines.forEach(l => sklejka = `${sklejka}\n${l}`);
 
-                    return sklejka;
-                }} \n--------`);
+                message.channel.send(`Ilość linijek: ${lines.length}\n${sklejka}\n--------`);
             }
         });
 
