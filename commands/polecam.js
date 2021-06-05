@@ -9,9 +9,9 @@ module.exports = {
     execute(message, args, client) {
 
         var messages = message.channel.messages.fetch({ limit: 2 }).then(messages => {
-            messages.forEach(m => {
-                if (!m.author.bot) message.channel.send(m.content);
-            });
+            for (const messageFetched of messages) {
+                message.channel.send(messageFetched);
+            }
         });
 
         var poleceni = client.poleceni.find(e => e.guildId == message.guild.id);
