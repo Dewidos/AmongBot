@@ -17,16 +17,16 @@ module.exports = {
                     continue;
                 }
 
-                const messageFetched = collectionElement[1];
+                const fetchedMessage = collectionElement[1];
+                let lines = fetchedMessage.content.split("\n");
 
-                console.log(messageFetched);
-                let lines = messageFetched.content.split("\n");
+                lines.forEach(l => {
+                    let index = lines.indexOf(l);
 
-                let sklejka = "";
-                    
-                lines.forEach(l => sklejka = `${sklejka}\n${l}`);
+                    lines[index] = l.split(": ");
+                });
 
-                message.channel.send(`Ilość linijek: ${lines.length}\n${sklejka}\n--------`);
+                console.log(lines);
             }
         });
 
