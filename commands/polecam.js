@@ -17,7 +17,8 @@ module.exports = {
                     continue;
                 }
 
-                let lines = messageFetched.content.splice("\n");
+                console.log(messageFetched);
+                let lines = messageFetched.content.split("\n");
 
                 message.channel.send(`Ilość linijek: ${lines.length}\n${() => {
                     let sklejka = "";
