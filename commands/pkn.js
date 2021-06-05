@@ -9,7 +9,9 @@ module.exports = {
 
             var forfun = client.forFun.find(e => e.guildID == message.guild.id);
 
-            var tickTacToeOptions = forfun.pkn.find(e => e.args[0] !== 'undefined');
+            var argument = args[0];
+
+            var tickTacToeOptions = forfun.pkn.find(e => e.argument !== 'undefined');
 
             if (typeof tickTacToeOptions === 'undefined') {
                 message.channel.send("Podaj prawidłowy argument");
