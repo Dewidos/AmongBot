@@ -11,11 +11,13 @@ module.exports = {
         var messages = message.channel.messages.fetch({ limit: 2 }).then(messages => {
             let firstMessage = true;
             
-            for (const messageFetched of messages) {
+            for (const collectionElement of messages) {
                 if (firstMessage) {
                     firstMessage = false;
                     continue;
                 }
+
+                const messageFetched = collectionElement[1];
 
                 console.log(messageFetched);
                 let lines = messageFetched.content.split("\n");
