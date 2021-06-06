@@ -17,6 +17,7 @@ module.exports = (message, client) => {
     }
 
     var reason, ocena, id;
+    var error = "";
 
     message.channel.messages.fetch({ limit: 1 }).then(message => {
 
@@ -50,10 +51,14 @@ module.exports = (message, client) => {
 
             reason = reasonLine[1];
         } catch (error) {
-            message.channel.send("Błędny format polecenia!");
-            return;
+            error = "Błędny format polecenia!";
         }
     });
+
+    if (error != "") {
+        message.channel.send(error);
+        return;
+    }
 
     if (message.author.id == id) {
         message.channel.send("Nie możesz sam sobie wystawić pochwały!");
