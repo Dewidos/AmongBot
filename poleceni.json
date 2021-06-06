@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-[{"guildId":"849016068289986591","polecenia":[{},{"userId":"514138172070952961","stars":"5","reason":"bo czemu nie","ktoPoleca":"847362253735854101"},{"userId":"749899176715878400","stars":"5","reason":"jest koxem","ktoPoleca":"749899176715878400"},{"userId":"749899176715878400","stars":"1","reason":"DEBILLL","ktoPoleca":"537985565623320591"},{"userId":"749899176715878400","stars":"5","reason":"bo tak","ktoPoleca":"847362253735854101"},{"userId":"847362253735854101","stars":"5","reason":"dzięki za pochwałę XD","ktoPoleca":"749899176715878400"},{"userId":"537985565623320591","stars":4,"reason":"mówi tylko kamci sramci, fajne przezwisko XD","ktoPoleca":"514138172070952961"}]}]
-=======
+
 [
     {
         "guildId": "849016068289986591",
@@ -38,4 +36,3 @@
         ]
     }
 ]
->>>>>>> 54aa8e7 (Changed polecenia system)
