@@ -84,10 +84,6 @@ module.exports = async (message, client) => {
         } catch (error) {
             error = "Błędny format polecenia!";
         }
-    } catch (error) {
-        message.channel.send("Błędny format polecenia!");
-        return;
-    });
 
     if (typeof reasonLine === 'undefined') throw new Error();
 
