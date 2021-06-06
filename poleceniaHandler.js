@@ -19,7 +19,7 @@ module.exports = async (message, client) => {
     var reason, ocena, id;
     var error = "";
 
-    const messageFetched = message.first(1);
+    const messageFetched = message.first(1)[0];
 
     console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
