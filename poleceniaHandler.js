@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 
-module.exports = (message, client) => {
+module.exports = async (message, client) => {
 
     var config = client.configFile.find(c => c.guildId == message.guild.id);
-    
+
     if (typeof config === 'undefined') {
         message.channel.send("Błąd konfiguracji bota!");
         return;
@@ -17,46 +17,40 @@ module.exports = (message, client) => {
     }
 
     var reason, ocena, id;
-    var error = "";
 
-    message.channel.messages.fetch({ limit: 1 }).then(message => {
+    var message = await message.channel.messages.fetch({ limit: 1 });
 
-        const messageFetched = message;
+    const messageFetched = message;
 
-        console.log(messageFetched);
-        let lines = messageFetched.content.split("\n");
+    console.log(messageFetched);
+    let lines = messageFetched.content.split("\n");
 
-        lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
+    lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
 
-        try {
-            if (lines.length != 3) throw new Error();
+    try {
+        if (lines.length != 3) throw new Error();
 
-            let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
+        let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
 
-            if (typeof idLine === 'undefined') throw new Error();
+        if (typeof idLine === 'undefined') throw new Error();
 
-            id = idLine[1].replace(/[\\<>@#&!]/g, "");
+        id = idLine[1].replace(/[\\<>@#&!]/g, "");
 
-            let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
+        let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
 
-            if (typeof markLine === 'undefined') throw new Error();
+        if (typeof markLine === 'undefined') throw new Error();
 
-            ocena = parseInt(markLine[1]);
+        ocena = parseInt(markLine[1]);
 
-            if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
+        if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
 
-            let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
+        let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
 
-            if (typeof reasonLine === 'undefined') throw new Error();
+        if (typeof reasonLine === 'undefined') throw new Error();
 
-            reason = reasonLine[1];
-        } catch (error) {
-            error = "Błędny format polecenia!";
-        }
-    });
-
-    if (error != "") {
-        message.channel.send(error);
+        reason = reasonLine[1];
+    } catch (error) {
+        message.channel.send("Błędny format polecenia!");
         return;
     }
 
