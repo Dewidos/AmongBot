@@ -19,7 +19,7 @@ module.exports = async (message, client) => {
     var reason, ocena, id;
     var error = "";
 
-    const messageFetched = message;
+    const messageFetched = message.first(1);
 
     console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
@@ -129,16 +129,23 @@ module.exports = async (message, client) => {
         return;
     }
 
+    var adminDoPolecenia = message.guild.members.cache.get(id);
+
+    if (typeof adminDoPolecenia === 'undefined') {
+        message.channel.send("Nie znalazłem żadnego administratora o takim ID!");
+        return;
+    }
+
     var isAdmin = false;
 
     config.moderatorRoles.forEach(role => {
-        if (message.guild.members.cache.get(id).roles.cache.has(role)) {
+        if (adminDoPolecenia.roles.cache.has(role)) {
             isAdmin = true;
         }
     });
 
     if (!isAdmin) {
-        message.channel.send("Ta osoba nie należy do administracji!");
+        message.channel.send("Nie znalazłem żadnego administratora o takim ID!");
         return;
     }
 
