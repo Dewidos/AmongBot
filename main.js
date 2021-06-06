@@ -62,10 +62,12 @@ for (const file of speakFunctionsFiles) {
     Client.speakFunctions[functionName] = speakFunction;
 }
 
-Client.on('message', message => {
+Client.on('message', async message => {
     refreshHandler(message.guild);
 
     checkChannels(message);
+
+    if (message.partial) await message.fetch();
 
     var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
