@@ -25,7 +25,7 @@ module.exports = async (message, client) => {
     console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
 
-    lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
+    lines.forEach(l => lines[lines.indexOf(l)] = l.split(": "));
 
     try {
         if (lines.length != 3) throw new Error();
