@@ -20,7 +20,7 @@ module.exports = async (message, client) => {
 
     var message = await message.channel.messages.fetch({ limit: 1 });
 
-    const messageFetched = message.first(1);
+    const messageFetched = message.first(1)[0];
 
     console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
