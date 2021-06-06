@@ -134,7 +134,7 @@ module.exports = (message, client) => {
 
     var poleceniaTegoGracza = poleceni.polecenia.find(p => p.ktoPoleca == message.author.id && p.userId == id);
 
-    if (typeof poleceniaTegoGracza === 'undefined') {
+    if (typeof poleceniaTegoGracza !== 'undefined') {
         message.channel.send("Już raz poleciłeś tego admina!");
         return;
     }
