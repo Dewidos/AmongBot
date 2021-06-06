@@ -1,13 +1,9 @@
 const Discord = require('discord.js');
 
-module.exports = (message, client) => {
+module.exports = async (message, client) => {
 
     var config = client.configFile.find(c => c.guildId == message.guild.id);
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 54aa8e7 (Changed polecenia system)
     if (typeof config === 'undefined') {
         message.channel.send("Błąd konfiguracji bota!");
         return;
@@ -23,7 +19,6 @@ module.exports = (message, client) => {
     var reason, ocena, id;
     var error = "";
 
-<<<<<<< HEAD
     const messageFetched = message;
 
     console.log(messageFetched);
@@ -57,48 +52,46 @@ module.exports = (message, client) => {
         message.channel.send("Błędny format polecenia!");
         return;
     }
-=======
-    message.channel.messages.fetch({ limit: 1 }).then(message => {
 
-        const messageFetched = message;
+    var message = await message.channel.messages.fetch({ limit: 1 });
 
-        console.log(messageFetched);
-        let lines = messageFetched.content.split("\n");
+    const messageFetched = message;
 
-        lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
+    console.log(messageFetched);
+    let lines = messageFetched.content.split("\n");
 
-        try {
-            if (lines.length != 3) throw new Error();
+    lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
 
-            let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
+    try {
+        if (lines.length != 3) throw new Error();
 
-            if (typeof idLine === 'undefined') throw new Error();
+        let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
 
-            id = idLine[1].replace(/[\\<>@#&!]/g, "");
+        if (typeof idLine === 'undefined') throw new Error();
 
-            let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
+        id = idLine[1].replace(/[\\<>@#&!]/g, "");
 
-            if (typeof markLine === 'undefined') throw new Error();
+        let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
 
-            ocena = parseInt(markLine[1]);
+        if (typeof markLine === 'undefined') throw new Error();
 
-            if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
+        ocena = parseInt(markLine[1]);
 
-            let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
+        if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
 
-            if (typeof reasonLine === 'undefined') throw new Error();
-
+        let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
             reason = reasonLine[1];
         } catch (error) {
             error = "Błędny format polecenia!";
         }
-    });
->>>>>>> 54aa8e7 (Changed polecenia system)
-
-    if (error != "") {
-        message.channel.send(error);
+    } catch (error) {
+        message.channel.send("Błędny format polecenia!");
         return;
-    }
+    });
+
+    if (typeof reasonLine === 'undefined') throw new Error();
+
+        reason = reasonLine[1];
 
     if (message.author.id == id) {
         message.channel.send("Nie możesz sam sobie wystawić pochwały!");
@@ -110,12 +103,6 @@ module.exports = (message, client) => {
         return;
     }
 
-<<<<<<< HEAD
-    var adminDoPolecenia = message.guild.members.cache.get(id);
-
-    if (typeof adminDoPolecenia === 'undefined') {
-        message.channel.send("Nie znalazłem żadnego administratora o takim ID!");
-=======
     var isModerator = false;
 
     config.moderatorRoles.forEach(role => {
@@ -126,7 +113,6 @@ module.exports = (message, client) => {
 
     if (!isModerator) {
         message.channel.send("Ta osoba nie należy do administracji!");
->>>>>>> 54aa8e7 (Changed polecenia system)
         return;
     }
 
@@ -146,31 +132,19 @@ module.exports = (message, client) => {
     var isAdmin = false;
 
     config.moderatorRoles.forEach(role => {
-<<<<<<< HEAD
-        if (adminDoPolecenia.roles.cache.has(role)) {
-=======
         if (message.guild.members.cache.get(id).roles.cache.has(role)) {
->>>>>>> 54aa8e7 (Changed polecenia system)
             isAdmin = true;
         }
     });
 
     if (!isAdmin) {
-<<<<<<< HEAD
-        message.channel.send("Nie znalazłem żadnego administratora o takim ID!");
-=======
         message.channel.send("Ta osoba nie należy do administracji!");
->>>>>>> 54aa8e7 (Changed polecenia system)
         return;
     }
 
     var poleceniaTegoGracza = poleceni.polecenia.find(p => p.ktoPoleca == message.author.id && p.userId == id);
 
-<<<<<<< HEAD
-    if (typeof poleceniaTegoGracza !== 'undefined') {
-=======
     if (typeof poleceniaTegoGracza === 'undefined') {
->>>>>>> 54aa8e7 (Changed polecenia system)
         message.channel.send("Już raz poleciłeś tego admina!");
         return;
     }
