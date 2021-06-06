@@ -99,16 +99,10 @@ module.exports = async (message, client) => {
         return;
     }
 
-    var isModerator = false;
+    var adminDoPolecenia = message.guild.members.cache.get(id);
 
-    config.moderatorRoles.forEach(role => {
-        if (message.guild.members.cache.get(id).roles.cache.has(role)) {
-            isModerator = true;
-        }
-    });
-
-    if (!isModerator) {
-        message.channel.send("Ta osoba nie należy do administracji!");
+    if (typeof adminDoPolecenia === 'undefined') {
+        message.channel.send("Nie znalazłem żadnego administratora o takim ID!");
         return;
     }
 
@@ -122,13 +116,6 @@ module.exports = async (message, client) => {
 
     if (!hasPermission) {
         message.channel.send("Administrator nie może wystawiać pochwał!");
-        return;
-    }
-
-    var adminDoPolecenia = message.guild.members.cache.get(id);
-
-    if (typeof adminDoPolecenia === 'undefined') {
-        message.channel.send("Nie znalazłem żadnego administratora o takim ID!");
         return;
     }
 
