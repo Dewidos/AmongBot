@@ -6,6 +6,7 @@ const waitroomHandler = require('./waitroom');
 const Client = new Discord.Client();
 const speakToBot = require('./speakingToBot');
 const fs = require('fs');
+const poleceniaHandler = require('./poleceniaHandler');
 
 Client.commands = new Discord.Collection();
 
@@ -87,8 +88,6 @@ Client.on('message', message => {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         var command = args.shift().toLowerCase();
 
-
-
         try {           
             var possibleCommand = null;
 
@@ -120,6 +119,8 @@ Client.on('message', message => {
 
             marryChannel.messages.delete(message);
         }
+
+        if (message.channel.id == config.polecAdminaChannelId) poleceniaHandler(message, Client);
 
         runAutomoderator(message, Client);
         jakiswkuriwajacychuj(channelID3, message);
