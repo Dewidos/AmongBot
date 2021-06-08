@@ -14,7 +14,7 @@ module.exports = {
                 
                 if (typeof args[1] !== 'undefined') {
 
-                    var foundedMessage = message.guild.messages.cache.get(args[0]);
+                    var foundedMessage = message.channel.messages.cache.get(args[0]);
 
                     if (typeof foundedMessage !== 'undefined') {
 
