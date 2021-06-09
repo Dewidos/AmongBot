@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports = (message, client) => {
+module.exports = async (message, client) => {
 
     var config = client.configFile.find(c => c.guildId == message.guild.id);
 
