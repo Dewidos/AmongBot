@@ -25,10 +25,12 @@ module.exports = {
                 var foundMessage;
 
                 message.guild.channels.cache.forEach(async (channel) => {
-                   if (typeof channel === 'VoiceChannel') console.log("kanał głosowy");
-                   else {
-                       if (typeof foundMessage === 'undefined') foundMessage = await channel.messages.fetch(args[1]);
-                   }
+                    if (typeof channel === 'VoiceChannel') console.log("kanał głosowy");
+                    else {
+                        if (typeof foundMessage === 'undefined') foundMessage = await channel.messages.fetch(args[1]).catch(error => {
+                            console.log(foundMessage);
+                        });
+                    }
                 });
 
                 if (typeof foundMessage === 'undefined') waitMessage.edit("Nie znalazłem wiadomości o danym ID!");
@@ -38,11 +40,11 @@ module.exports = {
                 }
 
                 break;
-        
+
             default:
                 break;
         }
 
     }
-    
+
 }
