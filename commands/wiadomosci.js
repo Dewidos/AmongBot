@@ -41,7 +41,7 @@ module.exports = {
                     .setDescription(`**Kanał:** ${foundMessage.channel.name}\n**Autor:** <@${foundMessage.author.id}>\n**Treść:** ${foundMessage.content}\n`)
                     .setFooter("Polecam się na przyszłość :)");
                     
-                    waitMessage.edit(embed);
+                    waitMessage.edit("", embed);
                 }
 
                 break;
