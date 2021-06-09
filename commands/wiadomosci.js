@@ -38,7 +38,7 @@ module.exports = {
                     var embed = new Discord.MessageEmbed()
                     .setColor('#34c6eb')
                     .setTitle(`Znalezione!`)
-                    .setDescription(`**Kanał:** ${foundMessage.channel.name}\n**Autor:** ${foundMessage.author.user.username}\n**Treść:** ${foundMessage.content}\n`)
+                    .setDescription(`**Kanał:** ${foundMessage.channel.name}\n**Autor:** <@${foundMessage.author.id}>\n**Treść:** ${foundMessage.content}\n`)
                     .setFooter("Polecam się na przyszłość :)");
                     
                     waitMessage.edit(embed);
