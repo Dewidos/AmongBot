@@ -8,7 +8,7 @@ module.exports = {
 
     async execute(message, args, client) {
 
-        if (typeof args[0] !== 'undefined') {
+        if (typeof args[0] === 'undefined') {
             message.channel.send(`Musisz jeszcze podać wybraną funkcję tej komendy! Aby wyświetlić ich listę, wpisz **${client.prefix}wiadomosci -funkcje**`);
             return;
         }
@@ -22,7 +22,7 @@ module.exports = {
                 }
 
                 message.guild.channels.cache.forEach(channel => {
-                   console.log(channel); 
+                   console.log(channel[1]); 
                 });
 
                 message.channel.send("Work in progress!");
