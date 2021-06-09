@@ -30,7 +30,7 @@ module.exports = {
                     if (typeof channel !== 'TextChannel') continue;
                     else {
                         if (typeof foundMessage === 'undefined' || foundMessage == null) foundMessage = await channel.messages.fetch(args[1]).catch(error => {});
-                        else if (typeof foundMessage === 'Message') break;
+                        console.log(typeof foundMessage);
                     }
                 }
 
