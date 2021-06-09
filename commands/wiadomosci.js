@@ -6,39 +6,31 @@ module.exports = {
     "description": "Ta komenda pozwala zarzadac wiadomosciami na serverze",
     "aliases": ["messages"],
 
-    execute(message, args, client) {
+    async execute(message, args, client) {
 
         if (typeof args[0] !== 'undefined') {
+            message.channel.send(`Musisz jeszcze podać wybraną funkcję tej komendy! Aby wyświetlić ich listę, wpisz **${client.prefix}wiadomosci -funkcje**`);
+            return;
+        }
 
-            if (args[0] == 'szukaj') {
-                
+        switch (args[0]) {
+            case "szukaj":
+            case "search":
                 if (typeof args[1] !== 'undefined') {
-
-                    var foundedMessage = message.channel.messages.cache.get(args[0]);
-
-                    if (typeof foundedMessage !== 'undefined') {
-
-                        var embed = new Discord.MessageEmbed()
-                        .setColor('#34c6eb')
-                        .setTitle(`Wiadomosc o id ${foundedMessage.id}!`)
-                        .setDescription(`**${foundedMessage.content}**`)
-                        .setFooter("Polecam się na przyszłość :)");
-
-
-                    } else {
-
-                        message.channel.send("Podaj prawidłowe id wiadomości!");
-
-                    }
-
-                } else {
-                    message.channel.send("Podaj id wiadomosci, którą chcesz znaleść.");
+                    message.channel.send("Ta funkcja wymaga podania ID szukanej wiadomości!");
+                    return;
                 }
 
-            }
+                message.guild.channels.cache.forEach(channel => {
+                   console.log(channel); 
+                });
 
-        } else {
-            message.channel.send("Aby zobaczyć opcje tej komendy wpisz 'ab!wiadomosci -help'");
+                message.channel.send("Work in progress!");
+
+                break;
+        
+            default:
+                break;
         }
 
     }
