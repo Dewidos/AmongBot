@@ -25,6 +25,9 @@ module.exports = {
                 var foundMessage = null;
 
                 for (var channel of message.guild.channels.cache) {
+                    console.log(channel);
+                    continue;
+                    
                     if (typeof channel === 'VoiceChannel') continue;
                     else {
                         if (typeof foundMessage === 'undefined' || foundMessage == null) foundMessage = await channel.messages.fetch(args[1]).catch(error => {});
