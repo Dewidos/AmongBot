@@ -22,7 +22,7 @@ module.exports = {
                 }
 
                 message.guild.channels.cache.forEach(channel => {
-                   console.log(channel[1]); 
+                   console.log(channel); 
                 });
 
                 message.channel.send("Work in progress!");
