@@ -17,41 +17,6 @@ module.exports = async (message, client) => {
     }
 
     var reason, ocena, id;
-    var error = "";
-
-    const messageFetched = message.first(1)[0];
-
-    console.log(messageFetched);
-    let lines = messageFetched.content.split("\n");
-
-    lines.forEach(l => lines[lines.indexOf(l)] = l.split(": "));
-
-    try {
-        if (lines.length != 3) throw new Error();
-
-        let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
-
-        if (typeof idLine === 'undefined') throw new Error();
-
-        id = idLine[1].replace(/[\\<>@#&!]/g, "");
-
-        let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
-
-        if (typeof markLine === 'undefined') throw new Error();
-
-        ocena = parseInt(markLine[1]);
-
-        if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
-
-        let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
-
-        if (typeof reasonLine === 'undefined') throw new Error();
-
-        reason = reasonLine[1];
-    } catch (error) {
-        message.channel.send("Błędny format polecenia!");
-        return;
-    }
 
     var message = await message.channel.messages.fetch({ limit: 1 });
 
@@ -80,14 +45,13 @@ module.exports = async (message, client) => {
         if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
 
         let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
-            reason = reasonLine[1];
-        } catch (error) {
-            error = "Błędny format polecenia!";
-        }
 
-    if (typeof reasonLine === 'undefined') throw new Error();
+        if (typeof reasonLine === 'undefined') throw new Error();
 
-        reason = reasonLine[1];
+        reason = reasonLine[1]
+    } catch (error) {
+        message.channel.send("Błędny format polecenia!");
+    }
 
     if (message.author.id == id) {
         message.channel.send("Nie możesz sam sobie wystawić pochwały!");
