@@ -24,7 +24,7 @@ module.exports = {
                 var waitMessage = await message.channel.send("Czekaj...");
                 var foundMessage;
 
-                message.guild.channels.cache.forEach(channel => {
+                message.guild.channels.cache.forEach(async (channel) => {
                    if (typeof channel === 'VoiceChannel') console.log("kanał głosowy");
                    else {
                        if (typeof foundMessage === 'undefined') foundMessage = await channel.messages.fetch(args[1]);
