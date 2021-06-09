@@ -21,11 +21,21 @@ module.exports = {
                     return;
                 }
 
+                var waitMessage = await message.channel.send("Czekaj...");
+                var foundMessage;
+
                 message.guild.channels.cache.forEach(channel => {
-                   console.log(channel); 
+                   if (typeof channel === 'VoiceChannel') console.log("kanał głosowy");
+                   else {
+                       if (typeof foundMessage === 'undefined') foundMessage = await channel.messages.fetch(args[1]);
+                   }
                 });
 
-                message.channel.send("Work in progress!");
+                if (typeof foundMessage === 'undefined') waitMessage.edit("Nie znalazłem wiadomości o danym ID!");
+                else {
+                    waitMessage.edit("Znalazłem!");
+                    console.log(foundMessage);
+                }
 
                 break;
         
