@@ -16,7 +16,7 @@ module.exports = {
         switch (args[0]) {
             case "szukaj":
             case "search":
-                if (typeof args[1] !== 'undefined') {
+                if (typeof args[1] === 'undefined') {
                     message.channel.send("Ta funkcja wymaga podania ID szukanej wiadomości!");
                     return;
                 }
