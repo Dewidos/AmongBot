@@ -17,14 +17,9 @@ module.exports = (message, client) => {
     }
 
     var reason, ocena, id;
-<<<<<<< HEAD
     var error = "";
 
     const messageFetched = message.first(1)[0];
-=======
-
-    const messageFetched = message;
->>>>>>> acf1b4369d65e9bb018aee8f009ca6598e51bb2e
 
     console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
