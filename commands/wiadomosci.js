@@ -24,18 +24,17 @@ module.exports = {
                 var waitMessage = await message.channel.send("Czekaj...");
                 var foundMessage = null;
 
-                for (var channel of message.guild.channels.cache) {
-                    console.log(channel);
-                    continue;
-                    
-                    if (typeof channel === 'VoiceChannel') continue;
+                for (var channelArray of message.guild.channels.cache) {
+                    const channel = channelArray[1];
+
+                    if (typeof channel !== 'TextChannel') continue;
                     else {
                         if (typeof foundMessage === 'undefined' || foundMessage == null) foundMessage = await channel.messages.fetch(args[1]).catch(error => {});
                         else break;
                     }
                 }
 
-                if (typeof foundMessage === 'undefined') waitMessage.edit("Nie znalazłem wiadomości o danym ID!");
+                if (typeof foundMessage === 'undefined' || foundMessage == null) waitMessage.edit("Nie znalazłem wiadomości o danym ID!");
                 else {
                     waitMessage.edit(foundMessage.content);
                     console.log(foundMessage);
