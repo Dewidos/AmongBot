@@ -89,7 +89,7 @@ Client.on('message', async message => {
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         var command = args.shift().toLowerCase();
-
+        console.log(command);
         try {           
             var possibleCommand = null;
 
