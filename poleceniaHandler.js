@@ -18,14 +18,12 @@ module.exports = async (message, client) => {
 
     var reason, ocena, id;
 
-    var message = await message.channel.messages.fetch({ limit: 1 });
-
     const messageFetched = message;
 
     console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
 
-    lines.forEach(l => lines[lines.indexOf(l)] = lines.split(": "));
+    lines.forEach(l => lines[lines.indexOf(l)] = l.split(": "));
 
     try {
         if (lines.length != 3) throw new Error();
@@ -48,7 +46,7 @@ module.exports = async (message, client) => {
 
         if (typeof reasonLine === 'undefined') throw new Error();
 
-        reason = reasonLine[1]
+        reason = reasonLine[1];
     } catch (error) {
         message.channel.send("Błędny format polecenia!");
     }
