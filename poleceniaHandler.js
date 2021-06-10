@@ -26,29 +26,30 @@ module.exports = async (message, client) => {
     lines.forEach(l => lines[lines.indexOf(l)] = l.split(": "));
 
     try {
-        if (lines.length != 3) throw new Error();
+        if (lines.length != 3) throw new Error("Za mało pól polecenia!");
 
         let idLine = lines.find(l => l[0].toLowerCase() == "nazwa");
 
-        if (typeof idLine === 'undefined') throw new Error();
+        if (typeof idLine === 'undefined') throw new Error("Musisz podać ID bądź oznaczyć polecanego admina!");
 
         id = idLine[1].replace(/[\\<>@#&!]/g, "");
 
         let markLine = lines.find(l => l[0].toLowerCase() == "ocena");
 
-        if (typeof markLine === 'undefined') throw new Error();
+        if (typeof markLine === 'undefined') throw new Error("Musisz podać ocenę admina (liczba od 1 do 5)!");
 
         ocena = parseInt(markLine[1]);
 
-        if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error();
+        if (typeof ocena === 'undefined' || isNaN(ocena) || Math.floor(ocena) != ocena || !(ocena <= 5 || ocena > 0)) throw new Error("Oceną musi być liczba od 1 do 5!");
 
         let reasonLine = lines.find(l => ["za", "powód", "dlaczego"].includes(l[0].toLowerCase()));
 
-        if (typeof reasonLine === 'undefined') throw new Error();
+        if (typeof reasonLine === 'undefined') throw new Error("Musisz podać nam dlaczego chcesz polecić tego admina!");
 
         reason = reasonLine[1];
     } catch (error) {
-        message.channel.send("Błędny format polecenia!");
+        message.channel.send(error.message);
+        return;
     }
 
     if (message.author.id == id) {
