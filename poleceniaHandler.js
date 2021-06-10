@@ -20,7 +20,6 @@ module.exports = async (message, client) => {
 
     const messageFetched = message;
 
-    console.log(messageFetched);
     let lines = messageFetched.content.split("\n");
 
     lines.forEach(l => lines[lines.indexOf(l)] = l.split(": "));
