@@ -8,7 +8,7 @@ module.exports = async (message, client) => {
 
         if (typeof guild === 'undefined') continue;
 
-        let guildMember = await guild.members.fetch(message.author.id);
+        let guildMember = guild.members.cache.get(message.author.id);
 
         if (typeof guildMember === 'undefined') continue;
 
