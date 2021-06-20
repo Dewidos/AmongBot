@@ -18,13 +18,13 @@ module.exports = {
         this.wkurwHandler(message.member.voice.channel, client);
     },
     async wkurwHandler(channel, client) {
-        if (client.wkurwEnabled) {
-            channel.join().then(() => setTimeout(() => {
-                channel.leave();
-                setTimeout(() => {
-                    this.wkurwHandler(channel, client);
-                }, 800);
-            }, 800));
-        }
+        if (client.wkurwEnabled) return;
+        channel.join().then(() => setTimeout(() => {
+            channel.leave();
+            if (client.wkurwEnabled) return;
+            setTimeout(() => {
+                this.wkurwHandler(channel, client);
+            }, 800);
+        }, 800));
     }
 }
