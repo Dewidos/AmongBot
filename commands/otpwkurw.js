@@ -15,9 +15,9 @@ module.exports = {
                 break;
         }
 
-        this.wkurwHandler(message.channel);
+        this.wkurwHandler(message.channel, client);
     },
-    async wkurwHandler(channel) {
+    async wkurwHandler(channel, client) {
         if (client.wkurwEnabled) {
             channel.join().then(() => setTimeout(() => {
                 channel.leave().then(() => setTimeout(() => {
