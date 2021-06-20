@@ -15,7 +15,7 @@ module.exports = {
                 break;
         }
 
-        this.wkurwHandler(message.channel, client);
+        this.wkurwHandler(message.member.voice.channel, client);
     },
     async wkurwHandler(channel, client) {
         if (client.wkurwEnabled) {
