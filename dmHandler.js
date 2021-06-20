@@ -37,9 +37,12 @@ module.exports = async (message, client) => {
         .setAuthor(message.author.username, `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`);
 
         let messageSendDate = new Date(message.createdAt);
+        let month = messageSendDate.getUTCMonth() + 1;
+
+        if (month < 10) month = `0${month}`;
 
         embed.addField("Treść wiadomości", message.content, false);
-        embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getUTCDate()}.${messageSendDate.getUTCMonth()}.${messageSendDate.getUTCFullYear()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
+        embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getUTCDate()}.${month}.${messageSendDate.getUTCFullYear()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
         
         sendChannel.send(embed);
     }
