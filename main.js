@@ -7,6 +7,7 @@ const Client = new Discord.Client();
 const speakToBot = require('./speakingToBot');
 const fs = require('fs');
 const poleceniaHandler = require('./poleceniaHandler');
+const dmHandler = require('./dmHandler');
 
 Client.commands = new Discord.Collection();
 
@@ -67,9 +68,12 @@ Client.on('message', async message => {
 
     checkChannels(message);
 
-    if (message.channel.type == "dm") return;
-
     if (message.partial) await message.fetch();
+
+    if (message.channel.type == "dm") {
+        dmHandler(message, Client);
+        return;
+    }
 
     var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
