@@ -2,6 +2,8 @@ module.exports = {
     "name": "otpwkurw",
     "description": "Maszynka do wkurwiania otp.",
     execute(message, args, client) {
+        console.log("H2O");
+        console.log(args);
         if (typeof args[0] === 'undefined' || args[0] == "") return;
 
         if (message.channel.isText()) return;
@@ -17,12 +19,9 @@ module.exports = {
                 return;
         }
 
-        console.log("H2O");
-
         this.wkurwHandler(message.channel);
     },
     async wkurwHandler(channel) {
-        console.log("H2O");
         if (client.wkurwEnabled) {
             channel.join().then(() => setTimeout(() => {
                 channel.leave().then(() => setTimeout(() => {
