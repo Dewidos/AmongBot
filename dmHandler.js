@@ -33,7 +33,8 @@ module.exports = async (message, client) => {
         let embed = new MessageEmbed()
         .setColor('#34c6eb')
         .setFooter("Polecam się na przyszłość :)")
-        .setTitle("Wiadomość do administracji od użytkownika " + message.author.username);
+        .setTitle("Wiadomość do administracji od użytkownika " + message.author.username)
+        .setThumbnail("https://i.imgur.com/xE34OOx.jpeg");
 
         let messageSendDate = new Date(message.createdAt);
 
