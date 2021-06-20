@@ -20,6 +20,7 @@ module.exports = {
         this.wkurwHandler(message.channel);
     },
     async wkurwHandler(channel) {
+        console.log("H2O");
         if (client.wkurwEnabled) {
             channel.join().then(() => setTimeout(() => {
                 channel.leave().then(() => setTimeout(() => {
