@@ -33,8 +33,8 @@ module.exports = async (message, client) => {
         let embed = new MessageEmbed()
         .setColor('#34c6eb')
         .setFooter("Polecam się na przyszłość :)")
-        .setTitle("Wiadomość do administracji od użytkownika " + message.author.username)
-        .setAuthor("Sheesh", "https://i.imgur.com/xE34OOx.jpeg", "https://youtube.com/");
+        .setTitle("Wiadomość do administracji")
+        .setAuthor(message.author.username, `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`);
 
         let messageSendDate = new Date(message.createdAt);
 
