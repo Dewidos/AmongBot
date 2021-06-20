@@ -14,8 +14,10 @@ module.exports = {
                 client.wkurwEnabled = false;    
                 break;
             default:
-                break;
+                return;
         }
+
+        console.log("H2O");
 
         this.wkurwHandler(message.channel);
     },
