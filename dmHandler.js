@@ -34,12 +34,12 @@ module.exports = async (message, client) => {
         .setColor('#34c6eb')
         .setFooter("Polecam się na przyszłość :)")
         .setTitle("Wiadomość do administracji od użytkownika " + message.author.username)
-        .setThumbnail("https://i.imgur.com/xE34OOx.jpeg");
+        .setAuthor("Sheesh", "https://i.imgur.com/xE34OOx.jpeg", "https://youtube.com/");
 
         let messageSendDate = new Date(message.createdAt);
 
         embed.addField("Treść wiadomości", message.content, false);
-        embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getDate()}.${messageSendDate.getMonth()}.${messageSendDate.getFullYear()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
+        embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getUTCDate()}.${messageSendDate.getUTCMonth()}.${messageSendDate.getUTCFullYear()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
         
         sendChannel.send(embed);
     }
