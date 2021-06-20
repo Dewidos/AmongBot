@@ -38,11 +38,13 @@ module.exports = async (message, client) => {
 
         let messageSendDate = new Date(message.createdAt);
         let month = messageSendDate.getUTCMonth() + 1;
+        let date = messageSendDate.getUTCDate();
 
         if (month < 10) month = `0${month}`;
+        if (date < 10) date = `0${date}`;
 
         embed.addField("Treść wiadomości", message.content, false);
-        embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getUTCDate()}.${month}.${messageSendDate.getUTCFullYear()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
+        embed.addField("Data wysłania wiadomości (UTC)", `${date}.${month}.${messageSendDate.getUTCFullYear()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
         
         sendChannel.send(embed);
     }
