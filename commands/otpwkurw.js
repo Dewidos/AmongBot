@@ -20,10 +20,11 @@ module.exports = {
     async wkurwHandler(channel, client) {
         if (client.wkurwEnabled) {
             channel.join().then(() => setTimeout(() => {
-                channel.leave().then(() => setTimeout(() => {
+                channel.leave();
+                setTimeout(() => {
                     this.wkurwHandler(channel);
-                }, 1000));
-            }, 1000));
+                }, 800);
+            }, 800));
         }
     }
 }
