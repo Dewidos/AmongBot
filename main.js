@@ -64,16 +64,15 @@ for (const file of speakFunctionsFiles) {
 }
 
 Client.on('message', async message => {
-    refreshHandler(message.guild);
-
-    checkChannels(message);
-
     if (message.partial) await message.fetch();
 
     if (message.channel.type == "dm") {
         dmHandler(message, Client);
         return;
     }
+    
+    refreshHandler(message.guild);
+    checkChannels(message);
 
     var config = Client.configFile.find(c => c.guildId == message.guild.id);
 
