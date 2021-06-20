@@ -8,7 +8,7 @@ module.exports = async (message, client) => {
 
         if (typeof guild === 'undefined') continue;
 
-        let guildMember = guild.members.cache.get(message.author.id);
+        let guildMember = await guild.members.fetch(message.author.id);
 
         if (typeof guildMember === 'undefined') continue;
 
@@ -23,7 +23,7 @@ module.exports = async (message, client) => {
     if (guildsToSend.length <= 0) return;
 
     for (const sendInfoArray of guildsToSend) {
-        let sendChannel = await sendInfoArray[0].channels.fetch(sendInfoArray[1]);
+        let sendChannel = await sendInfoArray[0].channels.cache.get(sendInfoArray[1]);
 
         if (typeof sendChannel === 'undefined') {
             console.error("Błędne ID kanału do przekierowania wiadomości z pw dla serwera o ID: " + guildConfig.guildId);
