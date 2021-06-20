@@ -36,7 +36,7 @@ module.exports = async (message, client) => {
         .setColor('#34c6eb')
         .setFooter("Polecam się na przyszłość :)")
         .setTitle("Wiadomość do administracji")
-        .setAuthor(message.author.username, `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`);
+        .setAuthor(message.author.username, ``);
 
         let messageSendDate = new Date(message.createdAt);
         
