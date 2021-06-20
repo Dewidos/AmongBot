@@ -1,3 +1,5 @@
+const YtdlCore = require('ytdl-core');
+
 module.exports = {
     "name": "otpwkurw",
     "description": "Maszynka do wkurwiania otp.",
