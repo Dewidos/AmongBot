@@ -40,6 +40,6 @@ module.exports = async (message, client) => {
         embed.addField("Treść wiadomości", message.content, false);
         embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getDate()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
         
-        sendChannel.send();
+        sendChannel.send(embed);
     }
 };
