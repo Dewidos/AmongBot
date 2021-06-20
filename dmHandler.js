@@ -1,6 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = async (message, client) => {
+    if (message.author.bot) return;
+    
     var guildsToSend = [];
 
     for (const guildConfig of client.configFile) {
@@ -40,7 +42,7 @@ module.exports = async (message, client) => {
         
         let month = messageSendDate.getUTCMonth() + 1;
         let date = messageSendDate.getUTCDate();
-        
+
         let hours = messageSendDate.getUTCHours();
         let minutes = messageSendDate.getUTCMinutes();
         let seconds = messageSendDate.getUTCSeconds();
