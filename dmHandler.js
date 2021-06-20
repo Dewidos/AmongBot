@@ -10,7 +10,7 @@ module.exports = async (message, client) => {
 
         if (typeof guild === 'undefined') continue;
 
-        let guildMember = await guild.members.fetch(message.author.id);
+        let guildMember = await guild.members.fetch(message.author.id).catch(() => {});
 
         if (typeof guildMember === 'undefined') continue;
 
@@ -25,7 +25,7 @@ module.exports = async (message, client) => {
     if (guildsToSend.length <= 0) return;
 
     for (const sendInfoArray of guildsToSend) {
-        let sendChannel = await sendInfoArray[0].channels.cache.get(sendInfoArray[1]);
+        let sendChannel = sendInfoArray[0].channels.cache.get(sendInfoArray[1]);
 
         if (typeof sendChannel === 'undefined') {
             console.error("Błędne ID kanału do przekierowania wiadomości z pw dla serwera o ID: " + guildConfig.guildId);
@@ -36,7 +36,7 @@ module.exports = async (message, client) => {
         .setColor('#34c6eb')
         .setFooter("Polecam się na przyszłość :)")
         .setTitle("Wiadomość do administracji")
-        .setAuthor(message.author.username, ``);
+        .setAuthor(message.author.username, `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`);
 
         let messageSendDate = new Date(message.createdAt);
         
