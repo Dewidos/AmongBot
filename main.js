@@ -10,6 +10,7 @@ const poleceniaHandler = require('./poleceniaHandler');
 const dmHandler = require('./dmHandler');
 
 Client.commands = new Discord.Collection();
+Client.wkurwEnabled = false;
 
 Client.configFile = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'));
 Client.configFile.forEach(e => e.vcNotifyLinks = []);
