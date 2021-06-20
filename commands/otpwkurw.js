@@ -22,7 +22,7 @@ module.exports = {
             channel.join().then(() => setTimeout(() => {
                 channel.leave();
                 setTimeout(() => {
-                    this.wkurwHandler(channel);
+                    this.wkurwHandler(channel, client);
                 }, 800);
             }, 800));
         }
