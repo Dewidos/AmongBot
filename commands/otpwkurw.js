@@ -4,7 +4,7 @@ module.exports = {
     "name": "otpwkurw",
     "description": "Maszynka do wkurwiania otp.",
     execute(message, args, client) {
-        if (typeof args[0] === 'undefined' || args[0] == "") return;
+        if (typeof args[0] === 'undefined' || args[0] == "") args[0] = "ni";
 
         if (message.member.voice.channel == null) return;
 
