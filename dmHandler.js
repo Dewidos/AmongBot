@@ -1,7 +1,9 @@
+const { MessageEmbed } = require("discord.js");
+
 module.exports = async (message, client) => {
     var guildsToSend = [];
 
-    for (var guildConfig of client.configFile) {
+    for (const guildConfig of client.configFile) {
         let guild = client.guilds.cache.get(guildConfig.guildId);
 
         if (typeof guild === 'undefined') continue;
@@ -18,5 +20,26 @@ module.exports = async (message, client) => {
         guildsToSend.push([guild, guildConfig.botDmForwardChannel]);
     }
 
-    console.log(guildsToSend);
+    if (guildsToSend.length <= 0) return;
+
+    for (const sendInfoArray of guildsToSend) {
+        let sendChannel = await sendInfoArray[0].channels.fetch(sendInfoArray[1]);
+
+        if (typeof sendChannel === 'undefined') {
+            console.error("Błędne ID kanału do przekierowania wiadomości z pw dla serwera o ID: " + guildConfig.guildId);
+            continue;
+        }
+
+        let embed = new MessageEmbed()
+        .setColor('#34c6eb')
+        .setFooter("Polecam się na przyszłość :)")
+        .setTitle("Wiadomość do administracji od użytkownika " + message.author.username);
+
+        let messageSendDate = new Date(message.createdAt);
+
+        embed.addField("Treść wiadomości", message.content, false);
+        embed.addField("Data wysłania wiadomości (UTC)", `${messageSendDate.getDate()}\n${messageSendDate.getUTCHours()}:${messageSendDate.getUTCMinutes()}:${messageSendDate.getUTCSeconds()}`)
+        
+        sendChannel.send();
+    }
 };
