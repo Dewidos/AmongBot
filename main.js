@@ -67,6 +67,8 @@ Client.on('message', async message => {
 
     checkChannels(message);
 
+    if (message.channel.type == "dm") return;
+
     if (message.partial) await message.fetch();
 
     var config = Client.configFile.find(c => c.guildId == message.guild.id);
