@@ -26,7 +26,7 @@ module.exports = {
             if (client.wkurwEnabled) return;
             setTimeout(() => {
                 this.wkurwHandler(channel, client);
-            }, 800);
-        }, 800));
+            }, 500);
+        }, 500));
     }
 }
