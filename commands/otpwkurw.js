@@ -20,10 +20,10 @@ module.exports = {
         this.wkurwHandler(message.member.voice.channel, client);
     },
     async wkurwHandler(channel, client) {
-        if (client.wkurwEnabled) return;
+        if (!client.wkurwEnabled) return;
         channel.join().then(() => setTimeout(() => {
             channel.leave();
-            if (client.wkurwEnabled) return;
+            if (!client.wkurwEnabled) return;
             setTimeout(() => {
                 this.wkurwHandler(channel, client);
             }, 500);
