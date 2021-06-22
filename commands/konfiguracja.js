@@ -45,7 +45,9 @@ module.exports = {
             ]
         });
 
-        console.log(configChannel);
+        if (configChannel.partial) await configChannel.fetch();
+
+        configChannel.send("HALO, czy jest tu kto?");
 
         let infoEmbed = new Discord.MessageEmbed()
             .setColor('#34c6eb')
