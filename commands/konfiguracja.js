@@ -45,6 +45,8 @@ module.exports = {
             ]
         });
 
+        console.log(configChannel);
+
         let infoEmbed = new Discord.MessageEmbed()
             .setColor('#34c6eb')
             .setTitle("Rozpocznijmy konfigurację!")
