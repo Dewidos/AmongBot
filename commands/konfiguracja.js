@@ -35,7 +35,7 @@ module.exports = {
             type: 'text',
             permissionOverwrites: [
                 {
-                    id: guild.roles.everyone.id,
+                    id: message.guild.roles.everyone.id,
                     deny: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 },
                 {
