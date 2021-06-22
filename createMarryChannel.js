@@ -17,5 +17,5 @@ module.exports = (user1, user2, guild, client) => {
         ]
     });
 
-    console.log("Created slub channel");
+    console.log("Created marry channel");
 };

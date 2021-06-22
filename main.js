@@ -161,12 +161,14 @@ Client.on('voiceStateUpdate', vState => {
 });
 
 Client.on('guildCreate', guild => {
-    Client.configFile.push({
-        "guildId": guild.id,
-        "modUpdateChannelId": "0",
-        "vcNotifyLinks": [],
-        "vcNotifyConfig": []
-    });
+    var embed = new Discord.MessageEmbed()
+    .setColor('#34c6eb')
+    .setTitle("Dziękuję za zaproszenie na Twój serwer!")
+    .setDescription(`Obiecuję Ci, że będę wiernym pomocnikiem na serwerze *${guild.name}*. Aktualnie moje funkcje nie będą działać, użyj więc proszę komendy **${Client.prefix}konfiguracja**, aby mnie skonfigurować. Na początku tylko Ty możesz to zrobić, po skonfigurowaniu ról moderatorskich będzie mógł zrobić to każdy.`)
+    .setFooter("Polecam się na przyszłość :)")
+    .setImage(Client.user.displayAvatarURL());
+    
+    guild.owner.send(embed);
 });
 
 Client.once('ready', () => {
