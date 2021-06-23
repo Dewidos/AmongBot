@@ -41,9 +41,13 @@ module.exports = {
                 {
                     id: message.author.id,
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
+                },
+                {
+                    id: client.user.id,
+                    allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        });
+        }).then(cianel => cianel.send("Blok then")).catch(console.error);
 
         if (configChannel.partial) await configChannel.fetch();
 
