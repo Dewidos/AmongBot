@@ -47,7 +47,7 @@ module.exports = {
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        }).then(configChannel => {
+        }).then(async configChannel => {
             if (configChannel.partial) await configChannel.fetch();
 
             let infoEmbed = new Discord.MessageEmbed()
