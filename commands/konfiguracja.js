@@ -31,7 +31,7 @@ module.exports = {
             }
         }
 
-        var configChannel = await message.guild.channels.create(`konfiguracja-${client.user.username}`, {
+        await message.guild.channels.create(`konfiguracja-${client.user.username}`, {
             type: 'text',
             permissionOverwrites: [
                 {
@@ -47,57 +47,57 @@ module.exports = {
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        }).then(cianel => cianel.send("Blok then")).catch(console.error);
+        }).then(configChannel => {
+            if (configChannel.partial) await configChannel.fetch();
 
-        if (configChannel.partial) await configChannel.fetch();
+            let infoEmbed = new Discord.MessageEmbed()
+                .setColor('#34c6eb')
+                .setTitle("Rozpocznijmy konfigurację!")
+                .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
+                .setFooter("Polecam się na przyszłość :)");
 
-        configChannel.send("HALO, czy jest tu kto?");
+            configChannel.send(infoEmbed);
 
-        let infoEmbed = new Discord.MessageEmbed()
-            .setColor('#34c6eb')
-            .setTitle("Rozpocznijmy konfigurację!")
-            .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
-            .setFooter("Polecam się na przyszłość :)");
+            var moderatorRoles = this.configureModRoles(message, client, configChannel);
 
-        configChannel.send(infoEmbed);
-        
-        var moderatorRoles = this.configureModRoles(message, client, configChannel);
+            configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
-        configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            var enableAmongFeatures = false;
 
-        var enableAmongFeatures = false;
+            while (true) {
+                let lastMessageID = configChannel.lastMessageID;
 
-        while (true) {
-            let lastMessageID = configChannel.lastMessageID;
+                while (lastMessageID == configChannel.lastMessageID);
 
-            while (lastMessageID == configChannel.lastMessageID);
+                switch (configChannel.lastMessage.content.toLowerCase()) {
+                    case "tak":
+                    case "yes":
+                        enableAmongFeatures = true;
+                        break;
+                    case "nie":
+                    case "no":
+                        enableAmongFeatures = false;
+                        break;
+                    default:
+                        configChannel.send("Przepraszam, ale nie rozumiem. Abym zrozumiał, użyj proszę słowa *tak*, albo słowa *nie*.");
+                        continue;
+                }
 
-            switch (configChannel.lastMessage.content.toLowerCase()) {
-                case "tak":
-                case "yes":
-                    enableAmongFeatures = true;
-                    break;
-                case "nie":
-                case "no":
-                    enableAmongFeatures = false;
-                    break;
-                default:
-                    configChannel.send("Przepraszam, ale nie rozumiem. Abym zrozumiał, użyj proszę słowa *tak*, albo słowa *nie*.");
-                    continue;
+                break;
             }
 
-            break;
-        }
+            var amongUsConfig = null;
 
-        var amongUsConfig = null;
+            if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(message, client, configChannel);
 
-        if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(message, client, configChannel);
+            configChannel.send(amongUsConfig);
 
-        configChannel.send(amongUsConfig);
+            configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
-        configChannel.send("Dobranoc, spierdalam.");
+            setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
+        }).catch(console.error);
 
-        setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
+
 
         /*client.configFile.push({
             "guildId": message.guild.id,
