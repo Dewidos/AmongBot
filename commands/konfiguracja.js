@@ -47,25 +47,29 @@ module.exports = {
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        }).then(async configChannel => {
+        })
+        
+        client.on('message', messageAbarzured => console.log(messageAbarzured.content));
+        
+        /*.then(async configChannel => {
             let infoEmbed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
                 .setTitle("Rozpocznijmy konfigurację!")
                 .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
                 .setFooter("Polecam się na przyszłość :)");
 
-            configChannel.send(infoEmbed);
+            await configChannel.send(infoEmbed);
 
             var moderatorRoles = await this.configureModRoles(message, client, configChannel);
 
-            configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            await configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
             var enableAmongFeatures = false;
 
             while (true) {
                 let lastMessageID = configChannel.lastMessageID;
 
-                while (lastMessageID == configChannel.lastMessageID);
+                while (lastMessageID == configChannel.lastMessageID) console.log(lastMessageID);
 
                 switch (configChannel.lastMessage.content.toLowerCase()) {
                     case "tak":
@@ -88,12 +92,12 @@ module.exports = {
 
             if (enableAmongFeatures) amongUsConfig = await this.configureAmongUs(message, client, configChannel);
 
-            configChannel.send(amongUsConfig);
+            await configChannel.send(amongUsConfig);
 
-            configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
+            await configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
             setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
-        }).catch(console.error);
+        })*///.catch(console.error);
 
 
 
@@ -140,18 +144,20 @@ module.exports = {
     },
     // Moderation features
     async configureModRoles(message, client, configChannel) {
-        configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
+        await configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
 
         var moderatorRoles = [];
 
         while (true) {
             let lastMessageID = configChannel.lastMessageID;
 
+            console.log(lastMessageID);
+
             while (lastMessageID == configChannel.lastMessageID);
 
             if (configChannel.lastMessage.content.toLowerCase() == "/koniec") {
                 if (moderatorRoles.length <= 0) {
-                    configChannel.send("Wskazanie jakiejkolwiek roli bądź ról moderatorskich jest wymagane!");
+                    await configChannel.send("Wskazanie jakiejkolwiek roli bądź ról moderatorskich jest wymagane!");
                     continue;
                 } else break;
             }
@@ -159,12 +165,12 @@ module.exports = {
             let roleID = configChannel.lastMessage.content.replace(/[\\<>@#&!]/g, "");
 
             if (isNaN(parseInt(roleID))) {
-                configChannel.send("Identyfikator roli zawsze jest liczbą! Spróbuj jeszcze raz.");
+                await configChannel.send("Identyfikator roli zawsze jest liczbą! Spróbuj jeszcze raz.");
                 continue;
             }
 
             if (typeof await message.guild.roles.fetch(roleID).catch(() => { }) === 'undefined') {
-                configChannel.send("Nie znalazłem takiej roli na tym serwerze. Spróbuj jeszcze raz.");
+                await configChannel.send("Nie znalazłem takiej roli na tym serwerze. Spróbuj jeszcze raz.");
                 continue;
             }
 
