@@ -48,19 +48,17 @@ module.exports = {
                 }
             ]
         }).then(async configChannel => {
-            if (configChannel.partial) await configChannel.fetch();
-
             let infoEmbed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
                 .setTitle("Rozpocznijmy konfigurację!")
                 .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
                 .setFooter("Polecam się na przyszłość :)");
 
-            await configChannel.send(infoEmbed);
+            configChannel.send(infoEmbed);
 
-            var moderatorRoles = this.configureModRoles(message, client, configChannel);
+            var moderatorRoles = await this.configureModRoles(message, client, configChannel);
 
-            await configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
             var enableAmongFeatures = false;
 
@@ -88,11 +86,11 @@ module.exports = {
 
             var amongUsConfig = null;
 
-            if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(message, client, configChannel);
+            if (enableAmongFeatures) amongUsConfig = await this.configureAmongUs(message, client, configChannel);
 
-            await configChannel.send(amongUsConfig);
+            configChannel.send(amongUsConfig);
 
-            await configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
+            configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
             setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
         }).catch(console.error);

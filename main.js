@@ -65,6 +65,10 @@ for (const file of speakFunctionsFiles) {
 }
 
 Client.on('message', async message => {
+    var config = Client.configFile.find(c => c.guildId == message.guild.id);
+
+    if (typeof config === 'undefined') return;
+    
     if (message.partial) await message.fetch();
 
     if (message.channel.type == "dm") {
@@ -74,13 +78,6 @@ Client.on('message', async message => {
     
     refreshHandler(message.guild);
     checkChannels(message);
-
-    var config = Client.configFile.find(c => c.guildId == message.guild.id);
-
-    if (typeof config === 'undefined') {
-        message.channel.send("Błąd konfiguracji!");
-        return;
-    }
 
     const channelID1 = config.speakToBotChannelId;
     const channelID2 = config.countingChannelId;
