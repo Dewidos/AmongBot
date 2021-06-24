@@ -31,7 +31,7 @@ module.exports = {
             }
         }
 
-        await message.guild.channels.create(`konfiguracja-${client.user.username}`, {
+        message.guild.channels.create(`konfiguracja-${client.user.username}`, {
             type: 'text',
             permissionOverwrites: [
                 {
@@ -47,11 +47,7 @@ module.exports = {
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        })
-        
-        client.on('message', messageAbarzured => console.log(messageAbarzured.content));
-        
-        /*.then(async configChannel => {
+        }).then(async configChannel => {
             let infoEmbed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
                 .setTitle("Rozpocznijmy konfigurację!")
@@ -60,18 +56,14 @@ module.exports = {
 
             await configChannel.send(infoEmbed);
 
-            var moderatorRoles = await this.configureModRoles(message, client, configChannel);
+            var moderatorRoles = await this.configureModRoles(client, configChannel);
 
             await configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
-            var enableAmongFeatures = false;
+            var enableAmongFeatures = null;
 
-            while (true) {
-                let lastMessageID = configChannel.lastMessageID;
-
-                while (lastMessageID == configChannel.lastMessageID) console.log(lastMessageID);
-
-                switch (configChannel.lastMessage.content.toLowerCase()) {
+            var callback = message => {
+                switch (message.content.toLowerCase()) {
                     case "tak":
                     case "yes":
                         enableAmongFeatures = true;
@@ -82,22 +74,26 @@ module.exports = {
                         break;
                     default:
                         await configChannel.send("Przepraszam, ale nie rozumiem. Abym zrozumiał, użyj proszę słowa *tak*, albo słowa *nie*.");
-                        continue;
+                        return;
                 }
 
-                break;
+                client.off('message', callback);
             }
 
-            var amongUsConfig = null;
+            client.on('message', callback);
 
-            if (enableAmongFeatures) amongUsConfig = await this.configureAmongUs(message, client, configChannel);
+            while (enableAmongFeatures === null);
+
+            var amongUsConfig = false;
+
+            if (enableAmongFeatures) amongUsConfig = await this.configureAmongUs(client, configChannel);
 
             await configChannel.send(amongUsConfig);
 
             await configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
             setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
-        })*///.catch(console.error);
+        }).catch(console.error);
 
 
 
@@ -143,59 +139,62 @@ module.exports = {
         });*/
     },
     // Moderation features
-    async configureModRoles(message, client, configChannel) {
+    async configureModRoles(client, configChannel) {
         await configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
 
         var moderatorRoles = [];
+        var done = false;
 
-        while (true) {
-            let lastMessageID = configChannel.lastMessageID;
-
-            console.log(lastMessageID);
-
-            while (lastMessageID == configChannel.lastMessageID);
-
-            if (configChannel.lastMessage.content.toLowerCase() == "/koniec") {
+        var callback = message => {
+            if (message.content.toLowerCase() == "/koniec") {
                 if (moderatorRoles.length <= 0) {
                     await configChannel.send("Wskazanie jakiejkolwiek roli bądź ról moderatorskich jest wymagane!");
-                    continue;
-                } else break;
+                    return;
+                } else {
+                    done = true;
+                    client.off('message', callback);
+                    return;
+                }
             }
 
-            let roleID = configChannel.lastMessage.content.replace(/[\\<>@#&!]/g, "");
+            let roleID = message.content.replace(/[\\<>@#&!]/g, "");
 
             if (isNaN(parseInt(roleID))) {
                 await configChannel.send("Identyfikator roli zawsze jest liczbą! Spróbuj jeszcze raz.");
                 continue;
             }
 
-            if (typeof await message.guild.roles.fetch(roleID).catch(() => { }) === 'undefined') {
+            if (typeof await configChannel.guild.roles.fetch(roleID).catch(() => { }) === 'undefined') {
                 await configChannel.send("Nie znalazłem takiej roli na tym serwerze. Spróbuj jeszcze raz.");
                 continue;
             }
 
             moderatorRoles.push(roleID);
 
-            configChannel.lastMessage.react('👍');
-        }
+            message.react('👍');
+        };
+
+        client.on('message', callback);
+
+        while (!done);
 
         return moderatorRoles;
     },
     // Among Us Features
-    async configureAmongUs(message, client, configChannel) {
-        await this.configureWaitroom(message, client, configChannel);
-        await this.configureSlotAlert(message, client, configChannel);
-        await this.configureModUpdateNotifications(message, client, configChannel);
+    async configureAmongUs(client, configChannel) {
+        await this.configureWaitroom(client, configChannel);
+        await this.configureSlotAlert(client, configChannel);
+        await this.configureModUpdateNotifications(client, configChannel);
 
         return true;
     },
-    async configureWaitroom(message, client, configChannel) {
+    async configureWaitroom(client, configChannel) {
 
     },
-    async configureSlotAlert(message, client, configChannel) {
+    async configureSlotAlert(client, configChannel) {
 
     },
-    async configureModUpdateNotifications(message, client, configChannel) {
+    async configureModUpdateNotifications(client, configChannel) {
 
     }
 }
