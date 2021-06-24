@@ -56,11 +56,11 @@ module.exports = {
                 .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
                 .setFooter("Polecam się na przyszłość :)");
 
-            configChannel.send(infoEmbed);
+            await configChannel.send(infoEmbed);
 
             var moderatorRoles = this.configureModRoles(message, client, configChannel);
 
-            configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            await configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
             var enableAmongFeatures = false;
 
@@ -79,7 +79,7 @@ module.exports = {
                         enableAmongFeatures = false;
                         break;
                     default:
-                        configChannel.send("Przepraszam, ale nie rozumiem. Abym zrozumiał, użyj proszę słowa *tak*, albo słowa *nie*.");
+                        await configChannel.send("Przepraszam, ale nie rozumiem. Abym zrozumiał, użyj proszę słowa *tak*, albo słowa *nie*.");
                         continue;
                 }
 
@@ -90,9 +90,9 @@ module.exports = {
 
             if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(message, client, configChannel);
 
-            configChannel.send(amongUsConfig);
+            await configChannel.send(amongUsConfig);
 
-            configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
+            await configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
             setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
         }).catch(console.error);
