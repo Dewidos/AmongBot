@@ -64,16 +64,29 @@ for (const file of speakFunctionsFiles) {
     Client.speakFunctions[functionName] = speakFunction;
 }
 
-Client.on('message', async message => {
-    var config = Client.configFile.find(c => c.guildId == message.guild.id);
-
-    if (typeof config === 'undefined') return;
-    
+Client.on('message', async message => {    
     if (message.partial) await message.fetch();
 
     if (message.channel.type == "dm") {
         dmHandler(message, Client);
         return;
+    }
+
+    var config = Client.configFile.find(c => c.guildId == message.guild.id);
+
+    if (typeof config === 'undefined') {
+        if (message.content.startsWith(Client.prefix) && !message.author.bot) {
+            const args = message.content.slice(Client.prefix.length).split(/ +/);
+            var command = args.shift().toLowerCase();
+
+            if (command != "konfiguracja") {
+                message.channel.send(`Najpierw poproś właściciela o skonfigurowanie mnie komendą **${Client.prefix}konfiguracja**`);
+                return;
+            }
+
+            Client.commands.get(command).execute(message, args, Client);
+            return;
+        }
     }
     
     refreshHandler(message.guild);
@@ -92,7 +105,7 @@ Client.on('message', async message => {
     if (message.content.startsWith(Client.prefix) && !message.author.bot) {
         const args = message.content.slice(Client.prefix.length).split(/ +/);
         var command = args.shift().toLowerCase();
-        console.log(command);
+        
         try {           
             var possibleCommand = null;
 
