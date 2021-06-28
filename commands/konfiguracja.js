@@ -86,8 +86,6 @@ module.exports = {
 
             client.addListener('message', callback);
 
-            console.log(client.listenerCount('message'));
-
             var amongUsConfig = false;
 
             if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(client, configChannel);
@@ -96,7 +94,7 @@ module.exports = {
 
             configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
-            setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
+            //setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
         }).catch(console.error);
 
 
@@ -183,7 +181,6 @@ module.exports = {
         };
 
         client.addListener('message', callback);
-        console.log(client.listenerCount('message'));
 
         return moderatorRoles;
     },
