@@ -88,8 +88,6 @@ module.exports = {
 
             console.log(client.listenerCount('message'));
 
-            while (enableAmongFeatures === null);
-
             var amongUsConfig = false;
 
             if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(client, configChannel);
@@ -186,8 +184,6 @@ module.exports = {
 
         client.addListener('message', callback);
         console.log(client.listenerCount('message'));
-
-        while (!done);
 
         return moderatorRoles;
     },
