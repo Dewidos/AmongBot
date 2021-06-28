@@ -62,7 +62,7 @@ module.exports = {
 
             var enableAmongFeatures = null;
 
-            var callback = async function(message) {
+            var callback = function(message) {
                 console.log("taknie handler");
 
                 if (configChannel.id != message.channel.id) return;
@@ -85,6 +85,8 @@ module.exports = {
             }
 
             client.addListener('message', callback);
+
+            console.log(client.listenerCount('message'));
 
             while (enableAmongFeatures === null);
 
@@ -149,7 +151,7 @@ module.exports = {
         var moderatorRoles = [];
         var done = false;
 
-        var callback = async function(message) {
+        var callback = function(message) {
             console.log("adminroles handler");
 
             if (configChannel.id != message.channel.id) return;
@@ -183,6 +185,7 @@ module.exports = {
         };
 
         client.addListener('message', callback);
+        console.log(client.listenerCount('message'));
 
         while (!done);
 
