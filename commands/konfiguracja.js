@@ -62,7 +62,11 @@ module.exports = {
 
             var enableAmongFeatures = null;
 
-            var callback = message => {
+            var callback = async function(message) {
+                console.log("taknie handler");
+
+                if (configChannel.id != message.channel.id) return;
+                
                 switch (message.content.toLowerCase()) {
                     case "tak":
                     case "yes":
@@ -145,7 +149,11 @@ module.exports = {
         var moderatorRoles = [];
         var done = false;
 
-        var callback = message => {
+        var callback = async function(message) {
+            console.log("adminroles handler");
+
+            if (configChannel.id != message.channel.id) return;
+            
             if (message.content.toLowerCase() == "/koniec") {
                 if (moderatorRoles.length <= 0) {
                     configChannel.send("Wskazanie jakiejkolwiek roli bądź ról moderatorskich jest wymagane!");
