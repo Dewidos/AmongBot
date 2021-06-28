@@ -65,7 +65,7 @@ module.exports = {
             var callback = function(message) {
                 console.log("taknie handler");
 
-                if (configChannel.id != message.channel.id) return;
+                if (configChannel.id != message.channel.id || message.author.bot) return;
                 
                 switch (message.content.toLowerCase()) {
                     case "tak":
@@ -150,7 +150,7 @@ module.exports = {
         var callback = function(message) {
             console.log("adminroles handler");
 
-            if (configChannel.id != message.channel.id) return;
+            if (configChannel.id != message.channel.id || message.author.bot) return;
             
             if (message.content.toLowerCase() == "/koniec") {
                 if (moderatorRoles.length <= 0) {
