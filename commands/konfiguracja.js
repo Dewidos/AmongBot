@@ -169,12 +169,12 @@ module.exports = {
 
             if (isNaN(parseInt(roleID))) {
                 configChannel.send("Identyfikator roli zawsze jest liczbą! Spróbuj jeszcze raz.");
-                continue;
+                return;
             }
 
             if (typeof configChannel.guild.roles.cache.get(roleID) === 'undefined') {
                 configChannel.send("Nie znalazłem takiej roli na tym serwerze. Spróbuj jeszcze raz.");
-                continue;
+                return;
             }
 
             moderatorRoles.push(roleID);
