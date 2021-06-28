@@ -77,10 +77,10 @@ module.exports = {
                         return;
                 }
 
-                client.off('message', callback);
+                client.removeListener('message', callback);
             }
 
-            client.on('message', callback);
+            client.addListener('message', callback);
 
             while (enableAmongFeatures === null);
 
@@ -152,7 +152,7 @@ module.exports = {
                     return;
                 } else {
                     done = true;
-                    client.off('message', callback);
+                    client.removeListener('message', callback);
                     return;
                 }
             }
@@ -174,7 +174,7 @@ module.exports = {
             message.react('👍');
         };
 
-        client.on('message', callback);
+        client.addListener('message', callback);
 
         while (!done);
 
