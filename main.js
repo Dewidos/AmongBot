@@ -64,7 +64,7 @@ for (const file of speakFunctionsFiles) {
     Client.speakFunctions[functionName] = speakFunction;
 }
 
-Client.on('message', async message => {    
+Client.addListener('message', async message => {    
     if (message.partial) await message.fetch();
 
     if (message.channel.type == "dm") {
