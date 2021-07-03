@@ -84,7 +84,7 @@ module.exports = {
 
             client.addListener('message', callback);
 
-            var doStuff = () => {
+            var waitForUserAnswer = () => {
                 if (enableAmongFeatures === null) {
                     setTimeout(doStuff, 50);
                     return;
@@ -99,7 +99,7 @@ module.exports = {
                 this.configureNextThing(client, configChannel, thingsToConfigure);
             }
             
-            doStuff();           
+            waitForUserAnswer();           
 
             //configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
