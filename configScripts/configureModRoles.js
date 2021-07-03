@@ -1,7 +1,9 @@
 const { configureNextThing } = require('./../commands/konfiguracja');
 
-module.exports = (client, configChannel, thingsToConfigure) => {
-    configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
+module.exports = async (client, configChannel, thingsToConfigure) => {
+    console.log("hej didżej");
+    
+    await configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
 
     var moderatorRoles = [];
     var done = false;
