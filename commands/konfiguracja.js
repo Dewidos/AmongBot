@@ -1,4 +1,8 @@
 const Discord = require("discord.js");
+const configureModRoles = require('./../configScripts/configureModRoles');
+const configureModUpdateNotifications = require('./../configScripts/configureModUpdateNotifications');
+const configureSlotAlert = require('./../configScripts/configureSlotAlert');
+const configureWaitroom = require('./../configScripts/configureWaitroom');
 
 module.exports = {
     "name": "konfiguracja",
@@ -100,10 +104,6 @@ module.exports = {
             }
             
             waitForUserAnswer();           
-
-            //configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
-
-            //setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);*/
         }).catch(console.error);
 
 
@@ -150,7 +150,33 @@ module.exports = {
         });*/
     },
     async configureNextThing(client, configChannel, thingsToConfigure) {
-        configChannel.send("poszło gajs");
-        console.log(thingsToConfigure);
+        for (const key in thingsToConfigure) {
+            const decision = thingsToConfigure[key];
+
+            if (decision === 1) {
+                switch (key) {
+                    case 0:
+                        configureModRoles(client, configChannel, thingsToConfigure)
+                        break;
+                    case 1:
+                        configureModUpdateNotifications(client, configChannel, thingsToConfigure);
+                        break;
+                    case 2:
+                        configureSlotAlert(client, configChannel, thingsToConfigure);
+                        break;
+                    case 3:
+                        configureWaitroom(client, configChannel, thingsToConfigure);
+                        break;
+                    default:
+                        console.error("forin dziwnie działa w trakcie konfiguracji!");
+                        break;
+                }
+                return;
+            } else continue;
+        }
+
+        await configChannel.send("Dziękuję za pomyślną konfigurację!");
+
+        setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
     }
 }

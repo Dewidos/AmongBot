@@ -1,7 +1,10 @@
-module.exports = (client, configChannel) => {
+const { configureNextThing } = require('./../commands/konfiguracja');
+
+module.exports = (client, configChannel, thingsToConfigure) => {
     configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
 
     var moderatorRoles = [];
+    var done = false;
 
     var callback = function(message) {
         if (configChannel.id != message.channel.id || message.author.bot) return;
@@ -12,6 +15,7 @@ module.exports = (client, configChannel) => {
                 return;
             } else {
                 client.removeListener('message', callback);
+                done = true;
                 return;
             }
         }
@@ -35,5 +39,15 @@ module.exports = (client, configChannel) => {
 
     client.addListener('message', callback);
 
-    return moderatorRoles;
+    var waitForUser = () => {
+        if (done === false) {
+            setTimeout(waitForUser, 50);
+            return;
+        }
+
+        thingsToConfigure[0] = moderatorRoles;
+        configureNextThing(client, configChannel, thingsToConfigure);
+    };
+
+    waitForUser();
 };

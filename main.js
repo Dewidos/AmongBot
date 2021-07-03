@@ -85,8 +85,8 @@ Client.addListener('message', async message => {
             }
 
             Client.commands.get(command).execute(message, args, Client);
-            return;
         }
+        return;
     }
     
     refreshHandler(message.guild);
