@@ -152,28 +152,31 @@ module.exports = {
     async configureNextThing(client, configChannel, thingsToConfigure) {
         for (const key in thingsToConfigure) {
             const decision = thingsToConfigure[key];
+            
+            var done = false;
 
             if (decision === 1) {
                 switch (key) {
                     case 0:
                         configureModRoles(client, configChannel, thingsToConfigure)
-                        break;
+                        return;
                     case 1:
                         configureModUpdateNotifications(client, configChannel, thingsToConfigure);
-                        break;
+                        return;
                     case 2:
                         configureSlotAlert(client, configChannel, thingsToConfigure);
-                        break;
+                        return;
                     case 3:
                         configureWaitroom(client, configChannel, thingsToConfigure);
-                        break;
+                        return;
                     default:
-                        console.error("forin dziwnie działa w trakcie konfiguracji!");
+                        done = true;
                         break;
                 }
-                return;
             } else continue;
         }
+
+        if (done === false) return;
 
         await configChannel.send("Dziękuję za pomyślną konfigurację!");
 
