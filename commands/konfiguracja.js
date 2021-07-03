@@ -84,7 +84,7 @@ module.exports = {
 
             client.addListener('message', callback);
 
-            while (enableAmongFeatures == null) {}
+            //while (enableAmongFeatures == null) {}
 
             if (enableAmongFeatures === false) {
                 thingsToConfigure[1] = 0;
