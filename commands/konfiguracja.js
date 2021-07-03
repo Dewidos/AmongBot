@@ -47,18 +47,18 @@ module.exports = {
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        }).then(configChannel => {
+        }).then(async configChannel => {
             let infoEmbed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
                 .setTitle("Rozpocznijmy konfigurację!")
                 .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
                 .setFooter("Polecam się na przyszłość :)");
 
-            configChannel.send(infoEmbed);
+            await configChannel.send(infoEmbed);
 
             var thingsToConfigure = [1, 1, 1, 1];
 
-            configChannel.send("Najpierw powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            await configChannel.send("Najpierw powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
             var enableAmongFeatures = null;
 
@@ -84,7 +84,7 @@ module.exports = {
 
             client.addListener('message', callback);
 
-            //while (enableAmongFeatures == null) {}
+            while (enableAmongFeatures == null) {}
 
             if (enableAmongFeatures === false) {
                 thingsToConfigure[1] = 0;
