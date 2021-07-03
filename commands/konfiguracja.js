@@ -47,18 +47,18 @@ module.exports = {
                     allow: ['VIEW_CHANNEL', 'SEND_MESSAGES']
                 }
             ]
-        }).then(async configChannel => {
+        }).then(configChannel => {
             let infoEmbed = new Discord.MessageEmbed()
                 .setColor('#34c6eb')
                 .setTitle("Rozpocznijmy konfigurację!")
                 .setDescription("Odpręż się, a ja zadam Tobie kilka pytań. Spokojnie, nie potrwa to zbyt długo.")
                 .setFooter("Polecam się na przyszłość :)");
 
-            await configChannel.send(infoEmbed);
+            configChannel.send(infoEmbed);
 
             var thingsToConfigure = [1, 1, 1, 1];
 
-            await configChannel.send("Najpierw powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            configChannel.send("Najpierw powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
             var enableAmongFeatures = null;
 
@@ -84,15 +84,22 @@ module.exports = {
 
             client.addListener('message', callback);
 
-            while (enableAmongFeatures == null) {}
-
-            if (enableAmongFeatures === false) {
-                thingsToConfigure[1] = 0;
-                thingsToConfigure[2] = 0;
-                thingsToConfigure[3] = 0;
+            var doStuff = () => {
+                if (enableAmongFeatures === null) {
+                    setTimeout(doStuff, 50);
+                    return;
+                }
+                
+                if (enableAmongFeatures === false) {
+                    thingsToConfigure[1] = 0;
+                    thingsToConfigure[2] = 0;
+                    thingsToConfigure[3] = 0;
+                }
+    
+                this.configureNextThing(client, configChannel, thingsToConfigure);
             }
-
-            this.configureNextThing(client, configChannel, thingsToConfigure);
+            
+            doStuff();           
 
             //configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
