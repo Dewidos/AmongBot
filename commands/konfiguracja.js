@@ -86,7 +86,7 @@ module.exports = {
 
             var waitForUserAnswer = () => {
                 if (enableAmongFeatures === null) {
-                    setTimeout(doStuff, 50);
+                    setTimeout(waitForUserAnswer, 50);
                     return;
                 }
                 
