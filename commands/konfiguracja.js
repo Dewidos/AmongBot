@@ -56,15 +56,13 @@ module.exports = {
 
             configChannel.send(infoEmbed);
 
-            var moderatorRoles = this.configureModRoles(client, configChannel);
+            var thingsToConfigure = [1, 1, 1, 1];
 
-            configChannel.send("Dobrze, zapisałem już sobie role moderatorskie. Teraz powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
+            configChannel.send("Najpierw powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
             var enableAmongFeatures = null;
 
             var callback = function(message) {
-                console.log("taknie handler");
-
                 if (configChannel.id != message.channel.id || message.author.bot) return;
                 
                 switch (message.content.toLowerCase()) {
@@ -86,15 +84,19 @@ module.exports = {
 
             client.addListener('message', callback);
 
-            var amongUsConfig = false;
+            while (enableAmongFeatures == null) {}
 
-            if (enableAmongFeatures) amongUsConfig = this.configureAmongUs(client, configChannel);
+            if (enableAmongFeatures === false) {
+                thingsToConfigure[1] = 0;
+                thingsToConfigure[2] = 0;
+                thingsToConfigure[3] = 0;
+            }
 
-            configChannel.send(amongUsConfig);
+            this.configureNextThing(client, configChannel, thingsToConfigure);
 
-            configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
+            //configChannel.send("Na razie to koniec, później będzie więcej rzeczy do skonfigurowania.");
 
-            //setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
+            //setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);*/
         }).catch(console.error);
 
 
@@ -140,65 +142,8 @@ module.exports = {
             ]
         });*/
     },
-    // Moderation features
-    configureModRoles(client, configChannel) {
-        configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
-
-        var moderatorRoles = [];
-        var done = false;
-
-        var callback = function(message) {
-            console.log("adminroles handler");
-
-            if (configChannel.id != message.channel.id || message.author.bot) return;
-            
-            if (message.content.toLowerCase() == "/koniec") {
-                if (moderatorRoles.length <= 0) {
-                    configChannel.send("Wskazanie jakiejkolwiek roli bądź ról moderatorskich jest wymagane!");
-                    return;
-                } else {
-                    done = true;
-                    client.removeListener('message', callback);
-                    return;
-                }
-            }
-
-            let roleID = message.content.replace(/[\\<>@#&!]/g, "");
-
-            if (isNaN(parseInt(roleID))) {
-                configChannel.send("Identyfikator roli zawsze jest liczbą! Spróbuj jeszcze raz.");
-                return;
-            }
-
-            if (typeof configChannel.guild.roles.cache.get(roleID) === 'undefined') {
-                configChannel.send("Nie znalazłem takiej roli na tym serwerze. Spróbuj jeszcze raz.");
-                return;
-            }
-
-            moderatorRoles.push(roleID);
-
-            message.react('👍');
-        };
-
-        client.addListener('message', callback);
-
-        return moderatorRoles;
-    },
-    // Among Us Features
-    configureAmongUs(client, configChannel) {
-        this.configureWaitroom(client, configChannel);
-        this.configureSlotAlert(client, configChannel);
-        this.configureModUpdateNotifications(client, configChannel);
-
-        return true;
-    },
-    configureWaitroom(client, configChannel) {
-
-    },
-    configureSlotAlert(client, configChannel) {
-
-    },
-    configureModUpdateNotifications(client, configChannel) {
-
+    async configureNextThing(client, configChannel, thingsToConfigure) {
+        configChannel.send("poszło gajs");
+        console.log(thingsToConfigure);
     }
 }
