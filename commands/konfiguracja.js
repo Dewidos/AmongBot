@@ -149,16 +149,16 @@ module.exports = {
             ]
         });*/
     },
-    async configureNextThing(client, configChannel, thingsToConfigure) {
+    configureNextThing(client, configChannel, thingsToConfigure) {
+        var done = false;
+        
         for (const key in thingsToConfigure) {
             const decision = thingsToConfigure[key];
-            
-            var done = false;
 
             if (decision === 1) {
                 switch (key) {
                     case 0:
-                        configureModRoles(client, configChannel, thingsToConfigure)
+                        configureModRoles(client, configChannel, thingsToConfigure);
                         return;
                     case 1:
                         configureModUpdateNotifications(client, configChannel, thingsToConfigure);
@@ -178,7 +178,7 @@ module.exports = {
 
         if (done === false) return;
 
-        await configChannel.send("Dziękuję za pomyślną konfigurację!");
+        configChannel.send("Dziękuję za pomyślną konfigurację!");
 
         setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
     }
