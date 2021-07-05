@@ -1,4 +1,4 @@
-import { configureNextThing } from './../commands/konfiguracja';
+const configureNextThing = require('./../commands/konfiguracja').configureNextThing;
 
 module.exports = (client, configChannel, thingsToConfigure) => {
     console.log("hej didżej");
@@ -48,6 +48,7 @@ module.exports = (client, configChannel, thingsToConfigure) => {
         }
 
         thingsToConfigure[0] = moderatorRoles;
+        console.log(require('./../commands/konfiguracja'));
         configureNextThing(client, configChannel, thingsToConfigure);
     };
 
