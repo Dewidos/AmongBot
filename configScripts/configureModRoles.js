@@ -1,9 +1,9 @@
-const { configureNextThing } = require('./../commands/konfiguracja');
+const configureNextThing = require('./../commands/konfiguracja').configureNextThing;
 
-module.exports = async (client, configChannel, thingsToConfigure) => {
+module.exports = (client, configChannel, thingsToConfigure) => {
     console.log("hej didżej");
     
-    await configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
+    configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
 
     var moderatorRoles = [];
     var done = false;
@@ -42,7 +42,7 @@ module.exports = async (client, configChannel, thingsToConfigure) => {
     client.addListener('message', callback);
 
     var waitForUser = () => {
-        if (done === false) {
+        if (done == false) {
             setTimeout(waitForUser, 50);
             return;
         }

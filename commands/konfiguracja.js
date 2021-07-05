@@ -154,19 +154,20 @@ module.exports = {
         
         for (const key in thingsToConfigure) {
             const decision = thingsToConfigure[key];
+            console.log(`${key} -> ${decision}\n` + thingsToConfigure);
 
-            if (decision === 1) {
+            if (decision == 1) {
                 switch (key) {
-                    case 0:
+                    case "0":
                         configureModRoles(client, configChannel, thingsToConfigure);
                         return;
-                    case 1:
+                    case "1":
                         configureModUpdateNotifications(client, configChannel, thingsToConfigure);
                         return;
-                    case 2:
+                    case "2":
                         configureSlotAlert(client, configChannel, thingsToConfigure);
                         return;
-                    case 3:
+                    case "3":
                         configureWaitroom(client, configChannel, thingsToConfigure);
                         return;
                     default:
@@ -177,6 +178,8 @@ module.exports = {
         }
 
         if (done === false) return;
+
+        console.log(done);
 
         configChannel.send("Dziękuję za pomyślną konfigurację!");
 
