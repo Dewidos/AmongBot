@@ -149,12 +149,9 @@ module.exports = {
             ]
         });*/
     },
-    configureNextThing(client, configChannel, thingsToConfigure) {
-        var done = false;
-        
-        for (const key in thingsToConfigure) {
+    configureNextThing(client, configChannel, thingsToConfigure) {     for (const key in thingsToConfigure) {
             const decision = thingsToConfigure[key];
-            console.log(`${key} -> ${decision}\n` + thingsToConfigure);
+            console.log(thingsToConfigure);
 
             if (decision == 1) {
                 switch (key) {
@@ -169,17 +166,9 @@ module.exports = {
                         return;
                     case "3":
                         configureWaitroom(client, configChannel, thingsToConfigure);
-                        return;
-                    default:
-                        done = true;
-                        break;
                 }
             } else continue;
         }
-
-        if (done === false) return;
-
-        console.log(done);
 
         configChannel.send("Dziękuję za pomyślną konfigurację!");
 

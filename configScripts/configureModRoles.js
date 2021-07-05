@@ -1,8 +1,4 @@
-const configureNextThing = require('./../commands/konfiguracja').configureNextThing;
-
 module.exports = (client, configChannel, thingsToConfigure) => {
-    console.log("hej didżej");
-    
     configChannel.send("Wskaż mi proszę role moderatorskie tego serwera. Wystarczy że oznaczysz każdą z nich w osobnej wiadomości. Gdy skończysz, wpisz **/koniec**");
 
     var moderatorRoles = [];
@@ -48,8 +44,7 @@ module.exports = (client, configChannel, thingsToConfigure) => {
         }
 
         thingsToConfigure[0] = moderatorRoles;
-        console.log(require('./../commands/konfiguracja'));
-        configureNextThing(client, configChannel, thingsToConfigure);
+        require('./../commands/konfiguracja').configureNextThing(client, configChannel, thingsToConfigure);
     };
 
     waitForUser();
