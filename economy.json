@@ -1,10 +1,1 @@
-[
-    {
-        "guildId": "825844650178117642",
-        "playerBalance": [],
-        "currency": {
-            "name": "Klasowe hajsy",
-            "symbol": ":heavy_dollar_sign:"
-        }
-    }
-]
+[{"guildId":"825844650178117642","playerBalance":[],"currency":{"name":"Klasowe hajsy","symbol":":heavy_dollar_sign:"}}]
