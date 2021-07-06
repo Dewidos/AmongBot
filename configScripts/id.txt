@@ -1,0 +1,15 @@
+0 - configureModRoles.js
+1 - configureModUpdateNotifications.js
+2 - configureSlotAlert.js
+3 - configureWaitroom.js
+4 - configureShips.js
+5 - configureLeveling.js
+6 - configurePlayerVerification.js
+7 - configureUserVerification.js
+8 - configureMarriages.js
+9 - configureMutes.js
+10 - configureAdminRecommendations.js
+11 - configureToBotSpeaking.js
+12 - configureCounting.js
+13 - configureBotMessageRepeating.js
+14 - configureBotDmForwarding.js

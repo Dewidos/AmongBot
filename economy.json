@@ -1,1 +1,10 @@
-[{"guildId":"840941220368482304","playerBalance":[{"playerId":"514138172070952961","walletMoney":"NaN","bankMoney":"NaN","nextPossibleWorkTime":"2021-05-31T19:51:44.628Z"},{"playerId":"292024039835303936","walletMoney":"0","bankMoney":"0","nextPossibleWorkTime":"2021-05-31T19:45:48.658Z"},{"playerId":"795970790759727124","walletMoney":"NaN","bankMoney":"NaN","nextPossibleWorkTime":"2021-06-01T18:17:32.437Z"},{"playerId":"847362253735854101","walletMoney":"0","bankMoney":"0","nextPossibleWorkTime":"2021-05-31T20:32:01.649Z"},{"playerId":"483310917380210689","walletMoney":"0","bankMoney":"0","nextPossibleWorkTime":"2021-06-01T13:32:03.982Z"}],"currency":{"name":"SUS","symbol":"<:amongus_sus:848541284746657812>"}}]
+[
+    {
+        "guildId": "825844650178117642",
+        "playerBalance": [],
+        "currency": {
+            "name": "Klasowe hajsy",
+            "symbol": ":heavy_dollar_sign:"
+        }
+    }
+]

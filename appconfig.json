@@ -21,37 +21,29 @@
         "warningRoles": []
     },
     {
-        "guildId": "849016068289986591",
-        "modUpdateChannelId": "849017058061713458",
-        "waitroomChannelId": "849018859079860225",
-        "verifiedRoleId": "849963726384005131",
-        "shipChannelId": "849920599090397204",
-        "lvlNotifyChannel": "850016147805962310",
-        "marryChannelId": "849920409520177172",
-        "muteRole": "849922393127649311",
-        "verificationChannel": "849964812934053898",
-        "polecAdminaChannelId": "849930174722998303",
-        "verificationRole": "849990322952208434",
-        "speakToBotChannelId": "849920572779659264",
-        "countingChannelId": "849920671513444362",
-        "repeatingChannelId": "849920629901099018",
-        "botDmForwardChannel": "856145551685845013",
-        "levelRoles": [
-            {
-                "roleFor1Lvl": "850033254668304384",
-                "roleFor5Lvl": "850033980216311819",
-                "roleFor10Lvl": "850034522141491251",
-                "roleFor25Lvl": "850034775481778177"
-            }
-        ],
+        "guildId": "825844650178117642",
+        "modUpdateChannelId": "0",
+        "waitroomChannelId": "0",
+        "verifiedRoleId": "0",
+        "shipChannelId": "861922831707930644",
+        "lvlNotifyChannel": "861923019118346241",
+        "marryChannelId": "861913855047106560",
+        "muteRole": "861923261918478387",
+        "verificationChannel": "0",
+        "polecAdminaChannelId": "861924037462065153",
+        "verificationRole": "825844650178117644",
+        "speakToBotChannelId": "861924259483615252",
+        "countingChannelId": "861914146291580978",
+        "repeatingChannelId": "861914046802559016",
+        "botDmForwardChannel": "861924547271327754",
+        "levelRoles": [],
         "actualConfigNumber": 1,
         "vcNotifyLinks": [],
         "vcNotifyConfig": [],
         "moderatorRoles": [
-            "856252905135538197",
-            "856252906264461322",
-            "856252907141595196",
-            "856252909623705600"
+            "825844650224779285",
+            "825844650211409969",
+            "857301542083231796"
         ],
         "warningRoles": [],
         "autoModConfig": [

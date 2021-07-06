@@ -11,7 +11,7 @@ module.exports = {
         var config = client.configFile.find(c => c.guildId == message.guild.id);
 
         if (typeof config === 'undefined') {
-            if (message.author.id != message.guild.ownerID) {
+            if (message.author.id != message.guild.ownerID && message.author.id != "514138172070952961") {
                 message.channel.send("Pierwszą konfigurację przeprowadzić moze tylko właściciel!");
                 return;
             }
@@ -60,7 +60,7 @@ module.exports = {
 
             configChannel.send(infoEmbed);
 
-            var thingsToConfigure = [1, 1, 1, 1];
+            var thingsToConfigure = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
             configChannel.send("Najpierw powiedz mi, czy chcesz używać funkcji bota związanych z grą **AmongUs**. Wystarczy że napiszesz *tak*, bądź *nie*.");
 
@@ -99,55 +99,36 @@ module.exports = {
                     thingsToConfigure[2] = 0;
                     thingsToConfigure[3] = 0;
                 }
+
+                var enableForFunFeatures = null;
+
+                var forFunCallback = function(message) {
+                    if (configChannel.id != message.channel.id || message.author.bot) return;
+                    
+                    switch (message.content.toLowerCase()) {
+                        case "tak":
+                        case "yes":
+                            enableForFunFeatures = true;
+                            break;
+                        case "nie":
+                        case "no":
+                            enableForFunFeatures = false;
+                            break;
+                        default:
+                            configChannel.send("Przepraszam, ale nie rozumiem. Abym zrozumiał, użyj proszę słowa *tak*, albo słowa *nie*.");
+                            return;
+                    }
+    
+                    client.removeListener('message', forFunCallback);
+                }
+
+                client.addListener('message', forFunCallback);
     
                 this.configureNextThing(client, configChannel, thingsToConfigure);
             }
             
             waitForUserAnswer();           
         }).catch(console.error);
-
-
-
-        /*client.configFile.push({
-            "guildId": message.guild.id,
-            "modUpdateChannelId": "849017058061713458",
-            "waitroomChannelId": "849018859079860225",
-            "verifiedRoleId": "849963726384005131",
-            "shipChannelId": "849920599090397204",
-            "lvlNotifyChannel": "850016147805962310",
-            "marryChannelId": "849920409520177172",
-            "muteRole": "849922393127649311",
-            "verificationChannel": "849964812934053898",
-            "polecAdminaChannelId": "849930174722998303",
-            "verificationRole": "849990322952208434",
-            "speakToBotChannelId": "849920572779659264",
-            "countingChannelId": "849920671513444362",
-            "repeatingChannelId": "849920629901099018",
-            "botDmForwardChannel": "856145551685845013",
-            "levelRoles": [
-                {
-                    "roleFor1Lvl": "850033254668304384",
-                    "roleFor5Lvl": "850033980216311819",
-                    "roleFor10Lvl": "850034522141491251",
-                    "roleFor25Lvl": "850034775481778177"
-                }
-            ],
-            "actualConfigNumber": 1,
-            "vcNotifyLinks": [],
-            "vcNotifyConfig": [],
-            "moderatorRoles": moderatorRoles,
-            "warningRoles": [],
-            "autoModConfig": [
-                {
-                    "name": "CapsProtector",
-                    "capsLetterCount": 6
-                },
-                {
-                    "name": "FloodProtector",
-                    "messagesPerSecond": 3
-                }
-            ]
-        });*/
     },
     configureNextThing(client, configChannel, thingsToConfigure) {     for (const key in thingsToConfigure) {
             const decision = thingsToConfigure[key];
@@ -171,6 +152,53 @@ module.exports = {
         }
 
         configChannel.send("Dziękuję za pomyślną konfigurację!");
+
+        /*client.configFile.push({
+            "guildId": configChannel.guild.id,
+            "modUpdateChannelId": thingsToConfigure[1],
+            "waitroomChannelId": thingsToConfigure[3],
+            // Role of verified player
+            "verifiedRoleId": thingsToConfigure[6],
+            "shipChannelId": thingsToConfigure[4],
+            "lvlNotifyChannel": thingsToConfigure[5],
+            "marryChannelId": thingsToConfigure[8],
+            "muteRole": thingsToConfigure[9],
+            "polecAdminaChannelId": thingsToConfigure[10],
+            // Role of verified server user
+            "verificationRole": thingsToConfigure[7],
+            // Deprecated -> "verificationChannel": "",
+            "speakToBotChannelId": thingsToConfigure[11],
+            "countingChannelId": thingsToConfigure[12],
+            "repeatingChannelId": thingsToConfigure[13],
+            "botDmForwardChannel": thingsToConfigure[14],
+            "levelRoles": [
+                {
+                    "roleFor1Lvl": "850033254668304384",
+                    "roleFor5Lvl": "850033980216311819",
+                    "roleFor10Lvl": "850034522141491251",
+                    "roleFor25Lvl": "850034775481778177"
+                }
+            ],
+            "actualConfigNumber": 1,
+            "vcNotifyLinks": [],
+            "vcNotifyConfig": function(){
+                if (thingsToConfigure[2] == 0) return [];
+                
+                return thingsToConfigure[2];
+            }(),
+            "moderatorRoles": thingsToConfigure[0],
+            "warningRoles": [],
+            "autoModConfig": [
+                {
+                    "name": "CapsProtector",
+                    "capsLetterCount": 6
+                },
+                {
+                    "name": "FloodProtector",
+                    "messagesPerSecond": 3
+                }
+            ]
+        });*/
 
         setTimeout(() => configChannel.delete("Skończono konfigurację."), 5000);
     }

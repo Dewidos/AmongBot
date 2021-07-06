@@ -5,6 +5,9 @@ module.exports = {
   "description": "pozwala zrobic weryfikacyjna wiadomość!",
   async execute(message, args, client) {
 
+    message.channel.send("Komenda niezdatna do użytku, trwają nad nią prace. Przepraszamy!");
+    return;
+
     var content = "";
 
     var config = client.configFile.find(c => c.guildId == message.guild.id);
